@@ -1,0 +1,516 @@
+/* ==========================================================================
+   Newsela — Angelou Design System 2.0
+   Colors, Typography, and base tokens
+   ========================================================================== */
+
+/* ---------- Fonts ---------- */
+@font-face {
+  font-family: 'Circular';
+  src: url('fonts/CircularStd-Book.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Circular';
+  src: url('fonts/CircularStd-BookItalic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Circular';
+  src: url('fonts/CircularStd-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Circular';
+  src: url('fonts/CircularStd-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Circular';
+  src: url('fonts/CircularStd-BoldItalic.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Noto Serif';
+  src: url('fonts/NotoSerif-ExtraLight.ttf') format('truetype');
+  font-weight: 200;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Noto Serif';
+  src: url('fonts/NotoSerif-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Noto Serif';
+  src: url('fonts/NotoSerif-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Noto Serif';
+  src: url('fonts/NotoSerif-Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Noto Serif';
+  src: url('fonts/NotoSerif-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Noto Serif';
+  src: url('fonts/NotoSerif-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+/* ==========================================================================
+   Color Tokens
+   ========================================================================== */
+
+:root {
+  /* ---- Base ---- */
+  --ui-black: #000000;
+  --ui-white: #FFFFFF;
+
+  /* ---- UI Core (primary brand blue ramp) ---- */
+  --ui-core-25:  #E5EFFF;
+  --ui-core-50:  #CCE1FF;
+  --ui-core-100: #A6CCFF;
+  --ui-core-200: #6BA8FF;
+  --ui-core-300: #3688FD;
+  --ui-core-500: #0A6EFA;
+  --ui-core-600: #0F3FDE;
+  --ui-core-700: #082C88;
+
+  /* ---- UI Blue ---- */
+  --ui-blue-50:  #CCE1FF;
+  --ui-blue-100: #A6CCFF;
+  --ui-blue-300: #6BA8FF;
+  --ui-blue-500: #0A6EFA;
+  --ui-blue-600: #0F3FDE;
+  --ui-blue-700: #082C88;
+
+  /* ---- UI Teal ---- */
+  --ui-teal-25:  #F4FDFF;
+  --ui-teal-50:  #E9FCFF;
+  --ui-teal-100: #ABF0FD;
+  --ui-teal-300: #6AE0F8;
+  --ui-teal-500: #42CAE7;
+  --ui-teal-600: #31AFCB;
+  --ui-teal-700: #208095;
+
+  /* ---- UI Beige ---- */
+  --ui-beige-25:  #FFF8EE;
+  --ui-beige-50:  #FFF4E5;
+  --ui-beige-100: #FDE7C7;
+  --ui-beige-300: #F8D6A7;
+  --ui-beige-500: #E5C08C;
+  --ui-beige-600: #C7A475;
+  --ui-beige-700: #8B7351;
+
+  /* ---- UI Red ---- */
+  --ui-red-50:  #FFE2E2;
+  --ui-red-100: #FEC4C5;
+  --ui-red-300: #FF6B6B;
+  --ui-red-500: #DD3636;
+  --ui-red-600: #C32113;
+  --ui-red-700: #A50000;
+
+  /* ---- UI Green ---- */
+  --ui-green-50:  #D3FBF2;
+  --ui-green-100: #B9F9EA;
+  --ui-green-300: #25C09B;
+  --ui-green-500: #0F8670;
+  --ui-green-600: #17786C;
+  --ui-green-700: #085E4A;
+
+  /* ---- UI Yellow ---- */
+  --ui-yellow-50:  #FFF8D2;
+  --ui-yellow-100: #FFF1AB;
+  --ui-yellow-300: #FFE45B;
+  --ui-yellow-500: #FEC800;
+  --ui-yellow-600: #BC8100;
+  --ui-yellow-700: #A06A00;
+
+  /* ---- UI Pink ---- */
+  --ui-pink-25:  #FEEAF9;
+  --ui-pink-50:  #FFDCF5;
+  --ui-pink-100: #FFBCE4;
+  --ui-pink-300: #FF80BD;
+  --ui-pink-500: #DA2C81;
+  --ui-pink-600: #A20154;
+  --ui-pink-700: #7D0145;
+
+  /* ---- UI Purple ---- */
+  --ui-purple-25:  #F2EDFA;
+  --ui-purple-50:  #E7DCF6;
+  --ui-purple-100: #D3BCEC;
+  --ui-purple-200: #B582DA;
+  --ui-purple-300: #B582DA;
+  --ui-purple-400: #8B1EA4;
+  --ui-purple-500: #8B1EA4;
+  --ui-purple-600: #720780;
+  --ui-purple-700: #54005C;
+
+  /* ---- UI Neutral (grayscale) ---- */
+  --ui-neutral-25:  #F7F8F8;
+  --ui-neutral-50:  #F0F1F2;
+  --ui-neutral-100: #E1E3E5;
+  --ui-neutral-200: #A8AAB0;
+  --ui-neutral-300: #8D8D96;
+  --ui-neutral-400: #77767A;
+  --ui-neutral-500: #5B5A61;
+  --ui-neutral-600: #424147;
+  --ui-neutral-700: #1D1D1D;
+
+  /* ---- Status ---- */
+  --status-success-50:  #D3FBF2;
+  --status-success-100: #B9F9EA;
+  --status-success-300: #25C09B;
+  --status-success-500: #0F8670;
+  --status-success-600: #17786C;
+  --status-success-700: #085E4A;
+
+  --status-info-50:  #E5EFFF;
+  --status-info-100: #A6CCFF;
+  --status-info-300: #6BA8FF;
+  --status-info-500: #0A6EFA;
+  --status-info-600: #0438E5;
+  --status-info-700: #0B1386;
+
+  --status-danger-50:  #FFE2E2;
+  --status-danger-100: #FEC4C5;
+  --status-danger-300: #FF6B6B;
+  --status-danger-500: #DD3636;
+  --status-danger-600: #C32113;
+  --status-danger-700: #A50000;
+
+  --status-warning-50:  #FFF8D2;
+  --status-warning-100: #FFF1AB;
+  --status-warning-300: #FFE45B;
+  --status-warning-500: #FEC800;
+  --status-warning-600: #BC8100;
+  --status-warning-700: #A06A00;
+
+  /* ---- Brand ---- */
+  --brand-blue-25:  #E5EFFF;
+  --brand-blue-50:  #CCE1FF;
+  --brand-blue-100: #A6CCFF;
+  --brand-blue-200: #6BA8FF;
+  --brand-blue-300: #3688FD;
+  --brand-blue-500: #0A6EFA;
+  --brand-blue-600: #0438E5;
+  --brand-blue-700: #0B1386;
+
+  --brand-aqua-25:  #E9FCFF;
+  --brand-aqua-50:  #D4F8FE;
+  --brand-aqua-100: #ABF0FD;
+  --brand-aqua-200: #87E8FB;
+  --brand-aqua-300: #6AE0F8;
+  --brand-aqua-500: #42CAE7;
+  --brand-aqua-600: #31AFCB;
+  --brand-aqua-700: #208095;
+
+  --brand-bisque-50:  #FFF4E5;
+  --brand-bisque-100: #FDE7C7;
+  --brand-bisque-200: #F8D6A7;
+  --brand-bisque-300: #E5C08C;
+  --brand-bisque-500: #C7A475;
+  --brand-bisque-600: #8B7351;
+  --brand-bisque-700: #564732;
+
+  /* ---- Product family colors ---- */
+  --product-ela-25:  #FFF0F0;
+  --product-ela-50:  #FFE2E2;
+  --product-ela-100: #FEC4C5;
+  --product-ela-200: #FD8C8D;
+  --product-ela-300: #FC5B5D;
+  --product-ela-500: #EB0404;
+  --product-ela-600: #D30000;
+  --product-ela-700: #A50000;
+
+  --product-socialstudies-25:  #FEEAF9;
+  --product-socialstudies-50:  #FFDCF5;
+  --product-socialstudies-100: #FFBCE4;
+  --product-socialstudies-200: #FF80BD;
+  --product-socialstudies-300: #EC4E9B;
+  --product-socialstudies-500: #DA2C81;
+  --product-socialstudies-600: #A20154;
+  --product-socialstudies-700: #7D0145;
+
+  --product-science-25:  #FFF4EC;
+  --product-science-50:  #FFE9D8;
+  --product-science-100: #FED0AD;
+  --product-science-200: #F5A15C;
+  --product-science-300: #EB7E19;
+  --product-science-500: #DA6D00;
+  --product-science-600: #B85E00;
+  --product-science-700: #944E00;
+
+  --product-formative-25:  #FFF8E8;
+  --product-formative-50:  #FFF1D1;
+  --product-formative-100: #FEE3A4;
+  --product-formative-300: #F6C852;
+  --product-formative-500: #E8AB14;
+  --product-formative-600: #BC8100;
+  --product-formative-700: #A06A00;
+
+  --product-everwrite-25:  #F2EDFA;
+  --product-everwrite-50:  #E7DCF6;
+  --product-everwrite-100: #D3BCEC;
+  --product-everwrite-200: #B582DA;
+  --product-everwrite-300: #A354C9;
+  --product-everwrite-500: #8B1EA4;
+  --product-everwrite-600: #720780;
+  --product-everwrite-700: #54005C;
+
+  /* ==========================================================================
+     Semantic tokens
+     ========================================================================== */
+
+  /* Foreground */
+  --fg-primary:   var(--ui-neutral-700);   /* #1D1D1D body */
+  --fg-secondary: var(--ui-neutral-500);   /* muted */
+  --fg-tertiary:  var(--ui-neutral-400);   /* placeholder */
+  --fg-disabled:  var(--ui-neutral-300);
+  --fg-inverse:   var(--ui-white);
+  --fg-link:      var(--ui-core-500);
+  --fg-link-hover: var(--ui-core-600);
+
+  /* Background */
+  --bg-page:      var(--ui-white);
+  --bg-surface:   var(--ui-white);
+  --bg-subtle:    var(--ui-neutral-25);
+  --bg-muted:     var(--ui-neutral-50);
+  --bg-inverse:   var(--ui-neutral-700);
+  --bg-accent:    var(--ui-core-500);
+
+  /* Border */
+  --border-subtle:  rgba(29, 29, 29, 0.16);   /* 16% Dark Grey 700 spec */
+  --border-default: var(--ui-neutral-100);
+  --border-strong:  var(--ui-neutral-300);
+  --border-inverse: rgba(255, 255, 255, 0.16);
+  --border-focus:   var(--ui-core-500);
+
+  /* ==========================================================================
+     Typography — families
+     ========================================================================== */
+  --font-sans:     'Circular', 'Nunito', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  --font-display:  'Noto Serif', Georgia, 'Times New Roman', serif;
+  --font-mono:     ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Monaco, Consolas, monospace;
+
+  /* Weights */
+  --fw-book:    400;
+  --fw-medium:  500;
+  --fw-bold:    700;
+
+  /* Sizes (8 accepted) */
+  --fs-12: 0.75rem;
+  --fs-14: 0.875rem;
+  --fs-16: 1rem;
+  --fs-18: 1.125rem;
+  --fs-20: 1.25rem;
+  --fs-24: 1.5rem;
+  --fs-32: 2rem;
+  --fs-40: 2.5rem;
+
+  /* Line heights */
+  --lh-16: 1rem;
+  --lh-20: 1.25rem;
+  --lh-24: 1.5rem;
+  --lh-32: 2rem;
+  --lh-40: 2.5rem;
+  --lh-48: 3rem;
+
+  /* ==========================================================================
+     Grid & Spacing
+     Mini Unit = 8px. All spacing = multiples of 8.
+     ========================================================================== */
+  --space-1:  4px;   /* 0.5×  — hairline pairings only */
+  --space-2:  8px;   /* 1×    mini unit */
+  --space-3: 16px;   /* 2× */
+  --space-4: 24px;   /* 3× */
+  --space-5: 32px;   /* 4× */
+  --space-6: 40px;   /* 5× */
+  --space-7: 48px;   /* 6× */
+  --space-8: 64px;   /* 8× */
+  --space-9: 80px;   /* 10× */
+  --space-10: 120px; /* 15× */
+
+  /* Breakpoints (for reference in JS or custom media) */
+  --bp-infinity: 1441px;
+  --bp-large:    1025px;
+  --bp-medium:   769px;
+  --bp-small:    569px;
+
+  --content-max-width: 1680px;
+
+  /* ==========================================================================
+     Radii, Shadows, Motion
+     (Derived — Angelou spec does not enumerate these; these are
+      pragmatic defaults that match the shipped Newsela UI.)
+     ========================================================================== */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-pill: 999px;
+
+  --shadow-xs: 0 1px 2px rgba(29, 29, 29, 0.06);
+  --shadow-sm: 0 2px 4px rgba(29, 29, 29, 0.08);
+  --shadow-md: 0 4px 12px rgba(29, 29, 29, 0.10);
+  --shadow-lg: 0 8px 24px rgba(29, 29, 29, 0.12);
+  --shadow-xl: 0 16px 40px rgba(29, 29, 29, 0.16);
+  --shadow-focus: 0 0 0 3px rgba(10, 110, 250, 0.35);
+
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-emphasis: cubic-bezier(0.3, 0, 0, 1);
+  --dur-fast:     120ms;
+  --dur-base:     200ms;
+  --dur-slow:     320ms;
+}
+
+/* ==========================================================================
+   Base element styles — semantic type
+   ========================================================================== */
+
+html {
+  font-family: var(--font-sans);
+  color: var(--fg-primary);
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-weight: var(--fw-book);
+  font-size: var(--fs-16);
+  line-height: var(--lh-24);
+  color: var(--fg-primary);
+  background: var(--bg-page);
+  margin: 0;
+}
+
+/* Heading 1 — Noto Serif or Circular Bold */
+h1, .h1 {
+  font-family: var(--font-display);
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-40);
+  line-height: 1.2; /* 48/40 */
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+@media (max-width: 568px) {
+  h1, .h1 { font-size: var(--fs-32); line-height: 1.25; }
+}
+
+/* Heading 2 */
+h2, .h2 {
+  font-family: var(--font-display);
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-32);
+  line-height: 1.25;
+  margin: 0;
+}
+@media (max-width: 568px) {
+  h2, .h2 { font-size: 1.625rem; line-height: 1.23; }
+}
+
+/* Heading 3 */
+h3, .h3 {
+  font-family: var(--font-display);
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-24);
+  line-height: 1.33;
+  margin: 0;
+}
+@media (max-width: 568px) {
+  h3, .h3 { font-size: var(--fs-20); line-height: 1.2; }
+}
+
+/* Heading 4 — Circular Bold */
+h4, .h4 {
+  font-family: var(--font-sans);
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-20);
+  line-height: 1.2;
+  margin: 0;
+}
+
+/* Heading 5 */
+h5, .h5 {
+  font-family: var(--font-sans);
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-16);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Heading 6 */
+h6, .h6 {
+  font-family: var(--font-sans);
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-14);
+  line-height: 1.14;
+  margin: 0;
+}
+
+/* Body text */
+p  { font-size: var(--fs-16); line-height: var(--lh-24); margin: 0 0 var(--space-3); }
+.text-l  { font-size: var(--fs-18); line-height: 2rem; } /* 32/18 */
+.text-m  { font-size: var(--fs-16); line-height: var(--lh-24); }
+.text-s  { font-size: var(--fs-14); line-height: var(--lh-24); }
+.text-xs { font-size: var(--fs-12); line-height: var(--lh-16); }
+
+/* Labels — Circular Book */
+.label-l  { font-family: var(--font-sans); font-weight: var(--fw-book); font-size: var(--fs-18); line-height: var(--lh-24); }
+.label-m  { font-family: var(--font-sans); font-weight: var(--fw-book); font-size: var(--fs-16); line-height: 1rem; }
+.label-s  { font-family: var(--font-sans); font-weight: var(--fw-book); font-size: var(--fs-14); line-height: var(--lh-16); }
+.label-xs { font-family: var(--font-sans); font-weight: var(--fw-book); font-size: var(--fs-12); line-height: var(--lh-16); }
+
+/* Caps */
+.caps, .eyebrow {
+  font-family: var(--font-sans);
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-12);
+  line-height: var(--lh-16);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Code */
+code, pre, .mono {
+  font-family: var(--font-mono);
+  font-size: 0.9375em;
+}
+
+/* Links */
+a {
+  color: var(--fg-link);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color var(--dur-fast) var(--ease-standard);
+}
+a:hover { color: var(--fg-link-hover); }
+
+/* Focus — accessibility: 3px blue ring */
+:focus-visible {
+  outline: 2px solid var(--ui-core-500);
+  outline-offset: 2px;
+}
