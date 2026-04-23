@@ -173,8 +173,8 @@ window.DownloadBtn = function DownloadBtn({ label = 'Download as .csv' }) {
 };
 
 // ────────────────────────── Info icon with tooltip ──────────────────────────
-window.InfoTip = function InfoTip({ text }) {
-  return h('span', { className: 'tip', tabIndex: 0 },
+window.InfoTip = function InfoTip({ text, below }) {
+  return h('span', { className: 'tip' + (below ? ' tip--below' : ''), tabIndex: 0 },
     h(I.Info, { size: 16 }),
     h('span', { className: 'tip-body', role: 'tooltip' }, text)
   );

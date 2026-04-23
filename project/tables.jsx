@@ -12,7 +12,7 @@ function Th({ label, sub, width, onSort, sortKey, current, info }) {
       onClick: () => onSort(sortKey),
       style: { display: 'inline-flex', alignItems: 'center', gap: 4, fontFamily: 'inherit', fontWeight: 700, color: 'inherit', fontSize: 14 }
     }, label, h(Sort)),
-    sub && h('span', { className: 'sub' }, sub, info && h(window.InfoTip, { text: info })),
+    sub && h('span', { className: 'sub' }, sub, info && h(window.InfoTip, { text: info, below: true })),
   );
 }
 
@@ -181,7 +181,7 @@ window.ReadingSkillsTable = function ReadingSkillsTable({ students, skills }) {
             h(Th, { label: 'Student', sortKey: 'name', onSort: toggle, current: sort, width: 180 }),
             skills.map((s, i) =>
               h('th', { key: s, style: { minWidth: 140, verticalAlign: 'top' } },
-                h('div', { style: { fontWeight: 700, fontSize: 14, lineHeight: 1.3 } }, s, ' ', h(window.InfoTip, { text: `Quiz performance on "${s}".` }))
+                h('div', { style: { fontWeight: 700, fontSize: 14, lineHeight: 1.3 } }, s, ' ', h(window.InfoTip, { text: `Quiz performance on "${s}".`, below: true }))
               )
             )
           )

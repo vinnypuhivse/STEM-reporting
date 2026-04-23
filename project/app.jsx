@@ -31,7 +31,7 @@ function StemPanel({ data }) {
           subLabel: 'Articles vs Video usage',
         }),
         h(window.DisciplinesCard, {
-          icon: h(I.Books, { size: 29 }),
+          icon: h(I.Books, { size: 22 }),
           title: 'STEM Disciplines',
           tipText: 'Count of content pieces engaged with by STEM discipline.',
           disciplines: stem.disciplines,

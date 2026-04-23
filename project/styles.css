@@ -276,13 +276,13 @@ a { color: inherit; }
   column-gap: 20px; min-height: 84px;
 }
 .ela-lvl-panel .ela-lvl-num {
-  font-family: 'Noto Serif', Georgia, serif;
-  font-size: 34px; font-weight: 700;
+  font-family: 'Circular', -apple-system, sans-serif;
+  font-size: 24px; font-weight: 700;
   color: var(--blue-700); line-height: 1;
   letter-spacing: -0.5px;
-  min-width: 70px;
+  min-width: 100px;
 }
-.ela-lvl-panel .ela-lvl-sub { font-size: 14px; color: var(--text-900); line-height: 1.4; }
+.ela-lvl-panel .ela-lvl-sub { font-size: 16px; color: var(--text-900); line-height: 1.35; }
 .ela-bars { display: flex; flex-direction: column; gap: 8px; }
 .ela-bars { --ela-label-w: 140px; }
 .ela-bar-row { display: grid; grid-template-columns: var(--ela-label-w) 1fr auto; align-items: center; gap: 12px; }
@@ -449,19 +449,22 @@ table.data .grade-cell .lex { font-weight: 400; color: var(--text-500); }
 
 /* =============== Tooltip =============== */
 .tip { position: relative; display: inline-flex; }
-.tip:hover .tip-body, .tip:focus-within .tip-body { opacity: 1; transform: translateY(0); pointer-events: auto; }
 .tip-body {
   position: absolute; bottom: calc(100% + 8px); left: 50%;
   transform: translate(-50%, 4px);
   background: var(--text-900); color: #fff; font-size: 12px; line-height: 1.4;
   padding: 8px 10px; border-radius: 6px; width: max-content; max-width: 240px;
-  opacity: 0; pointer-events: none; transition: all 160ms cubic-bezier(0.2,0,0,1);
+  opacity: 0; pointer-events: none; transition: opacity 160ms cubic-bezier(0.2,0,0,1);
   z-index: 50; text-align: left; font-weight: 400;
 }
+.tip:hover .tip-body, .tip:focus-within .tip-body { opacity: 1; transform: translate(-50%, 0); pointer-events: auto; }
 .tip-body::after {
   content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
   border: 5px solid transparent; border-top-color: var(--text-900);
 }
+.tip--below .tip-body { bottom: auto; top: calc(100% + 8px); transform: translate(-50%, -4px); }
+.tip--below:hover .tip-body, .tip--below:focus-within .tip-body { transform: translate(-50%, 0); }
+.tip--below .tip-body::after { top: auto; bottom: 100%; border-top-color: transparent; border-bottom-color: var(--text-900); }
 
 /* =============== Responsive =============== */
 @media (max-width: 1024px) {

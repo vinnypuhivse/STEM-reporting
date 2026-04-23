@@ -40,7 +40,7 @@ window.MetricTile = function MetricTile({ kind, value, label, bigNum }) {
 window.AvgReadingLevelCard = function AvgReadingLevelCard({ tipText, avgLevel, avgLevelSub, avgLexile, avgLexileSub }) {
   return h('div', { className: 'card card--tinted', style: { display: 'flex', flexDirection: 'column' } },
     h('div', { className: 'card-head' },
-      h('div', { className: 'card-title' }, h(I.Gauge, { size: 26 }), 'Average reading level'),
+      h('div', { className: 'card-title' }, h(I.Article, { size: 22 }), 'Average reading level'),
       h(window.InfoTip, { text: tipText }),
     ),
     h('div', { className: 'ela-lvl-stack' },
@@ -96,11 +96,11 @@ window.ReadingTotalsCard = function ReadingTotalsCard({ tipText, totalTexts, avg
       h(window.InfoTip, { text: tipText }),
     ),
     h('div', { style: { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, marginTop: 8, flex: 1 } },
-      h('div', { style: { background: '#fff', borderRadius: 8, padding: '20px 12px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10 } },
+      h('div', { style: { background: '#fff', borderRadius: 8, padding: '20px 12px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 10 } },
         h(window.Ring, { value: totalTexts, label: totalTexts, pct: 0 }),
         h('div', { style: { fontSize: 13, color: 'var(--text-900)', textAlign: 'center', lineHeight: 1.3 } }, 'Total texts viewed by class'),
       ),
-      h('div', { style: { background: '#fff', borderRadius: 8, padding: '20px 12px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10 } },
+      h('div', { style: { background: '#fff', borderRadius: 8, padding: '20px 12px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 10 } },
         h(window.Ring, { value: avgMinPerArticle, label: avgMinPerArticle, pct: (avgMinPerArticle / 60) * 100 }),
         h('div', { style: { fontSize: 13, color: 'var(--text-900)', textAlign: 'center', lineHeight: 1.3 } }, 'Average minutes per article'),
       ),
@@ -136,7 +136,7 @@ window.TextsByLevelCard = function TextsByLevelCard({ tipText, textsByLevel }) {
       h('div', { className: 'card-title' }, h(I.TrendUp, { size: 22 }), 'Texts by grade levels'),
       h(window.InfoTip, { text: tipText }),
     ),
-    h('div', { className: 'ela-tile ela-tile--right', style: { marginTop: 8, flex: 1 } },
+    h('div', { className: 'ela-tile ela-tile--right', style: { marginTop: 8, flex: 1, justifyContent: 'center' } },
       h('div', { className: 'ela-bars' },
         textsByLevel.map((row, i) =>
           h('div', { key: row.level, className: 'ela-bar-row' },
@@ -373,7 +373,7 @@ window.TimeSpentCard = function TimeSpentCard({ title, icon, tipText, articleMin
     ),
     h('div', { style: { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, marginTop: 8, flex: 1 } },
       [{ v: articleMin, label: 'Average minutes per article' }, { v: videoMin, label: 'Average minutes per video' }].map((t, i) =>
-        h('div', { key: i, style: { background: '#fff', borderRadius: 8, padding: '20px 12px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10 } },
+        h('div', { key: i, style: { background: '#fff', borderRadius: 8, padding: '20px 12px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 10 } },
           h(window.Ring, { value: t.v, label: t.v, pct: (t.v / 60) * 100 }),
           h('div', { style: { fontSize: 13, color: 'var(--text-900)', textAlign: 'center', lineHeight: 1.3 } }, t.label)
         )
