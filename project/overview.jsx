@@ -301,6 +301,9 @@ window.DonutCard = function DonutCard({ title, icon, tipText, articlesPct, video
   // Videos (purple) on the right — start at top (rotate -90) going clockwise for `v`%.
   const vLen = (v / 100) * C;
   const aLen = (a / 100) * C;
+  const [visible, setVisible] = useState(false);
+  useEffect(() => { const t = setTimeout(() => setVisible(true), 80); return () => clearTimeout(t); }, []);
+  const ease = 'stroke-dasharray 700ms cubic-bezier(0.2,0,0,1)';
 
   return h('div', { className: 'card card--tinted', style: { display: 'flex', flexDirection: 'column' } },
     h('div', { className: 'card-head' },
@@ -315,21 +318,23 @@ window.DonutCard = function DonutCard({ title, icon, tipText, articlesPct, video
           articlesTotal != null && h('div', { style: { fontSize: 14, color: 'var(--text-900)', fontWeight: 400, marginTop: 2 } }, articlesTotal + ' total'),
         ),
         h('svg', { width: 96, height: 96, viewBox: '0 0 100 100', style: { transform: 'rotate(-90deg)' } },
-          // Purple (Videos) — right side, goes clockwise from top
+          // Purple (Videos) — right side, grows clockwise from top
           h('circle', {
             cx: 50, cy: 50, r,
             fill: 'none', stroke: '#a437c9', strokeWidth: 10,
             strokeLinecap: 'round',
-            strokeDasharray: `${Math.max(0, vLen - gap * 2)} ${C}`,
+            strokeDasharray: `${visible ? Math.max(0, vLen - gap * 2) : 0} ${C}`,
             strokeDashoffset: -gap,
+            style: { transition: ease },
           }),
-          // Blue (Articles) — left side, goes clockwise starting after the videos slice
+          // Blue (Articles) — grows clockwise starting after the videos slice
           h('circle', {
             cx: 50, cy: 50, r,
             fill: 'none', stroke: 'rgb(16,111,243)', strokeWidth: 10,
             strokeLinecap: 'round',
-            strokeDasharray: `${Math.max(0, aLen - gap * 2)} ${C}`,
+            strokeDasharray: `${visible ? Math.max(0, aLen - gap * 2) : 0} ${C}`,
             strokeDashoffset: -(vLen + gap),
+            style: { transition: ease, transitionDelay: '80ms' },
           }),
         ),
         h('div', { style: { textAlign: 'left' } },
