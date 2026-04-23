@@ -41,9 +41,13 @@ function Pagination({ page, setPage, pageSize, setPageSize, total }) {
   return h('div', { className: 'table-foot' },
     h('div', { className: 'left' },
       h('span', null, 'Rows per page:'),
-      h('select', { className: 'page-select', value: pageSize, onChange: e => setPageSize(+e.target.value) },
-        [10, 25, 50, 100].map(n => h('option', { key: n, value: n }, n))
-      ),
+      h(window.Dropdown, {
+        ariaLabel: 'Rows per page',
+        size: 'sm',
+        value: String(pageSize),
+        options: ['25', '35', '50'],
+        onChange: (v) => setPageSize(+v),
+      }),
       h('span', null, `${(page - 1) * pageSize + 1}–${Math.min(page * pageSize, total)} of ${total}`)
     ),
     h('div', null,
@@ -60,7 +64,7 @@ function Pagination({ page, setPage, pageSize, setPageSize, total }) {
 window.StemStudentTable = function StemStudentTable({ students }) {
   const [sorted, sort, toggle] = useSort(students, { key: 'name', dir: 'asc' });
   const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState(10);
+  const [pageSize, setPageSize] = useState(25);
   const rows = sorted.slice((page - 1) * pageSize, page * pageSize);
 
   return h('div', { className: 'table-wrap' },
@@ -98,7 +102,7 @@ window.StemStudentTable = function StemStudentTable({ students }) {
 window.ElaStudentTable = function ElaStudentTable({ students }) {
   const [sorted, sort, toggle] = useSort(students, { key: 'name', dir: 'asc' });
   const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState(10);
+  const [pageSize, setPageSize] = useState(25);
   const rows = sorted.slice((page - 1) * pageSize, page * pageSize);
 
   return h('div', { className: 'table-wrap' },
@@ -167,7 +171,7 @@ window.__qCount = qCount;
 window.ReadingSkillsTable = function ReadingSkillsTable({ students, skills }) {
   const [sorted, sort, toggle] = useSort(students, { key: 'name', dir: 'asc' });
   const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState(10);
+  const [pageSize, setPageSize] = useState(25);
   const rows = sorted.slice((page - 1) * pageSize, page * pageSize);
   return h('div', { className: 'table-wrap' },
     h('div', { className: 'table-scroll' },

@@ -116,10 +116,11 @@ a { color: inherit; }
 .tab-icon { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; }
 .tab-icon img { width: 22px; height: 22px; display: block; opacity: 0.7; transition: opacity .15s; }
 .tab.active .tab-icon img { opacity: 1; }
-.tab-svg { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; opacity: 0.55; transition: opacity .15s; color: var(--text-500); }
+.tab-svg { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; transition: color .15s; color: var(--text-500); }
 .tab-svg svg { width: 22px; height: 22px; display: block; fill: currentColor; }
 .tab-svg svg path { fill: currentColor; }
-.tab.active .tab-svg { opacity: 1; color: var(--text-900); }
+.tab.active .tab-svg { color: var(--text-900); }
+.tab-icon-stem .tab-svg { color: #1D1D1D; }
 
 /* =============== Filter row =============== */
 .filters { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 32px; }
@@ -128,14 +129,64 @@ a { color: inherit; }
 }
 .filter.wide { flex: 1 1 400px; max-width: 440px; }
 .filter-label { font-size: 12px; color: var(--text-500); font-weight: 400; }
+
+/* =============== Custom dropdown =============== */
+.dd { position: relative; width: 100%; font-family: inherit; }
+.dd-btn {
+  width: 100%; height: 48px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px; padding: 0 14px;
+  background: #fff; border: 1px solid #77767A; border-radius: 8px;
+  font-family: inherit; font-size: 16px; color: var(--text-900);
+  text-align: left; cursor: pointer;
+  transition: border-color 120ms ease, box-shadow 120ms ease;
+}
+.dd-btn:hover { border-color: #5B5A61; }
+.dd-btn:focus-visible { outline: 2px solid var(--blue-700); outline-offset: 1px; }
+.dd.is-open .dd-btn { border-color: #5B5A61; }
+.dd-val { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dd-caret { color: var(--text-700); display: inline-flex; transition: transform 150ms ease; }
+.dd.is-open .dd-caret { transform: rotate(180deg); }
+
+.dd-menu {
+  position: absolute; left: 0; right: 0; top: calc(100% + 6px);
+  z-index: 50;
+  background: #fff; border: 1px solid var(--border); border-radius: 10px;
+  padding: 6px 0;
+  box-shadow: 0 12px 28px -8px rgba(15, 23, 42, 0.18), 0 4px 10px -4px rgba(15, 23, 42, 0.08);
+  max-height: 320px; overflow-y: auto;
+}
+.dd-opt {
+  width: 100%; display: flex; align-items: stretch;
+  gap: 0; padding: 0;
+  background: transparent; border: 0; border-radius: 0;
+  font-family: inherit; font-size: 16px; color: var(--text-900);
+  text-align: left; cursor: pointer; position: relative;
+}
+.dd-opt-bar {
+  width: 4px; flex-shrink: 0;
+  background: transparent; border-radius: 2px;
+  margin: 8px 12px 8px 8px;
+}
+.dd-opt:hover { background: var(--surface-100, #F4F4F6); }
+.dd-opt.is-selected { background: var(--surface-100, #F4F4F6); }
+.dd-opt.is-selected .dd-opt-bar { background: var(--blue-700); }
+.dd-opt-label { flex: 1; padding: 12px 14px 12px 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* small size for table pagination */
+.dd--sm { width: 80px; }
+.dd--sm .dd-btn { height: 36px; padding: 0 10px; font-size: 14px; border-radius: 6px; }
+.dd--sm .dd-menu { border-radius: 8px; padding: 4px 0; }
+.dd--sm .dd-opt { font-size: 14px; }
+.dd--sm .dd-opt-bar { margin: 6px 8px 6px 6px; width: 3px; }
+.dd--sm .dd-opt-label { padding: 8px 10px 8px 0; }
+
+/* Legacy native select (kept for any stray uses) */
 .filter-input {
   height: 48px; border: 1px solid var(--border); border-radius: 8px;
   background: #fff; padding: 0 40px 0 14px; font-size: 16px; color: var(--text-900);
   font-family: inherit; cursor: pointer; appearance: none; width: 100%;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none'><path d='M4 6 l4 4 4-4' stroke='%23545454' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/></svg>");
-  background-repeat: no-repeat; background-position: right 14px center;
 }
-.filter-input:focus { outline: 2px solid rgba(10,110,250,0.35); outline-offset: 1px; }
 
 /* =============== Section headings =============== */
 .section { margin-bottom: 48px; }
@@ -180,8 +231,8 @@ a { color: inherit; }
 }
 .card-title { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 16px; color: var(--text-900); }
 .card-title svg { flex-shrink: 0; }
-.card-title-svg { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; color: var(--text-900); flex-shrink: 0; }
-.card-title-svg svg { width: 18px; height: 18px; display: block; fill: currentColor; }
+.card-title-svg { display: inline-flex; align-items: center; justify-content: center; width: 15px; height: 15px; color: var(--text-900); flex-shrink: 0; }
+.card-title-svg svg { width: 15px; height: 15px; display: block; fill: currentColor; }
 .card-title-svg svg path { fill: currentColor; }
 
 /* =============== ELA Reading activity card (inner tiles) =============== */
@@ -215,13 +266,30 @@ a { color: inherit; }
 .ela-lvl-divider { height: 1px; background: rgba(29, 29, 29, 0.1); border: 0; margin: 2px 0; }
 .ela-lvl-num { font-size: 26px; font-weight: 700; color: var(--blue-700); letter-spacing: -0.5px; line-height: 1; }
 .ela-lvl-sub { font-size: 13px; color: var(--text-900); line-height: 1.35; }
+
+/* Average reading level — two stacked white panels */
+.ela-lvl-stack { display: flex; flex-direction: column; gap: 12px; margin-top: 8px; flex: 1; }
+.ela-lvl-panel {
+  background: #fff; border-radius: 12px;
+  padding: 20px 20px;
+  display: grid; grid-template-columns: auto 1fr; align-items: center;
+  column-gap: 20px; min-height: 84px;
+}
+.ela-lvl-panel .ela-lvl-num {
+  font-family: 'Noto Serif', Georgia, serif;
+  font-size: 34px; font-weight: 700;
+  color: var(--blue-700); line-height: 1;
+  letter-spacing: -0.5px;
+  min-width: 70px;
+}
+.ela-lvl-panel .ela-lvl-sub { font-size: 14px; color: var(--text-900); line-height: 1.4; }
 .ela-bars { display: flex; flex-direction: column; gap: 8px; }
 .ela-bars { --ela-label-w: 140px; }
 .ela-bar-row { display: grid; grid-template-columns: var(--ela-label-w) 1fr auto; align-items: center; gap: 12px; }
 .ela-bar-label { font-size: 13px; color: var(--text-900); white-space: nowrap; }
-.ela-bar-track { width: 100%; height: 14px; background: transparent; border-radius: 0; overflow: visible; }
-.ela-bar-fill { height: 100%; background: var(--blue-600); border-radius: 0 999px 999px 0; width: 0; transition: width 600ms cubic-bezier(0.2,0,0,1); }
-.ela-bar-count { font-size: 13px; font-weight: 700; color: var(--text-900); text-align: right; min-width: 20px; }
+.ela-bar-track { width: 100%; height: 24px; background: transparent; border-radius: 0; overflow: visible; }
+.ela-bar-fill { height: 100%; background: rgb(16,111,243); border-radius: 0 8px 0 0; width: 0; transition: width 600ms cubic-bezier(0.2,0,0,1); }
+.ela-bar-count { font-size: 14px; font-weight: 700; color: var(--text-900); text-align: right; min-width: 20px; }
 .ela-trend { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--blue-600); font-weight: 500; text-decoration: none; margin-top: 2px; }
 .ela-trend:hover { text-decoration: underline; }
 .ela-trend svg { flex-shrink: 0; }
@@ -276,11 +344,11 @@ a { color: inherit; }
 }
 .breakdown-row .lvl { color: var(--text-900); }
 .breakdown-row .bar-wrap {
-  height: 14px; background: transparent; border-radius: 0; overflow: visible;
+  height: 24px; background: transparent; border-radius: 0; overflow: visible;
   position: relative;
 }
 .breakdown-row .bar {
-  height: 100%; background: var(--blue-600); border-radius: 0 999px 999px 0;
+  height: 100%; background: rgb(16,111,243); border-radius: 0 8px 0 0;
   transition: width 600ms cubic-bezier(0.2, 0, 0, 1);
 }
 .breakdown-row .val {
@@ -299,9 +367,8 @@ a { color: inherit; }
 /* =============== Tables =============== */
 .table-wrap {
   background: #fff; border: 1px solid var(--border); border-radius: 12px;
-  overflow: hidden;
 }
-.table-scroll { overflow-x: auto; }
+.table-scroll { overflow-x: auto; border-top-left-radius: 12px; border-top-right-radius: 12px; }
 table.data {
   width: 100%; border-collapse: collapse; min-width: 720px;
   font-size: 14px; color: var(--text-700);

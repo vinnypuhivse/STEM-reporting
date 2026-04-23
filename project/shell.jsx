@@ -83,9 +83,63 @@ window.Tabs = function Tabs({ value, onChange, tabs }) {
         onClick: () => onChange(t.id),
       },
         t.icon
-          ? h('span', { className: 'tab-icon', 'aria-hidden': true }, t.icon)
+          ? h('span', { className: 'tab-icon tab-icon-' + t.id, 'aria-hidden': true }, t.icon)
           : h('span', { className: 'tab-dot', 'aria-hidden': true }, h(I.Check, { size: 16 })),
         t.label
+      )
+    )
+  );
+};
+
+// ────────────────────────── Custom dropdown ──────────────────────────
+// Matches Figma: white pill closed state, popover with left-edge accent bar on selected row.
+window.Dropdown = function Dropdown({ value, options, onChange, ariaLabel, size = 'md', menuWidth }) {
+  const [open, setOpen] = React.useState(false);
+  const ref = React.useRef(null);
+  React.useEffect(() => {
+    if (!open) return;
+    const onDoc = (e) => { if (ref.current && !ref.current.contains(e.target)) setOpen(false); };
+    const onKey = (e) => { if (e.key === 'Escape') setOpen(false); };
+    document.addEventListener('mousedown', onDoc);
+    document.addEventListener('keydown', onKey);
+    return () => {
+      document.removeEventListener('mousedown', onDoc);
+      document.removeEventListener('keydown', onKey);
+    };
+  }, [open]);
+
+  return h('div', {
+    className: 'dd' + (size === 'sm' ? ' dd--sm' : '') + (open ? ' is-open' : ''),
+    ref,
+  },
+    h('button', {
+      type: 'button',
+      className: 'dd-btn',
+      'aria-haspopup': 'listbox',
+      'aria-expanded': open,
+      'aria-label': ariaLabel,
+      onClick: () => setOpen(o => !o),
+    },
+      h('span', { className: 'dd-val' }, value),
+      h('span', { className: 'dd-caret', 'aria-hidden': true },
+        h('svg', { width: 14, height: 14, viewBox: '0 0 20 20', fill: 'none' },
+          h('path', { d: 'M5 7.5 L10 12.5 L15 7.5', stroke: 'currentColor', strokeWidth: 2, strokeLinecap: 'round', strokeLinejoin: 'round' })
+        )
+      )
+    ),
+    open && h('div', { className: 'dd-menu', role: 'listbox', style: menuWidth ? { width: menuWidth } : null },
+      options.map(opt =>
+        h('button', {
+          key: opt,
+          type: 'button',
+          role: 'option',
+          'aria-selected': opt === value,
+          className: 'dd-opt' + (opt === value ? ' is-selected' : ''),
+          onClick: () => { onChange(opt); setOpen(false); },
+        },
+          h('span', { className: 'dd-opt-bar', 'aria-hidden': true }),
+          h('span', { className: 'dd-opt-label' }, opt)
+        )
       )
     )
   );
@@ -96,15 +150,13 @@ window.Filters = function Filters({ filters, setFilters }) {
   const D = window.REPORT_DATA;
   const makeFilter = (label, key, options, wide) =>
     h('div', { className: 'filter' + (wide ? ' wide' : '') },
-      h('label', { className: 'filter-label', htmlFor: 'filter-' + key }, label),
-      h('select', {
-        id: 'filter-' + key,
-        className: 'filter-input',
+      h('label', { className: 'filter-label' }, label),
+      h(window.Dropdown, {
+        ariaLabel: label,
         value: filters[key],
-        onChange: (e) => setFilters(f => ({ ...f, [key]: e.target.value })),
-      },
-        options.map(o => h('option', { key: o, value: o }, o))
-      )
+        options,
+        onChange: (v) => setFilters(f => ({ ...f, [key]: v })),
+      })
     );
   return h('div', { className: 'filters' },
     makeFilter('Select School', 'school', D.schools, true),

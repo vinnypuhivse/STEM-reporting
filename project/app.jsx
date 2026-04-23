@@ -14,14 +14,14 @@ function StemPanel({ data }) {
       h('p', { className: 'section-sub' }, 'Get data related on how your students activities are doing on Newsela.'),
       h('div', { className: 'ela-four-col', style: { marginBottom: 16 } },
         h(window.DisciplinesCard, {
-          icon: h(I.Chart, { size: 22 }),
+          icon: h(I.Insights, { size: 22 }),
           title: 'Student activity',
           tipText: 'Summary counts of students and content engagement.',
           items: stem.studentActivity,
           labelCol: 170,
         }),
         h(window.DonutCard, {
-          icon: h(I.Chart, { size: 22 }),
+          icon: h(I.Details, { size: 22 }),
           title: 'Content breakdown',
           tipText: 'Proportion of articles vs videos consumed by your class.',
           articlesPct: stem.articlesPct,
@@ -31,13 +31,13 @@ function StemPanel({ data }) {
           subLabel: 'Articles vs Video usage',
         }),
         h(window.DisciplinesCard, {
-          icon: h(I.Article, { size: 22 }),
+          icon: h(I.Books, { size: 22 }),
           title: 'STEM Disciplines',
           tipText: 'Count of content pieces engaged with by STEM discipline.',
           disciplines: stem.disciplines,
         }),
         h(window.TimeSpentCard, {
-          icon: h(I.Article, { size: 22 }),
+          icon: h(I.Time, { size: 22 }),
           title: 'Time spent',
           tipText: 'Average active minutes per article and per video.',
           articleMin: stem.articleAvgMin,
@@ -66,7 +66,7 @@ function ElaPanel({ data, elaSvg }) {
       h('p', { className: 'section-sub' }, 'Get a rapid snapshot of how your students are reading on Newsela.'),
       h('div', { className: 'ela-four-col' },
         h(window.DisciplinesCard, {
-          icon: h(I.Chart, { size: 22 }),
+          icon: h(I.Insights, { size: 22 }),
           title: 'Student activity',
           tipText: 'Summary counts of students and content engagement.',
           items: ela.studentActivity,

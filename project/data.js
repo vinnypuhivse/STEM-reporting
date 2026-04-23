@@ -2,9 +2,9 @@
 // Student activity + reading skills derived from the Figma designs.
 
 window.REPORT_DATA = {
-  schools: ['Brooksville K-12 School', 'Kennedy Middle School', 'Lincoln High School'],
-  activities: ['All activity', 'Articles only', 'Videos only', 'Quizzes only', 'Writing prompts'],
-  dateRanges: ['July to date', 'Last 7 days', 'Last 30 days', 'This semester', 'This school year'],
+  schools: ['Brooksville K-12 School', 'ELA Class 8th Grade P.2', 'ELA Class 8th Grade P.3', 'ELA Class 8th Grade P.7', 'ELA Class 8th Grade P.8'],
+  activities: ['All activity', 'Assigned activity', 'Independent activity'],
+  dateRanges: ['July to date', 'Last 90 days', 'Last 45 days'],
 
   // STEM — articles and videos broken down per grade category
   stemContent: {

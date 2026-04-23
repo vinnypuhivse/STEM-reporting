@@ -40,16 +40,15 @@ window.MetricTile = function MetricTile({ kind, value, label, bigNum }) {
 window.AvgReadingLevelCard = function AvgReadingLevelCard({ tipText, avgLevel, avgLevelSub, avgLexile, avgLexileSub }) {
   return h('div', { className: 'card card--tinted', style: { display: 'flex', flexDirection: 'column' } },
     h('div', { className: 'card-head' },
-      h('div', { className: 'card-title' }, h(I.Gauge, { size: 22 }), 'Average reading level'),
+      h('div', { className: 'card-title' }, h(I.Gauge, { size: 26 }), 'Average reading level'),
       h(window.InfoTip, { text: tipText }),
     ),
-    h('div', { className: 'ela-tile ela-tile--left', style: { marginTop: 8, flex: 1 } },
-      h('div', { className: 'ela-lvl-row' },
+    h('div', { className: 'ela-lvl-stack' },
+      h('div', { className: 'ela-lvl-panel' },
         h('div', { className: 'ela-lvl-num' }, avgLevel),
         h('div', { className: 'ela-lvl-sub' }, avgLevelSub),
       ),
-      h('div', { className: 'ela-lvl-divider' }),
-      h('div', { className: 'ela-lvl-row' },
+      h('div', { className: 'ela-lvl-panel' },
         h('div', { className: 'ela-lvl-num' }, avgLexile),
         h('div', { className: 'ela-lvl-sub' }, avgLexileSub),
       ),
@@ -305,7 +304,7 @@ window.DonutCard = function DonutCard({ title, icon, tipText, articlesPct, video
       h('div', { className: 'card-title' }, icon, title),
       h(window.InfoTip, { text: tipText }),
     ),
-    h('div', { style: { background: '#fff', borderRadius: 8, padding: '20px 16px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 12, marginTop: 8, flex: 1 } },
+    h('div', { style: { background: '#fff', borderRadius: 8, padding: '20px 16px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 12, marginTop: 8, flex: 1 } },
       h('div', { style: { display: 'flex', alignItems: 'center', gap: 16 } },
         h('div', { style: { textAlign: 'right' } },
           h('div', { style: { fontWeight: 700, fontSize: 22, color: 'var(--blue-700)' } }, articlesPct + '%'),
@@ -355,8 +354,8 @@ window.DisciplinesCard = function DisciplinesCard({ title, icon, tipText, discip
       rows.map((d, i) =>
         h('div', { key: d.name, style: { display: 'grid', gridTemplateColumns: labelCol + 'px 1fr auto', alignItems: 'center', gap: 12 } },
           h('span', { style: { fontSize: 14, color: 'var(--text-900)' } }, d.name),
-          h('div', { style: { height: 16, background: 'transparent', borderRadius: 0, overflow: 'visible' } },
-            h('div', { style: { height: '100%', background: 'var(--blue-600)', borderRadius: '0 999px 999px 0', width: visible ? ((d.count / max) * 100) + '%' : '0%', transition: 'width 600ms cubic-bezier(0.2,0,0,1)', transitionDelay: (i * 80) + 'ms' } })
+          h('div', { style: { height: 24, background: 'transparent', borderRadius: 0, overflow: 'visible' } },
+            h('div', { style: { height: '100%', background: 'rgb(16,111,243)', borderRadius: '0 8px 0 0', width: visible ? ((d.count / max) * 100) + '%' : '0%', transition: 'width 600ms cubic-bezier(0.2,0,0,1)', transitionDelay: (i * 80) + 'ms' } })
           ),
           h('span', { style: { fontWeight: 700, fontSize: 14, color: 'var(--text-900)' } }, typeof d.count === 'number' ? d.count.toLocaleString() : d.count),
         )
