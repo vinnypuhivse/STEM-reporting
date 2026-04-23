@@ -6,7 +6,10 @@ const I = window.Icons;
 function StemPanel({ data, stemSvg }) {
   const stem = data.stemOverview;
   const stemIcon = stemSvg
-    ? h('span', { className: 'card-title-svg', dangerouslySetInnerHTML: { __html: stemSvg } })
+    ? h('span', {
+        style: { display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 },
+        dangerouslySetInnerHTML: { __html: stemSvg.replace('<svg ', '<svg style="width:22px;height:22px;display:block;fill:currentColor" ') }
+      })
     : h(I.Books, { size: 29 });
   return h('div', null,
     // Section: STEM overview
