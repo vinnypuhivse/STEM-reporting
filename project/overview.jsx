@@ -88,7 +88,10 @@ window.AvgMinutesCard = function AvgMinutesCard({ tipText, avgMinPerArticle }) {
 // ────────────────────────── Reading totals (two inner rings) ──────────────────────────
 window.ReadingTotalsCard = function ReadingTotalsCard({ tipText, totalTexts, avgMinPerArticle, elaIconHtml }) {
   const icon = elaIconHtml
-    ? h('span', { className: 'card-title-svg', dangerouslySetInnerHTML: { __html: elaIconHtml } })
+    ? h('span', {
+        style: { display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 },
+        dangerouslySetInnerHTML: { __html: elaIconHtml.replace('<svg ', '<svg style="width:22px;height:22px;display:block;fill:currentColor" ') }
+      })
     : h(I.Chart, { size: 22 });
   return h('div', { className: 'card card--tinted', style: { display: 'flex', flexDirection: 'column' } },
     h('div', { className: 'card-head' },
