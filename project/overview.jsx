@@ -141,8 +141,8 @@ window.TextsByLevelCard = function TextsByLevelCard({ tipText, textsByLevel }) {
         textsByLevel.map((row, i) =>
           h('div', { key: row.level, className: 'ela-bar-row' },
             h('span', { className: 'ela-bar-label' }, row.level),
-            h('div', { className: 'ela-bar-track' },
-              h('div', { className: 'ela-bar-fill', style: { width: visible ? ((row.count / max) * 100) + '%' : '0%', transitionDelay: (i * 80) + 'ms', borderRadius: '0 8px 0 0' } }),
+            h('div', { style: { width: '100%', height: 24, background: 'transparent', overflow: 'visible' } },
+              h('div', { style: { height: '100%', background: 'rgb(16,111,243)', borderRadius: '0 8px 0 0', width: visible ? ((row.count / max) * 100) + '%' : '0%', transition: 'width 600ms cubic-bezier(0.2,0,0,1)', transitionDelay: (i * 80) + 'ms' } }),
             ),
             h('span', { className: 'ela-bar-count' }, row.count),
           )
