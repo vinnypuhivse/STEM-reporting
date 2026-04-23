@@ -142,7 +142,7 @@ window.TextsByLevelCard = function TextsByLevelCard({ tipText, textsByLevel }) {
           h('div', { key: row.level, className: 'ela-bar-row' },
             h('span', { className: 'ela-bar-label' }, row.level),
             h('div', { className: 'ela-bar-track' },
-              h('div', { className: 'ela-bar-fill', style: { width: visible ? ((row.count / max) * 100) + '%' : '0%', transitionDelay: (i * 80) + 'ms' } }),
+              h('div', { className: 'ela-bar-fill', style: { width: visible ? ((row.count / max) * 100) + '%' : '0%', transitionDelay: (i * 80) + 'ms', borderRadius: '0 8px 0 0' } }),
             ),
             h('span', { className: 'ela-bar-count' }, row.count),
           )
@@ -294,7 +294,7 @@ window.DonutCard = function DonutCard({ title, icon, tipText, articlesPct, video
   const v = Math.max(0, Math.min(100, videosPct));
   const r = 42;
   const C = 2 * Math.PI * r;
-  const gap = 10; // px gap in stroke length on each side of a segment
+  const gap = 8; // px gap in stroke length on each side of a segment
   // Videos (purple) on the right — start at top (rotate -90) going clockwise for `v`%.
   const vLen = (v / 100) * C;
   const aLen = (a / 100) * C;
