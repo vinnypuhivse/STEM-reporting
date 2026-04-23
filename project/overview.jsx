@@ -355,7 +355,7 @@ window.DisciplinesCard = function DisciplinesCard({ title, icon, tipText, discip
         h('div', { key: d.name, style: { display: 'grid', gridTemplateColumns: labelCol + 'px 1fr auto', alignItems: 'center', gap: 12 } },
           h('span', { style: { fontSize: 14, color: 'var(--text-900)' } }, d.name),
           h('div', { style: { height: 24, background: 'transparent', borderRadius: 0, overflow: 'visible' } },
-            h('div', { style: { height: '100%', background: 'rgb(16,111,243)', borderRadius: '0 8px 0 0', width: visible ? ((d.count / max) * 100) + '%' : '0%', transition: 'width 600ms cubic-bezier(0.2,0,0,1)', transitionDelay: (i * 80) + 'ms' } })
+            h('div', { style: { height: '100%', background: 'rgb(16,111,243)', borderRadius: '0 999px 999px 0', width: visible ? ((d.count / max) * 100) + '%' : '0%', transition: 'width 600ms cubic-bezier(0.2,0,0,1)', transitionDelay: (i * 80) + 'ms' } })
           ),
           h('span', { style: { fontWeight: 700, fontSize: 14, color: 'var(--text-900)' } }, typeof d.count === 'number' ? d.count.toLocaleString() : d.count),
         )
