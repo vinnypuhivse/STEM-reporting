@@ -3,8 +3,11 @@
 const { createElement: h, useState } = React;
 const I = window.Icons;
 
-function StemPanel({ data }) {
+function StemPanel({ data, stemSvg }) {
   const stem = data.stemOverview;
+  const stemIcon = stemSvg
+    ? h('span', { className: 'card-title-svg', dangerouslySetInnerHTML: { __html: stemSvg } })
+    : h(I.Books, { size: 29 });
   return h('div', null,
     // Section: STEM overview
     h('section', { className: 'section' },
@@ -31,7 +34,7 @@ function StemPanel({ data }) {
           subLabel: 'Articles vs Video usage',
         }),
         h(window.DisciplinesCard, {
-          icon: h(I.Books, { size: 29 }),
+          icon: stemIcon,
           title: 'STEM Disciplines',
           tipText: 'Count of content pieces engaged with by STEM discipline.',
           disciplines: stem.disciplines,
@@ -144,7 +147,7 @@ function App() {
           ],
         }),
         h(window.Filters, { filters, setFilters }),
-        tab === 'stem' ? h(StemPanel, { data }) : h(ElaPanel, { data, elaSvg }),
+        tab === 'stem' ? h(StemPanel, { data, stemSvg }) : h(ElaPanel, { data, elaSvg }),
       )
     )
   );
