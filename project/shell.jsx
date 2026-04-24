@@ -19,6 +19,44 @@ function NewselaWord() {
   }, 'newsela');
 }
 
+// ────────────────────────── Status badge ──────────────────────────
+const STATUS_STYLES = {
+  'Early exploration': { background: '#FBBFC9', color: '#1E2A78' },
+  'Design WIP':        { background: '#F9E16A', color: '#1E2A78' },
+  'Design ready':      { background: '#A8EFD6', color: '#1E2A78' },
+};
+window.StatusBadge = function StatusBadge() {
+  const cfg = window.__STATUS || {};
+  const status = cfg.status || '';
+  const handoffUrl = cfg.handoffUrl || '';
+  const colors = STATUS_STYLES[status];
+  if (!status || !colors) return null;
+  const showLink = status === 'Design ready' && handoffUrl;
+  return h('div', {
+    style: {
+      position: 'fixed', top: 16, left: '50%', transform: 'translateX(-50%)', zIndex: 200,
+      display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6, pointerEvents: showLink ? 'auto' : 'none',
+    }
+  },
+    h('div', {
+      style: {
+        background: colors.background, color: colors.color,
+        borderRadius: 50, fontWeight: 700, fontSize: 15,
+        padding: '10px 40px', whiteSpace: 'nowrap',
+        boxShadow: '0 4px 20px rgba(0,0,0,0.18)',
+      }
+    }, status),
+    showLink && h('a', {
+      href: handoffUrl, target: '_blank', rel: 'noopener noreferrer',
+      style: {
+        fontSize: 12, fontWeight: 600, color: '#1E2A78',
+        textDecoration: 'underline', whiteSpace: 'nowrap',
+        textShadow: '0 1px 4px rgba(255,255,255,0.8)',
+      }
+    }, 'View handoff documentation'),
+  );
+};
+
 // ────────────────────────── Top navigation ──────────────────────────
 window.TopNav = function TopNav({ onMenuToggle }) {
   return h('header', { className: 'nav' },
