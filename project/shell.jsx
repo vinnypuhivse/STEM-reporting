@@ -32,25 +32,25 @@ window.StatusBadge = function StatusBadge() {
   const colors = STATUS_STYLES[status];
   if (!status || !colors) return null;
   const linkCopy = status === 'Design ready' ? 'Design spec' : 'Design spec WIP';
-  const pillStyle = {
-    background: colors.background, color: colors.color,
-    borderRadius: 50, fontWeight: 700, fontSize: 15,
-    padding: '10px 40px', whiteSpace: 'nowrap',
-    boxShadow: '0 4px 20px rgba(0,0,0,0.18)',
-    display: 'inline-flex', alignItems: 'center',
-  };
   return h('div', {
     style: {
       position: 'fixed', top: 16, left: '50%', transform: 'translateX(-50%)', zIndex: 200,
+      background: colors.background, color: colors.color,
+      borderRadius: 50, fontWeight: 700, fontSize: 15,
+      padding: '10px 40px', whiteSpace: 'nowrap',
+      boxShadow: '0 4px 20px rgba(0,0,0,0.18)',
+      display: 'inline-flex', flexDirection: 'column', alignItems: 'center', gap: 2,
       pointerEvents: handoffUrl ? 'auto' : 'none',
     }
   },
-    handoffUrl
-      ? h('a', {
-          href: handoffUrl, target: '_blank', rel: 'noopener noreferrer',
-          style: { ...pillStyle, textDecoration: 'none' },
-        }, linkCopy)
-      : h('div', { style: pillStyle }, status),
+    h('span', null, status),
+    handoffUrl && h('a', {
+      href: handoffUrl, target: '_blank', rel: 'noopener noreferrer',
+      style: {
+        fontSize: 12, fontWeight: 600, color: colors.color,
+        textDecoration: 'underline', pointerEvents: 'auto',
+      }
+    }, linkCopy),
   );
 };
 
