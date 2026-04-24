@@ -31,7 +31,7 @@ window.StatusBadge = function StatusBadge() {
   const handoffUrl = cfg.handoffUrl || '';
   const colors = STATUS_STYLES[status];
   if (!status || !colors) return null;
-  const showLink = status === 'Design ready' && handoffUrl;
+  const showLink = !!handoffUrl;
   return h('div', {
     style: {
       position: 'fixed', top: 16, left: '50%', transform: 'translateX(-50%)', zIndex: 200,

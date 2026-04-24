@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Design Spec — Classroom Data · Newsela</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #F7F8FA; color: #1D1D1D; font-size: 14px; line-height: 1.5; }
+.shell { display: grid; grid-template-columns: 260px 1fr; min-height: 100vh; }
+
+/* Sidebar */
+.side { position: sticky; top: 0; height: 100vh; overflow-y: auto; background: #fff; border-right: 1px solid #E1E3E5; padding: 24px 0; flex-shrink: 0; }
+.side-logo { padding: 0 20px 20px; border-bottom: 1px solid #E1E3E5; margin-bottom: 16px; }
+.side-logo-name { font-weight: 700; font-size: 13px; color: #082C88; }
+.side-logo-sub { font-size: 11px; color: #9395A0; margin-top: 2px; }
+.side h4 { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #9395A0; padding: 12px 20px 4px; }
+.side a { display: block; font-size: 13px; color: #424147; text-decoration: none; padding: 5px 20px; }
+.side a:hover { background: #F0F1F2; color: #0A6EFA; }
+.side a.active { background: #E5EFFF; color: #082C88; font-weight: 600; }
+
+/* Content */
+.content { padding: 48px 60px 80px; max-width: 1100px; }
+
+/* Hero */
+.hero { margin-bottom: 56px; }
+.hero .eyebrow { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #0A6EFA; margin-bottom: 12px; }
+.hero h1 { font-size: 40px; font-weight: 700; line-height: 1.2; color: #1D1D1D; margin-bottom: 16px; }
+.hero p { font-size: 16px; color: #5B5A61; max-width: 680px; margin-bottom: 24px; line-height: 1.6; }
+.hero-meta { display: flex; gap: 24px; flex-wrap: wrap; font-size: 13px; color: #9395A0; }
+.hero-meta a { color: #0A6EFA; text-decoration: none; }
+.hero-meta a:hover { text-decoration: underline; }
+.hero-meta span b { color: #424147; }
+
+/* Sections */
+.section { padding-top: 56px; border-top: 1px solid #E1E3E5; margin-top: 56px; }
+.section:first-of-type { border-top: none; padding-top: 0; margin-top: 0; }
+h2 { font-size: 28px; font-weight: 700; color: #1D1D1D; margin-bottom: 8px; }
+.sub { font-size: 14px; color: #5B5A61; max-width: 680px; margin-bottom: 24px; line-height: 1.6; }
+h3.sec { font-size: 16px; font-weight: 700; color: #1D1D1D; margin: 32px 0 12px; padding-top: 8px; }
+a.anchor { font-size: 20px; color: #9395A0; text-decoration: none; margin-left: 8px; opacity: 0; transition: opacity 120ms; }
+h2:hover a.anchor { opacity: 1; }
+
+/* Cards */
+.card { background: #fff; border: 1px solid #E1E3E5; border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+.ex-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #9395A0; margin-bottom: 12px; }
+
+/* Swatch grid */
+.swatch-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; margin-bottom: 24px; }
+.sw { background: #fff; border: 1px solid #E1E3E5; border-radius: 8px; overflow: hidden; }
+.sw .chip { height: 72px; }
+.sw .meta { padding: 10px 12px; }
+.sw-name { font-size: 12px; font-weight: 700; color: #1D1D1D; }
+.sw-val { font-size: 11px; color: #5B5A61; margin-top: 2px; }
+.sw-tok { display: inline-block; margin-top: 4px; font-size: 10px; color: #0A6EFA; background: #E5EFFF; padding: 1px 4px; border-radius: 3px; font-family: monospace; }
+
+/* Token grid */
+.tok-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 24px; }
+.tok { background: #fff; border: 1px solid #E1E3E5; border-radius: 8px; padding: 14px; }
+.tok code { font-size: 11px; color: #0A6EFA; font-family: monospace; }
+.tok-val { font-size: 13px; font-weight: 700; margin: 4px 0 2px; color: #1D1D1D; }
+.tok-use { font-size: 11px; color: #9395A0; }
+.tok-demo { margin-bottom: 10px; background: #F7F8FA; border-radius: 4px; }
+
+/* Spec table */
+.spec { width: 100%; border-collapse: collapse; font-size: 13px; margin-bottom: 24px; }
+.spec th { text-align: left; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: #9395A0; padding: 8px 12px; border-bottom: 2px solid #E1E3E5; }
+.spec td { padding: 10px 12px; border-bottom: 1px solid #F0F1F2; vertical-align: top; color: #424147; }
+.spec td:first-child { font-weight: 500; color: #1D1D1D; }
+.spec td code { background: #F0F1F2; padding: 1px 5px; border-radius: 3px; font-size: 12px; color: #082C88; font-family: monospace; }
+
+/* Do/Don't */
+.dodont { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+.ddc { border: 1px solid #E1E3E5; border-radius: 8px; padding: 16px; font-size: 13px; color: #424147; line-height: 1.5; }
+.ddc-badge { font-size: 11px; font-weight: 700; text-transform: uppercase; display: inline-block; padding: 2px 8px; border-radius: 4px; margin-bottom: 8px; }
+.ddc.do .ddc-badge { background: #D3FBF2; color: #095443; }
+.ddc.dont .ddc-badge { background: #FFE2E2; color: #8B1B1B; }
+
+/* Callout */
+.callout { border-left: 3px solid #0A6EFA; background: #E5EFFF; padding: 12px 16px; border-radius: 0 6px 6px 0; font-size: 13px; color: #082C88; margin-bottom: 20px; line-height: 1.5; }
+.callout.warn { border-color: #E8850C; background: #FEF3E2; color: #7A3F00; }
+.callout code { background: rgba(8,44,136,0.1); padding: 1px 4px; border-radius: 3px; font-family: monospace; }
+.callout.warn code { background: rgba(232,133,12,0.15); }
+
+/* Live demo */
+.live { border: 1px solid #E1E3E5; border-radius: 12px; overflow: hidden; margin-bottom: 24px; }
+.live-head { display: flex; align-items: center; gap: 8px; padding: 10px 16px; background: #F7F8FA; border-bottom: 1px solid #E1E3E5; font-size: 12px; }
+.live-dots { display: flex; gap: 5px; }
+.live-dots span { width: 10px; height: 10px; border-radius: 50%; background: #E1E3E5; }
+.live-title { flex: 1; color: #5B5A61; }
+.live-link { color: #0A6EFA; text-decoration: none; font-weight: 600; }
+.live-link:hover { text-decoration: underline; }
+
+/* Type specimen */
+.type-specimen { background: #fff; border: 1px solid #E1E3E5; border-radius: 12px; padding: 24px; margin-bottom: 24px; }
+.type-row { padding: 12px 0; border-bottom: 1px solid #F0F1F2; display: flex; align-items: baseline; gap: 24px; }
+.type-row:last-child { border-bottom: none; }
+.type-sample { flex: 1; }
+.type-meta { font-size: 11px; color: #9395A0; white-space: nowrap; }
+
+/* Status pill demo */
+.status-pill { display: inline-block; border-radius: 50px; font-weight: 700; padding: 8px 24px; font-size: 14px; }
+
+/* Motion timeline */
+.motion-row { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid #F0F1F2; font-size: 13px; }
+.motion-bar-wrap { flex: 1; height: 8px; background: #F0F1F2; border-radius: 4px; overflow: hidden; }
+.motion-bar { height: 100%; border-radius: 4px; background: linear-gradient(90deg, #0A6EFA, #4B9EFF); }
+
+/* Icon grid */
+.icon-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 12px; margin-bottom: 24px; }
+.icon-item { background: #fff; border: 1px solid #E1E3E5; border-radius: 8px; padding: 16px 8px; display: flex; flex-direction: column; align-items: center; gap: 8px; font-size: 11px; color: #5B5A61; text-align: center; }
+.icon-item svg { color: #1D1D1D; }
+</style>
+</head>
+<body>
+<div class="shell">
+
+<!-- ── Sidebar ── -->
+<nav class="side">
+  <div class="side-logo">
+    <div class="side-logo-name">Classroom Data</div>
+    <div class="side-logo-sub">Angelou DS 2.0 · Handoff</div>
+  </div>
+  <h4>Foundations</h4>
+  <a href="#overview">Overview</a>
+  <a href="#color">Color</a>
+  <a href="#type">Typography</a>
+  <a href="#space">Spacing &amp; Grid</a>
+  <a href="#radii">Radii</a>
+  <a href="#elevation">Elevation</a>
+  <a href="#motion">Motion</a>
+  <a href="#microinteractions">Microinteractions</a>
+  <h4>Components</h4>
+  <a href="#c-nav">Top Nav</a>
+  <a href="#c-sidebar">Sidebar</a>
+  <a href="#c-tabs">Tabs</a>
+  <a href="#c-filters">Filters &amp; Dropdown</a>
+  <a href="#c-cards">Overview Cards</a>
+  <a href="#c-tables">Data Tables</a>
+  <a href="#c-tooltip">Tooltip</a>
+  <a href="#c-status">Status Badge</a>
+  <h4>Patterns</h4>
+  <a href="#p-entrance">Entrance Animations</a>
+  <a href="#p-tabswitch">Tab Switching</a>
+  <a href="#p-table">Table Interactions</a>
+  <h4>Quality</h4>
+  <a href="#iconography">Iconography</a>
+  <a href="#a11y">Accessibility</a>
+  <a href="#extend">How to Extend</a>
+</nav>
+
+<!-- ── Content ── -->
+<main class="content">
+
+  <div class="hero">
+    <div class="eyebrow">Angelou Design System 2.0 · Handoff</div>
+    <h1>Classroom Data</h1>
+    <p>A teacher-facing reporting dashboard that surfaces STEM and ELA learning activity across a class. Teachers see engagement metrics, reading levels, quiz performance, and content breakdowns — all filterable by school, activity type, and date range.</p>
+    <div class="hero-meta">
+      <span><b>Status:</b> Design WIP</span>
+      <span><b>Version:</b> 1.0</span>
+      <span><b>Source:</b> <a href="index.html">index.html</a></span>
+      <span><b>Design system:</b> Angelou Design System 2.0</span>
+    </div>
+  </div>
+
+  <!-- ── Overview ── -->
+  <section class="section" id="overview">
+    <h2>Overview <a class="anchor" href="#overview">§</a></h2>
+    <p class="sub">A live preview of the prototype alongside the four core design principles guiding this feature.</p>
+
+    <div class="live">
+      <div class="live-head">
+        <span class="live-dots"><span></span><span></span><span></span></span>
+        <span class="live-title">index.html</span>
+        <a class="live-link" href="index.html" target="_blank">Open ↗</a>
+      </div>
+      <iframe src="index.html" height="560" style="width:100%;border:0;display:block;"></iframe>
+    </div>
+
+    <div class="card">
+      <div class="ex-label">Design Principles</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+        <div style="padding:16px;background:#F7F8FA;border-radius:8px;">
+          <div style="font-weight:700;font-size:14px;margin-bottom:6px;">Data first, chrome second</div>
+          <div style="font-size:13px;color:#5B5A61;">Metrics and tables are the content. Navigation and chrome exist only to support access to data, never to compete with it.</div>
+        </div>
+        <div style="padding:16px;background:#F7F8FA;border-radius:8px;">
+          <div style="font-weight:700;font-size:14px;margin-bottom:6px;">One tab, one context</div>
+          <div style="font-size:13px;color:#5B5A61;">STEM and ELA are distinct pedagogical contexts. Never blend their metrics or share cards between tabs.</div>
+        </div>
+        <div style="padding:16px;background:#F7F8FA;border-radius:8px;">
+          <div style="font-weight:700;font-size:14px;margin-bottom:6px;">8px grid, always</div>
+          <div style="font-size:13px;color:#5B5A61;">All spacing and sizing is a multiple of 8px (with 4px as the only exception for hairline icon–label gaps).</div>
+        </div>
+        <div style="padding:16px;background:#F7F8FA;border-radius:8px;">
+          <div style="font-weight:700;font-size:14px;margin-bottom:6px;">Motion communicates data</div>
+          <div style="font-size:13px;color:#5B5A61;">Entrance animations on charts draw attention to the data loading — they are not decorative. Every animation has a functional intent.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Color ── -->
+  <section class="section" id="color">
+    <h2>Color <a class="anchor" href="#color">§</a></h2>
+    <p class="sub">All color values are defined as CSS custom properties on <code style="font-family:monospace;background:#F0F1F2;padding:1px 5px;border-radius:3px;">:root</code>. Never use raw hex values in component code — always reference a token.</p>
+
+    <h3 class="sec">Brand Blue</h3>
+    <div class="swatch-grid">
+      <div class="sw"><div class="chip" style="background:rgb(231,241,255)"></div><div class="meta"><div class="sw-name">Blue 25</div><div class="sw-val">rgb(231,241,255)</div><code class="sw-tok">--blue-25</code></div></div>
+      <div class="sw"><div class="chip" style="background:rgb(229,239,255)"></div><div class="meta"><div class="sw-name">Blue 50</div><div class="sw-val">rgb(229,239,255)</div><code class="sw-tok">--blue-50</code></div></div>
+      <div class="sw"><div class="chip" style="background:rgb(204,225,255)"></div><div class="meta"><div class="sw-name">Blue 100</div><div class="sw-val">rgb(204,225,255)</div><code class="sw-tok">--blue-100</code></div></div>
+      <div class="sw"><div class="chip" style="background:rgb(170,201,245)"></div><div class="meta"><div class="sw-name">Blue 200</div><div class="sw-val">rgb(170,201,245)</div><code class="sw-tok">--blue-200</code></div></div>
+      <div class="sw"><div class="chip" style="background:rgb(16,111,243)"></div><div class="meta"><div class="sw-name">Blue 500</div><div class="sw-val">rgb(16,111,243)</div><code class="sw-tok">--blue-500</code></div></div>
+      <div class="sw"><div class="chip" style="background:rgb(10,110,250)"></div><div class="meta"><div class="sw-name">Blue 600</div><div class="sw-val">rgb(10,110,250)</div><code class="sw-tok">--blue-600</code></div></div>
+      <div class="sw"><div class="chip" style="background:rgb(4,51,122)"></div><div class="meta"><div class="sw-name">Blue 700</div><div class="sw-val">rgb(4,51,122)</div><code class="sw-tok">--blue-700</code></div></div>
+      <div class="sw"><div class="chip" style="background:rgb(11,19,134)"></div><div class="meta"><div class="sw-name">Blue 800</div><div class="sw-val">rgb(11,19,134)</div><code class="sw-tok">--blue-800</code></div></div>
+    </div>
+
+    <h3 class="sec">Text &amp; Neutrals</h3>
+    <div class="swatch-grid">
+      <div class="sw"><div class="chip" style="background:rgb(29,29,29)"></div><div class="meta"><div class="sw-name">Text 900</div><div class="sw-val">rgb(29,29,29)</div><code class="sw-tok">--text-900</code></div></div>
+      <div class="sw"><div class="chip" style="background:rgb(51,51,51)"></div><div class="meta"><div class="sw-name">Text 700</div><div class="sw-val">rgb(51,51,51)</div><code class="sw-tok">--text-700</code></div></div>
+      <div class="sw"><div class="chip" style="background:rgb(84,84,84)"></div><div class="meta"><div class="sw-name">Text 500</div><div class="sw-val">rgb(84,84,84)</div><code class="sw-tok">--text-500</code></div></div>
+      <div class="sw"><div class="chip" style="background:rgb(118,118,118)"></div><div class="meta"><div class="sw-name">Text 400</div><div class="sw-val">rgb(118,118,118)</div><code class="sw-tok">--text-400</code></div></div>
+      <div class="sw"><div class="chip" style="background:rgb(149,149,149)"></div><div class="meta"><div class="sw-name">Text 300</div><div class="sw-val">rgb(149,149,149)</div><code class="sw-tok">--text-300</code></div></div>
+      <div class="sw"><div class="chip" style="background:rgb(248,248,248);border:1px solid #eee"></div><div class="meta"><div class="sw-name">BG App</div><div class="sw-val">rgb(248,248,248)</div><code class="sw-tok">--bg-app</code></div></div>
+      <div class="sw"><div class="chip" style="background:rgb(221,221,221)"></div><div class="meta"><div class="sw-name">Border</div><div class="sw-val">rgb(221,221,221)</div><code class="sw-tok">--border</code></div></div>
+      <div class="sw"><div class="chip" style="background:rgb(225,227,229)"></div><div class="meta"><div class="sw-name">Border Soft</div><div class="sw-val">rgb(225,227,229)</div><code class="sw-tok">--border-soft</code></div></div>
+    </div>
+
+    <h3 class="sec">Accent &amp; Status</h3>
+    <div class="swatch-grid">
+      <div class="sw"><div class="chip" style="background:#a437c9"></div><div class="meta"><div class="sw-name">Video Purple</div><div class="sw-val">#a437c9</div><div style="font-size:11px;color:#5B5A61;margin-top:2px;">Donut videos segment</div></div></div>
+      <div class="sw"><div class="chip" style="background:rgb(217,70,70)"></div><div class="meta"><div class="sw-name">Red 500</div><div class="sw-val">rgb(217,70,70)</div><code class="sw-tok">--red-500</code></div></div>
+      <div class="sw"><div class="chip" style="background:#0D8A5F"></div><div class="meta"><div class="sw-name">Skill Green</div><div class="sw-val">#0D8A5F</div><div style="font-size:11px;color:#5B5A61;margin-top:2px;">Avg skill bar fill</div></div></div>
+      <div class="sw"><div class="chip" style="background:#C8102E"></div><div class="meta"><div class="sw-name">Skill Red</div><div class="sw-val">#C8102E</div><div style="font-size:11px;color:#5B5A61;margin-top:2px;">Zero score bar fill</div></div></div>
+    </div>
+
+    <h3 class="sec">Semantic token usage</h3>
+    <table class="spec">
+      <thead><tr><th>Token</th><th>Value</th><th>When to use</th></tr></thead>
+      <tbody>
+        <tr><td><code>--text-900</code></td><td>rgb(29,29,29)</td><td>Primary body text, table cells, headings</td></tr>
+        <tr><td><code>--text-700</code></td><td>rgb(51,51,51)</td><td>Secondary text, table body rows</td></tr>
+        <tr><td><code>--text-500</code></td><td>rgb(84,84,84)</td><td>Tertiary text, nav items, inactive tabs</td></tr>
+        <tr><td><code>--text-400</code></td><td>rgb(118,118,118)</td><td>Labels, breadcrumbs, metadata</td></tr>
+        <tr><td><code>--text-300</code></td><td>rgb(149,149,149)</td><td>Disabled states, placeholder text</td></tr>
+        <tr><td><code>--blue-500</code></td><td>rgb(16,111,243)</td><td>Bar fills, donut articles segment, interactive elements</td></tr>
+        <tr><td><code>--blue-700</code></td><td>rgb(4,51,122)</td><td>Large metric numbers, active sidebar, tab underline</td></tr>
+        <tr><td><code>--blue-50</code></td><td>rgb(229,239,255)</td><td>Tinted card backgrounds</td></tr>
+        <tr><td><code>--border</code></td><td>rgb(221,221,221)</td><td>Table dividers, nav borders</td></tr>
+        <tr><td><code>--border-soft</code></td><td>rgb(225,227,229)</td><td>Card borders (softer than table borders)</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ── Typography ── -->
+  <section class="section" id="type">
+    <h2>Typography <a class="anchor" href="#type">§</a></h2>
+    <p class="sub">Two typefaces: Circular (sans-serif, all UI text) and Noto Serif (display, page title only). Both loaded via local <code style="font-family:monospace;background:#F0F1F2;padding:1px 5px;border-radius:3px;">@font-face</code> from the <code style="font-family:monospace;background:#F0F1F2;padding:1px 5px;border-radius:3px;">assets/fonts/</code> folder.</p>
+
+    <div class="type-specimen">
+      <div class="type-row">
+        <div class="type-sample" style="font-size:32px;font-weight:700;font-family:'Georgia',serif;line-height:1.25;">Page Title</div>
+        <div class="type-meta">Noto Serif · 32px · 700 · lh 1.25</div>
+      </div>
+      <div class="type-row">
+        <div class="type-sample" style="font-size:24px;font-weight:700;line-height:1.33;">Section Heading</div>
+        <div class="type-meta">Circular · 24px · 700 · lh 1.33</div>
+      </div>
+      <div class="type-row">
+        <div class="type-sample" style="font-size:22px;font-weight:700;line-height:1;">Metric Number</div>
+        <div class="type-meta">Circular · 22–40px · 700 · lh 1</div>
+      </div>
+      <div class="type-row">
+        <div class="type-sample" style="font-size:16px;font-weight:700;">Card Title</div>
+        <div class="type-meta">Circular · 16px · 700</div>
+      </div>
+      <div class="type-row">
+        <div class="type-sample" style="font-size:16px;font-weight:400;">Body / Tab</div>
+        <div class="type-meta">Circular · 16px · 400</div>
+      </div>
+      <div class="type-row">
+        <div class="type-sample" style="font-size:14px;font-weight:400;">Table Body / Label</div>
+        <div class="type-meta">Circular · 14px · 400 · lh 1.5</div>
+      </div>
+      <div class="type-row">
+        <div class="type-sample" style="font-size:13px;font-weight:500;">Trend Link / Meta</div>
+        <div class="type-meta">Circular · 13px · 500</div>
+      </div>
+      <div class="type-row">
+        <div class="type-sample" style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;">EYEBROW / CAPS</div>
+        <div class="type-meta">Circular · 12px · 700 · uppercase · +1px tracking</div>
+      </div>
+      <div class="type-row" style="border-bottom:none;">
+        <div class="type-sample" style="font-size:12px;font-weight:400;">Small Label / Tooltip</div>
+        <div class="type-meta">Circular · 12px · 400 · lh 1.4</div>
+      </div>
+    </div>
+
+    <table class="spec">
+      <thead><tr><th>Style</th><th>Size</th><th>Weight</th><th>Line-height</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Page title</td><td><code>32px</code></td><td>700</td><td>1.25</td><td>Noto Serif only. One per page.</td></tr>
+        <tr><td>Section h2</td><td><code>24px</code></td><td>700</td><td>1.33</td><td>Circular. With §-anchor on hover.</td></tr>
+        <tr><td>Metric large</td><td><code>32–40px</code></td><td>700</td><td>1</td><td>32px default, 40px for "big" tiles.</td></tr>
+        <tr><td>ELA level number</td><td><code>26px</code></td><td>700</td><td>1</td><td>Letter-spacing -0.5px. Color <code>--blue-700</code>.</td></tr>
+        <tr><td>Card title</td><td><code>16px</code></td><td>700</td><td>—</td><td>Paired with 22px icon.</td></tr>
+        <tr><td>Tab label</td><td><code>16px</code></td><td>700</td><td>—</td><td>Active: <code>--text-900</code>. Inactive: <code>--text-500</code>.</td></tr>
+        <tr><td>Table header</td><td><code>14px</code></td><td>700</td><td>—</td><td>Sub-header at 12px/400.</td></tr>
+        <tr><td>Table body</td><td><code>14px</code></td><td>400</td><td>1.5</td><td>Color <code>--text-700</code>.</td></tr>
+        <tr><td>Tooltip</td><td><code>12px</code></td><td>400</td><td>1.4</td><td>Max-width 220px.</td></tr>
+        <tr><td>Sidebar label</td><td><code>12px</code></td><td>700</td><td>1.33</td><td>Uppercase, +1px letter-spacing.</td></tr>
+      </tbody>
+    </table>
+    <div class="callout">Sizing floor — UI text never drops below 12px. Tooltip body is the smallest permitted text.</div>
+  </section>
+
+  <!-- ── Spacing ── -->
+  <section class="section" id="space">
+    <h2>Spacing &amp; Grid <a class="anchor" href="#space">§</a></h2>
+    <p class="sub">All spacing is a multiple of 8px. The only exception is 4px, reserved for hairline gaps between an icon and its label.</p>
+
+    <div class="tok-grid">
+      <div class="tok"><div class="tok-demo" style="height:4px;width:4px;background:rgb(16,111,243);border-radius:2px;"></div><code>4px</code><div class="tok-val">4px</div><div class="tok-use">Icon–label hairline</div></div>
+      <div class="tok"><div class="tok-demo" style="height:8px;width:8px;background:rgb(16,111,243);border-radius:2px;"></div><code>8px</code><div class="tok-val">8px</div><div class="tok-use">Tight gaps, card heads</div></div>
+      <div class="tok"><div class="tok-demo" style="height:12px;width:12px;background:rgb(16,111,243);border-radius:2px;"></div><code>12px</code><div class="tok-val">12px</div><div class="tok-use">Bar row gaps, column grids</div></div>
+      <div class="tok"><div class="tok-demo" style="height:16px;width:16px;background:rgb(16,111,243);border-radius:2px;"></div><code>16px</code><div class="tok-val">16px</div><div class="tok-use">Card padding, filter gaps</div></div>
+      <div class="tok"><div class="tok-demo" style="height:20px;width:20px;background:rgb(16,111,243);border-radius:2px;"></div><code>20px</code><div class="tok-val">20px</div><div class="tok-use">ELA tile padding</div></div>
+      <div class="tok"><div class="tok-demo" style="height:24px;width:24px;background:rgb(16,111,243);border-radius:2px;"></div><code>24px</code><div class="tok-val">24px</div><div class="tok-use">Page title margin</div></div>
+      <div class="tok"><div class="tok-demo" style="height:32px;width:32px;background:rgb(16,111,243);border-radius:2px;"></div><code>32px</code><div class="tok-val">32px</div><div class="tok-use">Filter margin-bottom, nav gap</div></div>
+      <div class="tok"><div class="tok-demo" style="height:40px;width:40px;background:rgb(16,111,243);border-radius:2px;"></div><code>48px</code><div class="tok-val">48px</div><div class="tok-use">Section margin, main padding</div></div>
+    </div>
+
+    <h3 class="sec">Layout Grid</h3>
+    <table class="spec">
+      <thead><tr><th>Breakpoint</th><th>Width</th><th>Nav padding</th><th>Main padding</th></tr></thead>
+      <tbody>
+        <tr><td>Default</td><td>&gt; 1024px</td><td><code>0 40px</code></td><td><code>16px 32px 64px</code></td></tr>
+        <tr><td>Large</td><td>≤ 1024px</td><td><code>0 24px</code></td><td><code>16px 24px 48px</code></td></tr>
+        <tr><td>Medium</td><td>≤ 768px</td><td><code>0 16px</code></td><td><code>16px</code></td></tr>
+        <tr><td>Small</td><td>≤ 375px</td><td><code>0 12px</code></td><td><code>12px</code></td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sec">Four-Column Overview Grid</h3>
+    <div class="callout">The STEM and ELA overview cards use a <code>.ela-four-col</code> grid with <code>gap: 16px</code> and equal columns. This collapses to 2 columns at 900px and 1 column at 568px.</div>
+  </section>
+
+  <!-- ── Radii ── -->
+  <section class="section" id="radii">
+    <h2>Radii <a class="anchor" href="#radii">§</a></h2>
+    <p class="sub">Border radius values used across the prototype, from tight button corners to full pill shapes.</p>
+
+    <div class="tok-grid">
+      <div class="tok"><div class="tok-demo" style="height:40px;background:#E5EFFF;border-radius:2px;"></div><code>2px</code><div class="tok-val">2px</div><div class="tok-use">Logo mark</div></div>
+      <div class="tok"><div class="tok-demo" style="height:40px;background:#E5EFFF;border-radius:6px;"></div><code>6px</code><div class="tok-val">6px</div><div class="tok-use">Sidebar items, ghost buttons, pagination</div></div>
+      <div class="tok"><div class="tok-demo" style="height:40px;background:#E5EFFF;border-radius:8px;"></div><code>8px</code><div class="tok-val">8px</div><div class="tok-use">Dropdowns, metric tiles, inner panels, donut panel</div></div>
+      <div class="tok"><div class="tok-demo" style="height:40px;background:#E5EFFF;border-radius:10px;"></div><code>10px</code><div class="tok-val">10px</div><div class="tok-use">Dropdown menus</div></div>
+      <div class="tok"><div class="tok-demo" style="height:40px;background:#E5EFFF;border-radius:12px;"></div><code>12px</code><div class="tok-val">12px</div><div class="tok-use">ELA tiles, table wraps, breakdown cards</div></div>
+      <div class="tok"><div class="tok-demo" style="height:40px;background:#E5EFFF;border-radius:16px;"></div><code>16px</code><div class="tok-val">16px</div><div class="tok-use">Cards (main surface), skill cell bars (pill)</div></div>
+      <div class="tok"><div class="tok-demo" style="height:40px;background:#E5EFFF;border-radius:50%;width:40px;margin:0 auto;"></div><code>50%</code><div class="tok-val">50%</div><div class="tok-use">Ring gauges, avatar, icon buttons</div></div>
+      <div class="tok"><div class="tok-demo" style="height:40px;background:#E5EFFF;border-radius:999px;"></div><code>999px</code><div class="tok-val">999px</div><div class="tok-use">Status badge pill, filter chips</div></div>
+    </div>
+
+    <div class="callout warn">Bar charts use <code>border-radius: 0 8px 0 0</code> (top-right corner only). This mimics a data-driven "growth from left" direction. Never use a symmetric radius on horizontal bars.</div>
+  </section>
+
+  <!-- ── Elevation ── -->
+  <section class="section" id="elevation">
+    <h2>Elevation <a class="anchor" href="#elevation">§</a></h2>
+    <p class="sub">Shadows are used sparingly — only for elements that float above the page layer (menus, badges). Cards and tables use 1px borders, not shadows.</p>
+
+    <table class="spec">
+      <thead><tr><th>Usage</th><th>CSS Value</th><th>Applied to</th></tr></thead>
+      <tbody>
+        <tr><td>Dropdown menu</td><td><code>0 12px 28px -8px rgba(15,23,42,0.18), 0 4px 10px -4px rgba(15,23,42,0.08)</code></td><td>Custom dropdown menu popup</td></tr>
+        <tr><td>Status badge</td><td><code>0 4px 20px rgba(0,0,0,0.18)</code></td><td>Fixed status pill</td></tr>
+        <tr><td>Sidebar (mobile)</td><td><code>0 8px 24px rgba(0,0,0,0.08)</code></td><td>Sidebar overlay at ≤ 768px</td></tr>
+      </tbody>
+    </table>
+    <div class="callout">Prefer borders over shadows for contained surfaces. Only use shadows for elements that genuinely float (menus, fixed badges). Cards and table wrappers use <code>1px solid var(--border-soft)</code>.</div>
+  </section>
+
+  <!-- ── Motion ── -->
+  <section class="section" id="motion">
+    <h2>Motion <a class="anchor" href="#motion">§</a></h2>
+    <p class="sub">All animated transitions use a single easing curve. Durations range from 120ms (micro) to 700ms (chart entrance).</p>
+
+    <div class="callout">All transitions use <code>cubic-bezier(0.2, 0, 0, 1)</code> — the standard Newsela ease. Fast out, slow finish. Never use <code>ease-in-out</code> or <code>linear</code> for UI motion.</div>
+
+    <table class="spec">
+      <thead><tr><th>Duration</th><th>Easing</th><th>Used for</th></tr></thead>
+      <tbody>
+        <tr><td><code>120ms</code></td><td>ease</td><td>Dropdown border-color, button hover tints</td></tr>
+        <tr><td><code>150ms</code></td><td>ease</td><td>Tab icon opacity, dropdown caret rotation, tab color</td></tr>
+        <tr><td><code>160ms</code></td><td>cubic-bezier(0.2,0,0,1)</td><td>Tooltip fade-in/out + transform</td></tr>
+        <tr><td><code>600ms</code></td><td>cubic-bezier(0.2,0,0,1)</td><td>Horizontal bar width (ELA, breakdown, disciplines)</td></tr>
+        <tr><td><code>700ms</code></td><td>cubic-bezier(0.2,0,0,1)</td><td>Donut arc stroke-dasharray (articles + videos)</td></tr>
+        <tr><td><code>500ms</code></td><td>cubic-bezier(0.2,0,0,1)</td><td>Skill cell barline fill width (tables)</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ── Microinteractions ── -->
+  <section class="section" id="microinteractions">
+    <h2>Microinteractions <a class="anchor" href="#microinteractions">§</a></h2>
+    <p class="sub">Every animated moment in the UI — entrance animations, hover feedback, and state transitions — documented with intent and exact implementation values.</p>
+
+    <h3 class="sec">Entrance Animations</h3>
+    <p class="sub" style="margin-top:-16px;">All bar and arc animations are triggered on component mount via a React <code style="font-family:monospace;background:#F0F1F2;padding:1px 5px;border-radius:3px;">useEffect</code> with an 80ms initial delay, then each element staggers by its index × 80ms.</p>
+
+    <table class="spec">
+      <thead><tr><th>Element</th><th>Trigger</th><th>Property</th><th>From → To</th><th>Duration</th><th>Delay</th></tr></thead>
+      <tbody>
+        <tr><td>Horizontal bars (ELA, breakdown, disciplines)</td><td>Mount + 80ms</td><td><code>width</code></td><td><code>0%</code> → <code>(count/max)×100%</code></td><td>600ms</td><td>i × 80ms stagger</td></tr>
+        <tr><td>Donut — videos (purple)</td><td>Mount + 80ms</td><td><code>stroke-dasharray</code></td><td><code>0 C</code> → <code>(vLen−gap×2) C</code></td><td>700ms</td><td>0ms (first)</td></tr>
+        <tr><td>Donut — articles (blue)</td><td>Mount + 80ms</td><td><code>stroke-dasharray</code></td><td><code>0 C</code> → <code>(aLen−gap×2) C</code></td><td>700ms</td><td>80ms (second)</td></tr>
+        <tr><td>Skill cell barlines (tables)</td><td>Row render</td><td><code>width</code></td><td><code>6px min</code> → <code>(pct)%</code></td><td>500ms</td><td>—</td></tr>
+      </tbody>
+    </table>
+    <div class="dodont">
+      <div class="ddc do"><div class="ddc-badge">Do</div><p>Stagger bar rows by <code>i × 80ms</code> so the eye follows data from top to bottom, reading order.</p></div>
+      <div class="ddc dont"><div class="ddc-badge">Don't</div><p>Don't animate all bars simultaneously — simultaneous motion is noisy and defeats the communicative intent.</p></div>
+    </div>
+
+    <h3 class="sec">Hover &amp; Focus States</h3>
+    <table class="spec">
+      <thead><tr><th>Element</th><th>Property</th><th>From → To</th><th>Duration</th></tr></thead>
+      <tbody>
+        <tr><td>Nav item</td><td><code>color</code></td><td><code>--text-500</code> → <code>--text-900</code></td><td>—</td></tr>
+        <tr><td>Dropdown button</td><td><code>border-color</code></td><td><code>#77767A</code> → <code>#5B5A61</code></td><td>120ms</td></tr>
+        <tr><td>Ghost button</td><td><code>background</code></td><td>transparent → <code>rgba(29,29,29,0.06)</code></td><td>—</td></tr>
+        <tr><td>Icon button</td><td><code>background</code></td><td>transparent → <code>rgba(29,29,29,0.08)</code></td><td>—</td></tr>
+        <tr><td>Trend / breakdown link</td><td><code>text-decoration</code></td><td>none → underline</td><td>—</td></tr>
+        <tr><td>Student name link</td><td><code>color</code></td><td><code>--text-700</code> → <code>--blue-600</code></td><td>—</td></tr>
+        <tr><td>Tab</td><td><code>color</code></td><td><code>--text-500</code> → <code>--text-900</code></td><td>—</td></tr>
+        <tr><td>Dropdown option</td><td><code>background</code></td><td>transparent → <code>#F4F4F6</code></td><td>—</td></tr>
+        <tr><td>Dropdown button (focus)</td><td><code>outline</code></td><td>none → <code>2px solid --blue-700</code>, offset 1px</td><td>—</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sec">State Transitions</h3>
+    <table class="spec">
+      <thead><tr><th>State change</th><th>What animates</th><th>How</th></tr></thead>
+      <tbody>
+        <tr><td>Dropdown closed → open</td><td>Caret icon, menu appearance</td><td>Caret rotates 180° (150ms), menu renders at <code>top: 100% + 6px</code> instantly</td></tr>
+        <tr><td>Tab inactive → active</td><td>Underline, icon opacity, text color</td><td>3px underline appears, icon opacity 0.7→1 (150ms), text <code>--text-500</code>→<code>--text-900</code></td></tr>
+        <tr><td>Chart data loading → visible</td><td>Bar widths, donut arcs</td><td>See entrance animations above</td></tr>
+        <tr><td>Sidebar closed → open (mobile)</td><td>Sidebar position</td><td>Fixed overlay, no animation — instant</td></tr>
+        <tr><td>Tooltip hidden → visible</td><td>Opacity, vertical transform</td><td>opacity 0→1, translateY 4px→0 over 160ms</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout warn">Motion budget: limit to 3 simultaneous animations per screen view. Stagger entrance animations by 60–80ms per element. Always respect <code>prefers-reduced-motion</code> — wrap all transitions in a media query check or use the OS setting.</div>
+  </section>
+
+  <!-- ── COMPONENTS ── -->
+
+  <section class="section" id="c-nav">
+    <h2>Top Nav <a class="anchor" href="#c-nav">§</a></h2>
+    <p class="sub">64px sticky header. Holds navigation, search, and account controls. z-index 100 keeps it above all page content including dropdowns.</p>
+
+    <table class="spec">
+      <thead><tr><th>Property</th><th>Value</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Height</td><td><code>64px</code></td><td>Fixed, does not compress</td></tr>
+        <tr><td>Position</td><td><code>sticky top: 0</code></td><td>z-index: 100</td></tr>
+        <tr><td>Background</td><td><code>#fff</code></td><td>Border-bottom: 1px solid <code>--border</code></td></tr>
+        <tr><td>Padding</td><td><code>0 40px</code></td><td>Reduces to 24px → 16px → 12px at breakpoints</td></tr>
+        <tr><td>Logo wordmark</td><td>22px / 700 / Circular</td><td>Letter-spacing -0.5px, color <code>--blue-500</code></td></tr>
+        <tr><td>Nav items</td><td>16px / 400</td><td>Hover: color <code>--text-900</code>. Gap: 8px icon+text</td></tr>
+        <tr><td>Avatar</td><td>32×32px, <code>border-radius: 50%</code></td><td>11px / 700 / letter-spacing 1px</td></tr>
+      </tbody>
+    </table>
+    <div class="dodont">
+      <div class="ddc do"><div class="ddc-badge">Do</div><p>Keep the nav clean — only global navigation lives here. The page title and breadcrumb live below it, not inside it.</p></div>
+      <div class="ddc dont"><div class="ddc-badge">Don't</div><p>Don't add feature-specific actions or filters to the nav. Those belong in the page content area.</p></div>
+    </div>
+  </section>
+
+  <section class="section" id="c-sidebar">
+    <h2>Sidebar <a class="anchor" href="#c-sidebar">§</a></h2>
+    <p class="sub">232px persistent left navigation listing available reports. On mobile it becomes a fixed overlay.</p>
+
+    <table class="spec">
+      <thead><tr><th>Property</th><th>Value</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Width</td><td><code>232px</code></td><td>Fixed. 260px on mobile overlay.</td></tr>
+        <tr><td>Background</td><td><code>--bg-app</code> rgb(248,248,248)</td><td>Active item: white background</td></tr>
+        <tr><td>Section label</td><td>12px / 700 / uppercase / +1px tracking</td><td>Color <code>--text-400</code></td></tr>
+        <tr><td>Nav item</td><td>14px / 400, padding <code>6px 8px</code></td><td>Border-radius: 6px</td></tr>
+        <tr><td>Active item</td><td>14px / 700, white bg</td><td>Left accent bar: 4px wide, <code>--blue-700</code>. Radius: <code>2px 8px 2px 2px</code></td></tr>
+        <tr><td>Mobile breakpoint</td><td>≤ 768px</td><td>Fixed position, z-index 90, shadow <code>0 8px 24px rgba(0,0,0,0.08)</code></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="section" id="c-tabs">
+    <h2>Tabs <a class="anchor" href="#c-tabs">§</a></h2>
+    <p class="sub">ELA and STEM tabs switch the entire panel content. Selection persists to localStorage.</p>
+
+    <table class="spec">
+      <thead><tr><th>Property</th><th>Value</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Gap</td><td><code>32px</code></td><td>Reduces to 20px at 768px, 16px at 375px</td></tr>
+        <tr><td>Active underline</td><td>3px solid <code>--blue-600</code></td><td>Rounded, positioned <code>bottom: -1px</code></td></tr>
+        <tr><td>Active text</td><td><code>--text-900</code></td><td>Inactive: <code>--text-500</code></td></tr>
+        <tr><td>Icon opacity</td><td>Active: 1 / Inactive: 0.7</td><td>Transition: 150ms ease</td></tr>
+        <tr><td>Icon size</td><td>22×22px (forced via <code>.tab-svg svg</code>)</td><td>SVG strings injected with inline dimensions for non-square viewBoxes</td></tr>
+        <tr><td>Persistence</td><td>localStorage key: <code>classroomTab</code></td><td>Survives page refresh. Default: 'stem'</td></tr>
+      </tbody>
+    </table>
+    <div class="callout warn">STEM and ELA share no card components. If a new metric applies to both subjects, build it once but configure it via props — never render one component conditionally in both tabs.</div>
+  </section>
+
+  <section class="section" id="c-filters">
+    <h2>Filters &amp; Dropdown <a class="anchor" href="#c-filters">§</a></h2>
+    <p class="sub">Three filter dropdowns (School, Activity, Date Range) control the data context for the entire page. The Dropdown component is fully custom — no native <code>&lt;select&gt;</code>.</p>
+
+    <h3 class="sec">Dropdown props</h3>
+    <table class="spec">
+      <thead><tr><th>Property</th><th>Value</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Height (md)</td><td><code>48px</code></td><td>Font: 16px. Padding: <code>0 14px</code>. Radius: 8px.</td></tr>
+        <tr><td>Height (sm)</td><td><code>36px</code></td><td>Font: 14px. Padding: <code>0 10px</code>. Radius: 6px. Width: 80px.</td></tr>
+        <tr><td>Border default</td><td><code>1px solid #77767A</code></td><td>Hover/open: <code>#5B5A61</code></td></tr>
+        <tr><td>Focus ring</td><td><code>2px solid --blue-700</code></td><td>Outline-offset: 1px</td></tr>
+        <tr><td>Menu shadow</td><td><code>0 12px 28px -8px rgba(15,23,42,0.18),<br>0 4px 10px -4px rgba(15,23,42,0.08)</code></td><td>z-index: 50. Max-height: 320px scrollable.</td></tr>
+        <tr><td>Selected option</td><td>Background <code>#F4F4F6</code>, left bar 4px <code>--blue-700</code></td><td>All other options: hover bg <code>#F4F4F6</code></td></tr>
+        <tr><td>Caret rotation</td><td>0° → 180°</td><td>150ms ease when open</td></tr>
+        <tr><td>Close triggers</td><td>Select option, click outside, Escape key</td><td>Also closes on any window click outside</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sec">Filter row layout</h3>
+    <table class="spec">
+      <thead><tr><th>Filter</th><th>Width</th><th>Behaviour</th></tr></thead>
+      <tbody>
+        <tr><td>School</td><td><code>flex: 1 1 400px</code>, max 440px</td><td>Grows to fill available space</td></tr>
+        <tr><td>Activity</td><td>Auto</td><td>Fixed to content width</td></tr>
+        <tr><td>Date Range</td><td>Auto</td><td>Fixed to content width</td></tr>
+        <tr><td>Row gap</td><td>16px → 12px (768px)</td><td>Wraps to single column on mobile</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="section" id="c-cards">
+    <h2>Overview Cards <a class="anchor" href="#c-cards">§</a></h2>
+    <p class="sub">Eight distinct card types populate the STEM and ELA overview rows. All share base card structure but differ in interior layout and data shape.</p>
+
+    <h3 class="sec">Base card</h3>
+    <table class="spec">
+      <thead><tr><th>Property</th><th>Value</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Background</td><td>White</td><td>Tinted variant: <code>--blue-50</code> with border <code>rgb(205,216,233)</code></td></tr>
+        <tr><td>Border</td><td><code>1px solid --border-soft</code></td><td>No shadow on cards — borders only</td></tr>
+        <tr><td>Border radius</td><td><code>16px</code></td><td>Inner white panels: 8px</td></tr>
+        <tr><td>Padding</td><td><code>16px</code></td><td>Card head gap: 8px</td></tr>
+        <tr><td>Card title</td><td>16px / 700</td><td>Flex row with 8px gap to icon</td></tr>
+        <tr><td>Icon size</td><td>22px (standard), 29px (Books)</td><td>Books icon is 29px to compensate for 32×32 viewBox vs 24×24 standard</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sec">Card variants</h3>
+    <table class="spec">
+      <thead><tr><th>Card</th><th>Tab</th><th>Key visual</th><th>Data inputs</th></tr></thead>
+      <tbody>
+        <tr><td>Student Activity</td><td>Both</td><td>Labeled metric list</td><td>Array of <code>{name, count}</code> items</td></tr>
+        <tr><td>Content Breakdown (Donut)</td><td>STEM</td><td>SVG donut, 96×96</td><td><code>articlesPct</code>, <code>videosPct</code>, totals</td></tr>
+        <tr><td>STEM Disciplines</td><td>STEM</td><td>Animated horizontal bars</td><td>Array of <code>{name, count}</code></td></tr>
+        <tr><td>Time Spent</td><td>STEM</td><td>2×Ring gauge grid</td><td><code>articleAvgMin</code>, <code>videoAvgMin</code></td></tr>
+        <tr><td>Avg Reading Level</td><td>ELA</td><td>Grade + Lexile stacked panels</td><td><code>avgLevel</code>, <code>avgLexile</code> + subs</td></tr>
+        <tr><td>Reading Totals</td><td>ELA</td><td>2×Ring gauge grid</td><td><code>totalTexts</code>, <code>avgMinPerArticle</code></td></tr>
+        <tr><td>Texts by Level</td><td>ELA</td><td>Animated horizontal bars</td><td>Array of <code>{level, count}</code></td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout">Ring gauges use a 72×72 SVG with r=30. The arc circumference is <code>2π×30 ≈ 188.5px</code>. Percentage is calculated as <code>(value/60)×100</code> for minutes, or passed directly. The center label shows the raw value, not the percentage.</div>
+
+    <div class="dodont">
+      <div class="ddc do"><div class="ddc-badge">Do</div><p>Use inline styles (not CSS classes) for bar fill widths and border-radius so <code>tweaks.jsx</code> CSS overrides cannot interfere.</p></div>
+      <div class="ddc dont"><div class="ddc-badge">Don't</div><p>Don't apply <code>.ela-bar-fill</code> class to bars — <code>tweaks.jsx</code> injects <code>!important</code> overrides targeting that class, which will fight inline styles.</p></div>
+    </div>
+  </section>
+
+  <section class="section" id="c-tables">
+    <h2>Data Tables <a class="anchor" href="#c-tables">§</a></h2>
+    <p class="sub">Three table types: STEM student activity, ELA student activity, and ELA reading skills. All share pagination, sorting, and responsive overflow patterns.</p>
+
+    <h3 class="sec">Table base</h3>
+    <table class="spec">
+      <thead><tr><th>Property</th><th>Value</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>border-collapse</td><td>collapse</td><td>—</td></tr>
+        <tr><td>Header</td><td>14px / 700, padding <code>14px 16px</code></td><td>Sub-header at 12px / 400. Bottom border 1px <code>--border</code></td></tr>
+        <tr><td>Row padding</td><td><code>14px 16px</code></td><td>Bottom border 1px rgba(29,29,29,0.1)</td></tr>
+        <tr><td>Even rows</td><td>bg <code>rgba(248,248,248,0.5)</code></td><td>Subtle stripe, not a strong zebra</td></tr>
+        <tr><td>Table wrap</td><td>border-radius 12px, border 1px <code>--border</code></td><td>Overflow hidden to clip corners</td></tr>
+        <tr><td>Pagination sizes</td><td>25 / 35 / 50 rows</td><td>Dropdown uses sm variant</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sec">Reading Skills table — SkillCell states</h3>
+    <table class="spec">
+      <thead><tr><th>State</th><th>Bar bg</th><th>Bar fill</th><th>Text</th><th>Condition</th></tr></thead>
+      <tbody>
+        <tr><td>Default</td><td><code>#DCE6F2</code></td><td><code>#04337A</code></td><td><code>#545454</code></td><td>Normal score &gt; 0</td></tr>
+        <tr><td>Average (Newsela row)</td><td><code>#CFEFE2</code></td><td><code>#0D8A5F</code></td><td>Inherited</td><td>First data row — benchmark</td></tr>
+        <tr><td>Zero</td><td><code>#FDEAED</code></td><td><code>#C8102E</code></td><td>Inherited</td><td>Score === 0, min-width 6px for visibility</td></tr>
+        <tr><td>N/A</td><td><code>#EDEDED</code></td><td>None</td><td>Color <code>--red-500</code></td><td>Null value — student hasn't attempted</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout warn">Skill cell bars animate on table render (500ms, <code>cubic-bezier(0.2,0,0,1)</code>). Zero-score bars keep a 6px minimum width so the red background is always visible — a zero shouldn't be visually invisible.</div>
+  </section>
+
+  <section class="section" id="c-tooltip">
+    <h2>Tooltip (InfoTip) <a class="anchor" href="#c-tooltip">§</a></h2>
+    <p class="sub">Hover-triggered tooltip attached to the ⓘ info icon in card headers and table headers. Supports above (default) and below positioning.</p>
+
+    <table class="spec">
+      <thead><tr><th>Property</th><th>Value</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Trigger</td><td>hover or focus-within</td><td>Accessible — keyboard reachable</td></tr>
+        <tr><td>Position (default)</td><td>Above: <code>bottom: 100% + 8px</code></td><td>Centered on trigger, x-clamped</td></tr>
+        <tr><td>Position (below)</td><td><code>top: 100% + 8px</code></td><td>Used in table header tooltips (<code>below</code> prop)</td></tr>
+        <tr><td>Font</td><td>12px / 400, lh 1.4</td><td>Max-width: 220px</td></tr>
+        <tr><td>Animation in</td><td>opacity 0→1, translateY 4px→0</td><td>Duration: 160ms, <code>cubic-bezier(0.2,0,0,1)</code></td></tr>
+        <tr><td>Arrow</td><td>CSS triangle via <code>::after</code></td><td>Points up (default) or down (below variant)</td></tr>
+        <tr><td>Background</td><td><code>--text-900</code> (dark)</td><td>White text, 6px radius</td></tr>
+        <tr><td>Padding</td><td><code>8px 10px</code></td><td>—</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="section" id="c-status">
+    <h2>Status Badge <a class="anchor" href="#c-status">§</a></h2>
+    <p class="sub">Fixed pill at the top-center of the page indicating project design stage. Configured via <code>window.__STATUS</code> in <code>index.html</code> — no code changes needed to update it.</p>
+
+    <div class="card">
+      <div class="ex-label">Status variants</div>
+      <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center;">
+        <span class="status-pill" style="background:#FBBFC9;color:#1E2A78;">Early exploration</span>
+        <span class="status-pill" style="background:#F9E16A;color:#1E2A78;">Design WIP</span>
+        <span class="status-pill" style="background:#A8EFD6;color:#1E2A78;">Design ready</span>
+      </div>
+    </div>
+
+    <table class="spec">
+      <thead><tr><th>Property</th><th>Value</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Position</td><td>fixed, top: 16px, centered</td><td><code>left: 50%</code>, <code>transform: translateX(-50%)</code></td></tr>
+        <tr><td>z-index</td><td>200</td><td>Above nav (z-index 100) and dropdowns (z-index 50)</td></tr>
+        <tr><td>Font</td><td>15px / 700</td><td>Color: <code>#1E2A78</code> (all variants)</td></tr>
+        <tr><td>Padding</td><td><code>10px 40px</code></td><td>Border-radius: 50px (pill)</td></tr>
+        <tr><td>Shadow</td><td><code>0 4px 20px rgba(0,0,0,0.18)</code></td><td>—</td></tr>
+        <tr><td>Early exploration</td><td>bg <code>#FBBFC9</code></td><td>Soft pink</td></tr>
+        <tr><td>Design WIP</td><td>bg <code>#F9E16A</code></td><td>Soft yellow</td></tr>
+        <tr><td>Design ready</td><td>bg <code>#A8EFD6</code></td><td>Soft mint. Shows "View handoff documentation" link if <code>handoffUrl</code> is set.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout">To update the badge: edit <code>window.__STATUS</code> in <code>index.html</code>. Set <code>"status"</code> to one of the three labels and <code>"handoffUrl"</code> to the spec path when ready. No component code changes needed.</div>
+  </section>
+
+  <!-- ── PATTERNS ── -->
+
+  <section class="section" id="p-entrance">
+    <h2>Pattern: Entrance Animations <a class="anchor" href="#p-entrance">§</a></h2>
+    <p class="sub">All data-driven elements animate into view on mount. The pattern is consistent: delay 80ms → trigger visibility → CSS transition runs.</p>
+
+    <h3 class="sec">Anatomy</h3>
+    <ol style="font-size:13px;color:#424147;line-height:2;padding-left:20px;">
+      <li>Component mounts with <code>visible = false</code> state</li>
+      <li><code>useEffect</code> fires a 80ms setTimeout, then sets <code>visible = true</code></li>
+      <li>Elements render with <code>width: 0%</code> (bars) or <code>stroke-dasharray: 0 C</code> (arcs)</li>
+      <li>When <code>visible</code> flips, CSS transition animates to the real value</li>
+      <li>Each element in a list gets <code>transitionDelay: i × 80ms</code> stagger</li>
+    </ol>
+
+    <div class="dodont">
+      <div class="ddc do"><div class="ddc-badge">Do</div><p>Reuse this exact pattern for any new data-visualization element. The 80ms initial delay + stagger is the established convention in this codebase.</p></div>
+      <div class="ddc dont"><div class="ddc-badge">Don't</div><p>Don't use CSS <code>@keyframes</code> for data bars — the JS state pattern is necessary so the animation runs after React has committed the real values to the DOM.</p></div>
+    </div>
+  </section>
+
+  <section class="section" id="p-tabswitch">
+    <h2>Pattern: Tab Switching <a class="anchor" href="#p-tabswitch">§</a></h2>
+    <p class="sub">STEM and ELA tabs are mutually exclusive views. The active tab is stored in localStorage so the user returns to the same context on next visit.</p>
+
+    <table class="spec">
+      <thead><tr><th>Aspect</th><th>Behaviour</th></tr></thead>
+      <tbody>
+        <tr><td>Storage key</td><td><code>localStorage.classroomTab</code></td></tr>
+        <tr><td>Default</td><td><code>'stem'</code> if no saved preference</td></tr>
+        <tr><td>Content swap</td><td>Conditional render: <code>tab === 'stem' ? StemPanel : ElaPanel</code></td></tr>
+        <tr><td>Entrance animations</td><td>Re-trigger on every tab switch because components remount</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout">Because components unmount and remount on tab switch, all entrance animations automatically replay when switching tabs. This is intentional — data feels "fresh" on each context switch.</div>
+  </section>
+
+  <section class="section" id="p-table">
+    <h2>Pattern: Table Interactions <a class="anchor" href="#p-table">§</a></h2>
+    <p class="sub">All three tables share the same sort + paginate interaction model via the <code>useSort</code> hook and <code>Pagination</code> component.</p>
+
+    <h3 class="sec">Sorting</h3>
+    <table class="spec">
+      <thead><tr><th>Property</th><th>Behaviour</th></tr></thead>
+      <tbody>
+        <tr><td>Trigger</td><td>Click any sortable column header</td></tr>
+        <tr><td>Direction toggle</td><td>First click: ascending. Second click: descending.</td></tr>
+        <tr><td>Default</td><td>Sorted by student name, ascending</td></tr>
+        <tr><td>Indicator</td><td>SortGlyph SVG (two triangles) in header. Active direction highlighted.</td></tr>
+        <tr><td>String sort</td><td><code>localeCompare</code> for names</td></tr>
+        <tr><td>Numeric sort</td><td>Numeric comparison. Null values sort last.</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sec">Pagination</h3>
+    <table class="spec">
+      <thead><tr><th>Property</th><th>Behaviour</th></tr></thead>
+      <tbody>
+        <tr><td>Page sizes</td><td>25 / 35 / 50 rows. Dropdown uses sm variant.</td></tr>
+        <tr><td>Controls</td><td>First ⏮ / Prev ← / Page X of Y / Next → / Last ⏭</td></tr>
+        <tr><td>Disabled states</td><td>First + Prev disabled on page 1. Next + Last disabled on last page.</td></tr>
+        <tr><td>Page reset</td><td>Changing page size resets to page 1.</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ── QUALITY ── -->
+
+  <section class="section" id="iconography">
+    <h2>Iconography <a class="anchor" href="#iconography">§</a></h2>
+    <p class="sub">Two icon families: stroke icons (24×24 viewBox) and a newer fill set (32×32 viewBox). Never mix the two in the same visual context.</p>
+
+    <table class="spec">
+      <thead><tr><th>Property</th><th>Stroke icons</th><th>Fill icons (new set)</th></tr></thead>
+      <tbody>
+        <tr><td>viewBox</td><td><code>0 0 24 24</code></td><td><code>0 0 32 32</code></td></tr>
+        <tr><td>Stroke width</td><td>1.75px</td><td>n/a (fill)</td></tr>
+        <tr><td>Caps/joins</td><td>round/round</td><td>n/a</td></tr>
+        <tr><td>Fill</td><td>none, stroke currentColor</td><td>currentColor</td></tr>
+        <tr><td>Default render size</td><td>24px</td><td>22–24px (compensate for larger viewBox)</td></tr>
+        <tr><td>Books icon</td><td>—</td><td>29px (32×32 viewBox visual compensation)</td></tr>
+        <tr><td>Alignment</td><td>Vertical center, not baseline</td><td>Same</td></tr>
+        <tr><td>Gap to text</td><td>8px (card title), 6px (nav)</td><td>Same</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout warn">When embedding SVGs inline from the file system (STEM logo, ELA logo), inject <code>style="width:22px;height:22px;display:block;fill:currentColor"</code> directly into the <code>&lt;svg&gt;</code> tag. The <code>.card-title-svg</code> CSS class caps icons at 15px — do not use it for inline SVGs that need to render at 22px.</div>
+
+    <div class="dodont">
+      <div class="ddc do"><div class="ddc-badge">Do</div><p>Always set explicit <code>width</code> and <code>height</code> attributes or inline styles on SVG icons. Never rely on CSS classes that may be overridden.</p></div>
+      <div class="ddc dont"><div class="ddc-badge">Don't</div><p>Don't mix stroke and fill icon styles within the same card or component. Pick one family per visual context.</p></div>
+    </div>
+  </section>
+
+  <section class="section" id="a11y">
+    <h2>Accessibility <a class="anchor" href="#a11y">§</a></h2>
+    <p class="sub">All interactive elements must meet WCAG 2.1 AA. Contrast ratios below are for the color pairs in active use.</p>
+
+    <h3 class="sec">Contrast</h3>
+    <table class="spec">
+      <thead><tr><th>Foreground</th><th>Background</th><th>Ratio</th><th>Grade</th></tr></thead>
+      <tbody>
+        <tr><td>--text-900 rgb(29,29,29)</td><td>White #fff</td><td>~18.1:1</td><td>AAA</td></tr>
+        <tr><td>--text-700 rgb(51,51,51)</td><td>White #fff</td><td>~13.0:1</td><td>AAA</td></tr>
+        <tr><td>--text-500 rgb(84,84,84)</td><td>White #fff</td><td>~7.0:1</td><td>AA</td></tr>
+        <tr><td>--blue-700 rgb(4,51,122)</td><td>White #fff</td><td>~12.0:1</td><td>AAA</td></tr>
+        <tr><td>--blue-700 rgb(4,51,122)</td><td>--blue-50 rgb(229,239,255)</td><td>~9.5:1</td><td>AAA</td></tr>
+        <tr><td>#1E2A78 (badge text)</td><td>#F9E16A (Design WIP)</td><td>~8.2:1</td><td>AAA</td></tr>
+        <tr><td>#1E2A78 (badge text)</td><td>#FBBFC9 (Early exploration)</td><td>~7.4:1</td><td>AAA</td></tr>
+        <tr><td>#1E2A78 (badge text)</td><td>#A8EFD6 (Design ready)</td><td>~7.9:1</td><td>AAA</td></tr>
+        <tr><td>White #fff</td><td>--blue-500 rgb(16,111,243)</td><td>~3.1:1</td><td>AA large only</td></tr>
+      </tbody>
+    </table>
+    <div class="callout warn">Avoid using <code>--blue-500</code> on white for small body text. It is AA-compliant only for large text (18px+ or 14px+ bold). Use <code>--blue-700</code> for links and interactive text at small sizes.</div>
+
+    <h3 class="sec">Focus styles</h3>
+    <table class="spec">
+      <thead><tr><th>Element</th><th>Focus style</th></tr></thead>
+      <tbody>
+        <tr><td>Dropdown button</td><td><code>outline: 2px solid --blue-700; outline-offset: 1px</code></td></tr>
+        <tr><td>Tooltip trigger</td><td>Shows tooltip via <code>:focus-within</code></td></tr>
+        <tr><td>Pagination buttons</td><td>Browser default (not overridden)</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sec">Keyboard interactions</h3>
+    <table class="spec">
+      <thead><tr><th>Key</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr><td>Tab / Shift+Tab</td><td>Move through interactive elements</td></tr>
+        <tr><td>Enter / Space</td><td>Activate buttons, open/close dropdown, select option</td></tr>
+        <tr><td>Escape</td><td>Close open dropdown menu</td></tr>
+        <tr><td>Tab click</td><td>Switch between STEM and ELA panels</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sec">ARIA requirements</h3>
+    <ul style="font-size:13px;color:#424147;line-height:2;padding-left:20px;">
+      <li>Dropdown button: <code>aria-expanded</code>, <code>aria-haspopup="listbox"</code>, <code>aria-label</code></li>
+      <li>Dropdown menu: <code>role="listbox"</code></li>
+      <li>Dropdown options: <code>role="option"</code>, <code>aria-selected</code></li>
+      <li>Icon-only buttons (download, pagination): must have <code>aria-label</code></li>
+      <li>Tooltips: <code>role="tooltip"</code> on tooltip body</li>
+      <li>Tables: <code>aria-label</code> or <code>&lt;caption&gt;</code> for screen reader context</li>
+      <li>Tabs: <code>role="tab"</code>, <code>aria-selected</code>, <code>role="tabpanel"</code></li>
+    </ul>
+  </section>
+
+  <section class="section" id="extend">
+    <h2>How to Extend <a class="anchor" href="#extend">§</a></h2>
+    <p class="sub">Five principles for designing adjacent screens or new metrics within this product area.</p>
+
+    <ol style="font-size:14px;color:#424147;line-height:1.8;padding-left:20px;margin-bottom:24px;">
+      <li style="margin-bottom:12px;"><b>Start from CSS variables, not raw values.</b> Every color, spacing, and radius in this spec has a CSS variable. New components should reference those variables — never hardcode a hex value in component code.</li>
+      <li style="margin-bottom:12px;"><b>Respect the STEM / ELA boundary.</b> These are different pedagogical contexts. A "student activity" card can serve both with different <code>items</code> props — but skill-specific metrics (Lexile, reading level, writing) are ELA only. Disciplines are STEM only.</li>
+      <li style="margin-bottom:12px;"><b>Data visualizations must animate.</b> Every new chart or metric that represents quantity should use the visibility-state pattern (80ms delay, staggered transitions). Static data presentation is the exception, not the rule.</li>
+      <li style="margin-bottom:12px;"><b>Add new filter dimensions via <code>REPORT_DATA</code>, not new components.</b> The Filters component and Dropdown already support any option array. Adding a new filter is a data change, not a component change.</li>
+      <li style="margin-bottom:12px;"><b>Status badge is the only config-driven UI.</b> Design stage is communicated via <code>window.__STATUS</code> in <code>index.html</code> — change it there, not in component code. When the project hits "Design ready", add the <code>handoffUrl</code> pointing to this file.</li>
+      <li><b>Bump <code>?v=N</code> on every file change.</b> All scripts and styles are cache-busted via query params in <code>index.html</code>. Forgetting to increment the version is the #1 cause of changes not appearing in Vercel deploys.</li>
+    </ol>
+
+    <div class="card">
+      <div class="ex-label">Possible extensions</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        <div style="padding:14px;background:#F7F8FA;border-radius:8px;font-size:13px;color:#424147;"><b style="display:block;margin-bottom:4px;">Student profile drill-in</b>Side panel with per-student detail — reading history, quiz breakdown, writing samples.</div>
+        <div style="padding:14px;background:#F7F8FA;border-radius:8px;font-size:13px;color:#424147;"><b style="display:block;margin-bottom:4px;">Assignment-level view</b>Filter by a single assignment, showing class-wide completion and score distribution.</div>
+        <div style="padding:14px;background:#F7F8FA;border-radius:8px;font-size:13px;color:#424147;"><b style="display:block;margin-bottom:4px;">Trend over time</b>Swap the date range filter for a time-series chart showing activity trends week by week.</div>
+        <div style="padding:14px;background:#F7F8FA;border-radius:8px;font-size:13px;color:#424147;"><b style="display:block;margin-bottom:4px;">Export enhancements</b>DownloadBtn currently has no handler — wire it to generate a CSV from the current filtered + sorted table state.</div>
+      </div>
+    </div>
+  </section>
+
+  <footer style="margin-top: 80px; padding-top: 24px; border-top: 1px solid #E1E3E5; font-size: 12px; color: #9395A0;">
+    Version 1.0 · Classroom Data — STEM Reporting handoff spec. Pairs with <a href="index.html" style="color:#0A6EFA;">index.html</a>. When in doubt, read the source.
+  </footer>
+
+</main>
+</div>
+
+<script>
+// Highlight active sidebar link on scroll
+const sections = document.querySelectorAll('section[id]');
+const links = document.querySelectorAll('.side a[href^="#"]');
+function onScroll() {
+  let current = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 80) current = s.id; });
+  links.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+}
+window.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+</script>
+</body>
+</html>
