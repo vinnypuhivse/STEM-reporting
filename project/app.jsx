@@ -136,6 +136,14 @@ function App() {
     setTab(v); localStorage.setItem('classroomTab', v);
   }
   return h(React.Fragment, null,
+    h('div', {
+      style: {
+        position: 'fixed', top: 72, right: 24, zIndex: 99,
+        background: '#F9E16A', color: '#1E2A78',
+        borderRadius: 50, fontWeight: 700, fontSize: 15,
+        padding: '8px 20px', pointerEvents: 'none',
+      }
+    }, 'Design WIP'),
     h(window.TopNav, { onMenuToggle: () => setSidebarOpen(o => !o) }),
     h('div', { className: 'layout' },
       h(window.Sidebar, { open: sidebarOpen }),
