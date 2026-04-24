@@ -138,10 +138,11 @@ function App() {
   return h(React.Fragment, null,
     h('div', {
       style: {
-        position: 'fixed', top: 72, right: 24, zIndex: 99,
+        position: 'fixed', top: 16, left: '50%', transform: 'translateX(-50%)', zIndex: 200,
         background: '#F9E16A', color: '#1E2A78',
         borderRadius: 50, fontWeight: 700, fontSize: 15,
-        padding: '8px 20px', pointerEvents: 'none',
+        padding: '10px 40px', pointerEvents: 'none', whiteSpace: 'nowrap',
+        boxShadow: '0 4px 20px rgba(0,0,0,0.18)',
       }
     }, 'Design WIP'),
     h(window.TopNav, { onMenuToggle: () => setSidebarOpen(o => !o) }),
