@@ -31,29 +31,26 @@ window.StatusBadge = function StatusBadge() {
   const handoffUrl = cfg.handoffUrl || '';
   const colors = STATUS_STYLES[status];
   if (!status || !colors) return null;
-  const showLink = !!handoffUrl;
+  const linkCopy = status === 'Design ready' ? 'Design spec' : 'Design spec WIP';
+  const pillStyle = {
+    background: colors.background, color: colors.color,
+    borderRadius: 50, fontWeight: 700, fontSize: 15,
+    padding: '10px 40px', whiteSpace: 'nowrap',
+    boxShadow: '0 4px 20px rgba(0,0,0,0.18)',
+    display: 'inline-flex', alignItems: 'center',
+  };
   return h('div', {
     style: {
       position: 'fixed', top: 16, left: '50%', transform: 'translateX(-50%)', zIndex: 200,
-      display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6, pointerEvents: showLink ? 'auto' : 'none',
+      pointerEvents: handoffUrl ? 'auto' : 'none',
     }
   },
-    h('div', {
-      style: {
-        background: colors.background, color: colors.color,
-        borderRadius: 50, fontWeight: 700, fontSize: 15,
-        padding: '10px 40px', whiteSpace: 'nowrap',
-        boxShadow: '0 4px 20px rgba(0,0,0,0.18)',
-      }
-    }, status),
-    showLink && h('a', {
-      href: handoffUrl, target: '_blank', rel: 'noopener noreferrer',
-      style: {
-        fontSize: 12, fontWeight: 600, color: '#1E2A78',
-        textDecoration: 'underline', whiteSpace: 'nowrap',
-        textShadow: '0 1px 4px rgba(255,255,255,0.8)',
-      }
-    }, 'View handoff documentation'),
+    handoffUrl
+      ? h('a', {
+          href: handoffUrl, target: '_blank', rel: 'noopener noreferrer',
+          style: { ...pillStyle, textDecoration: 'none' },
+        }, linkCopy)
+      : h('div', { style: pillStyle }, status),
   );
 };
 
