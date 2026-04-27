@@ -3,7 +3,7 @@
 const { createElement: h, useState, useMemo } = React;
 const I = window.Icons;
 const Sort = window.SortGlyph;
-const STUDENT_URLS = { 'Sarah Camacho': 'https://stem-reporting.vercel.app/' };
+const STUDENT_URLS = { 'Sarah Camacho': 'https://stem-reporting-8z9b.vercel.app/' };
 function NameCell({ name, className }) {
   const url = STUDENT_URLS[name];
   return h('td', { className },
