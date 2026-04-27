@@ -1,0 +1,36 @@
+.bar {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid var(--ui-neutral-100);
+  margin-bottom: 28px;
+}
+
+.tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--ui-neutral-500);
+  padding: 10px 4px;
+  margin-right: 32px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  position: relative;
+  /* bottom indicator */
+  border-bottom: 2.5px solid transparent;
+  margin-bottom: -1px; /* sit on top of the bar border */
+  transition: color var(--dur-fast) var(--ease-standard),
+    border-color var(--dur-fast) var(--ease-standard);
+}
+
+.tab:hover {
+  color: var(--ui-neutral-700);
+}
+
+.active {
+  color: var(--ui-neutral-700);
+  font-weight: 700;
+  border-bottom-color: var(--ui-core-500);
+}

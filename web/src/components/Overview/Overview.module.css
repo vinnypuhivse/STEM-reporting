@@ -1,0 +1,236 @@
+.section {
+  margin-bottom: 40px;
+}
+
+.head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+
+.title {
+  font-family: var(--font-sans);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--ui-neutral-700);
+  margin: 0;
+}
+
+.sub {
+  font-size: 14px;
+  color: var(--ui-neutral-700);
+  margin: 0 0 20px;
+}
+
+.downloadLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  color: var(--ui-neutral-700);
+  text-decoration: none;
+  font-weight: 400;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.downloadLink:hover {
+  color: var(--ui-core-600);
+}
+.underline {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* ── Overview grid ── */
+.grid {
+  display: grid;
+  grid-template-columns: 2fr 2fr 1.4fr;
+  gap: 12px;
+}
+
+/* Base card */
+.card {
+  background: var(--ui-core-25);
+  border: 1px solid var(--ui-neutral-100);
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  min-height: 200px;
+}
+
+.cardTitle {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ui-neutral-700);
+  padding-right: 28px;
+}
+
+.infoBtn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  color: var(--ui-neutral-400);
+  display: flex;
+  padding: 2px;
+  border-radius: 4px;
+  transition: color var(--dur-fast) var(--ease-standard);
+}
+.infoBtn:hover {
+  color: var(--ui-neutral-600);
+}
+
+/* Average reading level rows */
+.rows {
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+.row {
+  background: #fff;
+  border-radius: 10px;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex: 1;
+}
+
+.rowVal {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--ui-core-700);
+  min-width: 72px;
+}
+
+.rowLbl {
+  font-size: 14px;
+  color: var(--ui-neutral-700);
+  line-height: 20px;
+}
+
+/* ── Reading totals card ── */
+.totalsCard {
+  background: #E5EFFF;
+  border: 1px solid var(--ui-neutral-100);
+  padding: 18px;
+  gap: 16px;
+}
+
+.totalsHead {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--ui-neutral-700);
+}
+
+.totalsTitle {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ui-neutral-700);
+  letter-spacing: -0.2px;
+}
+
+.totalsInfoBtn {
+  margin-left: auto;
+  color: var(--ui-neutral-700);
+  display: flex;
+  padding: 2px;
+  border-radius: 4px;
+  transition: color var(--dur-fast) var(--ease-standard);
+}
+.totalsInfoBtn:hover {
+  color: var(--ui-neutral-500);
+}
+
+.totalsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  flex: 1;
+}
+
+.tile {
+  background: #fff;
+  border-radius: 12px;
+  padding: 22px 12px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 18px;
+}
+
+/* Ring chart */
+.ring {
+  width: 84px;
+  height: 84px;
+  flex-shrink: 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--ui-core-700);
+}
+.ring svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.ring span {
+  position: relative;
+  z-index: 1;
+}
+
+.tileLbl {
+  font-size: 14px;
+  color: var(--ui-neutral-700);
+  line-height: 22px;
+}
+
+/* ── Grade level card ── */
+.gradeCard {
+  justify-content: center;
+}
+
+.gradeTop {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.gradeCheck {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--ui-core-500);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 6px #fff;
+}
+
+.gradeTitle {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--ui-core-500);
+}
+
+.gradeBody {
+  font-size: 14px;
+  color: var(--ui-neutral-700);
+  line-height: 26px;
+}

@@ -1,0 +1,129 @@
+.wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+/* ── Trigger ── */
+.trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  min-width: 180px;
+  background: #fff;
+  border: 1.4px solid #5b5a61;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ui-neutral-700);
+  padding: 10px 14px 10px 16px;
+  line-height: 1.4;
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 100ms ease, box-shadow 100ms ease;
+}
+.trigger:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+  border-color: var(--ui-core-500);
+}
+.trigger:hover {
+  border-color: var(--ui-neutral-500);
+}
+
+.triggerValue {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.chevron {
+  flex-shrink: 0;
+  color: #5b5a61;
+  display: flex;
+  align-items: center;
+  transition: transform 150ms ease;
+}
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+/* ── Panel ── */
+.panel {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  min-width: 100%;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.07),
+    0 12px 32px -4px rgba(0, 0, 0, 0.16);
+  z-index: 200;
+  list-style: none;
+  margin: 0;
+  padding: 6px 0;
+  overflow: hidden;
+}
+
+.panelUp {
+  top: auto;
+  bottom: calc(100% + 6px);
+}
+
+/* ── Options ── */
+.option {
+  position: relative;
+  padding: 16px 24px 16px 22px;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--ui-neutral-700);
+  cursor: pointer;
+  line-height: 1.3;
+  transition: background 80ms ease;
+  white-space: nowrap;
+}
+.option:hover {
+  background: var(--ui-neutral-25, #f7f7f8);
+}
+
+/* Blue bar — inset from edge, nearly full row height */
+.option::before {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 6px;
+  bottom: 6px;
+  width: 5px;
+  border-radius: 99px;
+  background: transparent;
+}
+.selected {
+  background: var(--ui-neutral-25, #f7f7f8);
+  font-weight: 500;
+}
+.selected::before {
+  background: var(--ui-core-700, #1a4fba);
+}
+
+/* ── Small variant (table footer) ── */
+.small .trigger {
+  min-width: unset;
+  padding: 6px 10px 6px 12px;
+  font-size: 13px;
+  border-radius: 6px;
+}
+.small .panel {
+  min-width: 80px;
+  border-radius: 10px;
+}
+.small .option {
+  padding: 10px 16px;
+  font-size: 13px;
+}
+.small .option::before {
+  top: 5px;
+  bottom: 5px;
+}

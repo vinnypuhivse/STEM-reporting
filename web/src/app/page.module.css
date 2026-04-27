@@ -1,0 +1,44 @@
+.app {
+  display: flex;
+  min-height: calc(100vh - 64px);
+}
+
+.main {
+  padding: 24px 40px 64px;
+  min-width: 0;
+  flex: 1;
+}
+
+/* Breadcrumbs */
+.crumbs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--ui-neutral-500);
+  margin-bottom: 16px;
+}
+.crumbs a {
+  color: var(--ui-neutral-500);
+  text-underline-offset: 2px;
+}
+.crumbs a:hover {
+  color: var(--ui-core-600);
+}
+.sep {
+  color: var(--ui-neutral-300);
+}
+.crumbCurrent {
+  color: var(--ui-neutral-700);
+}
+
+/* Page title */
+.pageTitle {
+  font-family: var(--font-sans);
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--ui-neutral-700);
+  margin: 0 0 20px;
+  letter-spacing: -0.01em;
+}
+

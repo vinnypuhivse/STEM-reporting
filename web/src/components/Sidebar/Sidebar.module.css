@@ -1,0 +1,77 @@
+.sidebar {
+  width: 232px;
+  flex-shrink: 0;
+  background: var(--ui-neutral-25);
+  padding: 32px 24px;
+}
+
+.label {
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 1.33;
+  letter-spacing: 1px;
+  color: var(--ui-neutral-400);
+  margin: 0 0 12px;
+  text-transform: uppercase;
+}
+
+.heading {
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--ui-neutral-700);
+  margin: 0 0 8px;
+}
+
+.item {
+  display: block;
+  padding: 6px 8px 6px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  color: var(--ui-neutral-600);
+  font-weight: 400;
+  text-decoration: none;
+  margin: 0 0 2px -8px;
+  position: relative;
+  transition: background var(--dur-fast) var(--ease-standard),
+    color var(--dur-fast) var(--ease-standard);
+}
+.item:hover {
+  background: rgba(255, 255, 255, 0.6);
+  color: var(--ui-neutral-700);
+}
+
+.active {
+  background: #fff;
+  font-weight: 700;
+  color: var(--ui-neutral-700);
+  border-radius: 2px 8px 2px 2px;
+}
+.active::before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 6px;
+  bottom: 6px;
+  width: 4px;
+  background: var(--ui-core-700);
+  border-radius: 2px;
+}
+
+.divider {
+  height: 1px;
+  background: var(--ui-neutral-100);
+  margin: 12px -24px 12px;
+}
+
+.powerWords {
+  display: block;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--ui-neutral-700);
+  text-decoration: none;
+  padding: 6px 0;
+  transition: color var(--dur-fast) var(--ease-standard);
+}
+.powerWords:hover {
+  color: var(--ui-core-600);
+}
