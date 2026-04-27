@@ -3,6 +3,13 @@
 const { createElement: h, useState, useMemo } = React;
 const I = window.Icons;
 const Sort = window.SortGlyph;
+const STUDENT_URLS = { 'Sarah Camacho': 'https://stem-reporting.vercel.app/' };
+function NameCell({ name, className }) {
+  const url = STUDENT_URLS[name];
+  return h('td', { className },
+    url ? h('a', { href: url, target: '_blank', rel: 'noopener noreferrer', style: { color: 'var(--blue-600)', textDecoration: 'none', fontWeight: 500 } }, name) : name
+  );
+}
 
 // Build a sortable column header
 function Th({ label, sub, width, onSort, sortKey, current, info }) {
@@ -83,7 +90,7 @@ window.StemStudentTable = function StemStudentTable({ students }) {
         ),
         h('tbody', null,
           rows.map(s => h('tr', { key: s.name },
-            h('td', { className: 'name-col' }, s.name),
+            h(NameCell, { name: s.name, className: 'name-col' }),
             h('td', { className: 'grade-cell' }, `Grade ${s.grade} `, h('span', { className: 'lex' }, `— ${s.lexile}L`)),
             h('td', null, s.last),
             h('td', null, s.articleViews),
@@ -122,7 +129,7 @@ window.ElaStudentTable = function ElaStudentTable({ students }) {
         ),
         h('tbody', null,
           rows.map(s => h('tr', { key: s.name },
-            h('td', { className: 'name-col' }, s.name),
+            h(NameCell, { name: s.name, className: 'name-col' }),
             h('td', { className: 'grade-cell' }, `Grade ${s.grade} `, h('span', { className: 'lex' }, `— ${s.lexile}L`)),
             h('td', null, s.last),
             h('td', null, s.articleViews),
@@ -195,7 +202,7 @@ window.ReadingSkillsTable = function ReadingSkillsTable({ students, skills }) {
             ))
           ),
           rows.map(s => h('tr', { key: s.name },
-            h('td', { className: 'name-col name-link' }, s.name),
+            h(NameCell, { name: s.name, className: 'name-col name-link' }),
             s.skills.map((v, i) => h('td', { key: i },
               h(SkillCell, { v, questions: qCount(s.name, i, v) })
             ))
