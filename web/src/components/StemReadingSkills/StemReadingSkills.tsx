@@ -33,7 +33,7 @@ export default function StemReadingSkills() {
         <h2 className={styles.title}>Reading skills</h2>
         <a className={styles.downloadLink} href="#"><DownloadIcon /><span className={styles.underline}>Download as .csv</span></a>
       </div>
-      <p className={styles.sub}>Use the table below to see Sarah's quiz performance in all STEM reading skills.</p>
+      <p className={styles.sub}>Use the table below to see Sarah&apos;s quiz performance in all STEM reading skills.</p>
 
       <div className={styles.gradeFilter}>
         <Select
