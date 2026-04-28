@@ -81,7 +81,7 @@ function RingChart({
           r={r}
           fill="none"
           stroke="#CCE1FF"
-          strokeWidth="7"
+          strokeWidth="10"
         />
         {/* Fill */}
         {fillPct != null && fillPct > 0 && (
@@ -91,7 +91,7 @@ function RingChart({
             r={r}
             fill="none"
             stroke="#0A6EFA"
-            strokeWidth="7"
+            strokeWidth="10"
             strokeLinecap="round"
             strokeDasharray={`${filled} ${gap}`}
             transform="rotate(-90 50 50)"
