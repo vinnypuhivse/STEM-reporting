@@ -24,9 +24,6 @@ export default function StudentInsightsPage() {
 
           <h1 className={styles.pageTitle}>Sarah Camacho</h1>
 
-          {/* Top-level filters */}
-          <PageFilters />
-
           {/* ELA / STEM tab switcher + content */}
           <TabView />
         </main>

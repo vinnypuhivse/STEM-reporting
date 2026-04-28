@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import TabBar, { type Tab } from "@/components/TabBar/TabBar";
+import PageFilters from "@/components/PageFilters/PageFilters";
 import Overview from "@/components/Overview/Overview";
 import ReadingActivity from "@/components/ReadingActivity/ReadingActivity";
 import ReadingSkills from "@/components/ReadingSkills/ReadingSkills";
@@ -14,6 +15,7 @@ export default function TabView() {
   return (
     <>
       <TabBar active={activeTab} onChange={setActiveTab} />
+      <PageFilters />
 
       {activeTab === "ELA" ? (
         <>
