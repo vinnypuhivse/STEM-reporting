@@ -65,8 +65,8 @@ a { color: inherit; }
   font-weight: 700; font-size: 12px; line-height: 1.33;
   letter-spacing: 1px; color: var(--text-400); margin: 0 0 12px;
 }
-.sidebar-item { 
-  display: block; padding: 6px 8px; border-radius: 6px;
+.sidebar-item {
+  display: block; padding: 6px 8px; border-radius: 8px;
   font-size: 14px; color: var(--text-700); cursor: pointer;
   font-weight: 400; text-decoration: none;
   margin: 0 0 2px -8px; position: relative;
@@ -106,7 +106,7 @@ a { color: inherit; }
   left: 0; right: 0;
   bottom: -1px;
   height: 3px;
-  border-radius: 999px;
+  border-radius: 128px;
   background: transparent;
 }
 .tab:hover { color: var(--text-900); }
@@ -151,7 +151,7 @@ a { color: inherit; }
 .dd-menu {
   position: absolute; left: 0; right: 0; top: calc(100% + 6px);
   z-index: 50;
-  background: #fff; border: 1px solid var(--border); border-radius: 10px;
+  background: #fff; border: 1px solid var(--border); border-radius: 8px;
   padding: 6px 0;
   box-shadow: 0 12px 28px -8px rgba(15, 23, 42, 0.18), 0 4px 10px -4px rgba(15, 23, 42, 0.08);
   max-height: 320px; overflow-y: auto;
@@ -175,7 +175,7 @@ a { color: inherit; }
 
 /* small size for table pagination */
 .dd--sm { width: 80px; }
-.dd--sm .dd-btn { height: 36px; padding: 0 10px; font-size: 14px; border-radius: 6px; }
+.dd--sm .dd-btn { height: 36px; padding: 0 10px; font-size: 14px; border-radius: 8px; }
 .dd--sm .dd-menu { border-radius: 8px; padding: 4px 0; }
 .dd--sm .dd-opt { font-size: 14px; }
 .dd--sm .dd-opt-bar { margin: 6px 8px 6px 6px; width: 3px; }
@@ -203,7 +203,7 @@ a { color: inherit; }
 .btn-ghost {
   display: inline-flex; align-items: center; gap: 6px;
   font-size: 14px; color: var(--text-900); font-weight: 400;
-  padding: 6px 10px; border-radius: 6px; white-space: nowrap;
+  padding: 6px 10px; border-radius: 8px; white-space: nowrap;
 }
 .btn-ghost:hover { background: rgba(29,29,29,0.06); }
 
@@ -433,14 +433,14 @@ table.data .grade-cell .lex { font-weight: 400; color: var(--text-500); }
 }
 .table-foot .left { display: flex; align-items: center; gap: 10px; }
 .page-select {
-  height: 32px; padding: 0 28px 0 10px; border-radius: 6px;
+  height: 32px; padding: 0 28px 0 10px; border-radius: 8px;
   border: 1px solid var(--border); background: #fff; font-family: inherit; font-size: 14px;
   appearance: none;
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 16 16' fill='none'><path d='M4 6 l4 4 4-4' stroke='%23545454' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/></svg>");
   background-repeat: no-repeat; background-position: right 8px center;
 }
 .page-btn {
-  width: 32px; height: 32px; border-radius: 6px;
+  width: 32px; height: 32px; border-radius: 8px;
   display: inline-flex; align-items: center; justify-content: center;
   color: var(--text-700);
 }
@@ -453,7 +453,7 @@ table.data .grade-cell .lex { font-weight: 400; color: var(--text-500); }
   position: absolute; bottom: calc(100% + 8px); left: 50%;
   transform: translate(-50%, 4px);
   background: var(--text-900); color: #fff; font-size: 12px; line-height: 1.4;
-  padding: 8px 10px; border-radius: 6px; width: max-content; max-width: 240px;
+  padding: 8px 10px; border-radius: 8px; width: max-content; max-width: 240px;
   opacity: 0; pointer-events: none; transition: opacity 160ms cubic-bezier(0.2,0,0,1);
   z-index: 50; text-align: left; font-weight: 400;
 }

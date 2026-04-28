@@ -102,7 +102,7 @@
 
 .row {
   background: #fff;
-  border-radius: 10px;
+  border-radius: 8px;
   padding: 14px 20px;
   display: flex;
   align-items: center;
@@ -186,7 +186,7 @@
 
 .gradeInner {
   background: #fff;
-  border-radius: 10px;
+  border-radius: 8px;
   padding: 20px;
   flex: 1;
   display: flex;
