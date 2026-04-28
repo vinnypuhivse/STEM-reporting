@@ -54,11 +54,9 @@ function applyTheme({ hue, sat, lightDelta, dark, radius }) {
   root.style.setProperty('--blue-500', hsl(baseH, baseS, shift(50)));
   root.style.setProperty('--blue-600', hsl(baseH, baseS, shift(51)));
   root.style.setProperty('--blue-700', hsl(baseH, baseS, shift(25)));
-  root.style.setProperty('--blue-800', hsl(baseH, Math.min(100, baseS + 5), shift(28)));
   root.style.setProperty('--blue-25',  hsl(baseH, Math.max(40, baseS - 20), dark ? 14 : 95));
   root.style.setProperty('--blue-50',  hsl(baseH, Math.max(40, baseS - 20), dark ? 16 : 94));
   root.style.setProperty('--blue-100', hsl(baseH, Math.max(40, baseS - 10), dark ? 22 : 88));
-  root.style.setProperty('--blue-200', hsl(baseH, Math.max(40, baseS - 15), dark ? 32 : 81));
 
   if (dark) {
     root.style.setProperty('--text-900', 'rgb(235,235,235)');

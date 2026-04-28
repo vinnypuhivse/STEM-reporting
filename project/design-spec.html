@@ -158,7 +158,7 @@ h2:hover a.anchor { opacity: 1; }
 
   <div class="hero">
     <!-- UPDATE version + date here on every spec revision -->
-    <div class="eyebrow">v1.2 · April 28, 2026</div>
+    <div class="eyebrow">v1.3 · April 28, 2026</div>
     <h1>Classroom Data</h1>
     <p>A teacher-facing reporting dashboard that surfaces STEM and ELA learning activity across a class, plus a student-level drill-in page. Teachers see engagement metrics, reading levels, quiz performance, and content breakdowns — all filterable by school, activity type, and date range. Clicking a student name navigates to an individual student view.</p>
     <div class="hero-meta">
@@ -224,11 +224,9 @@ h2:hover a.anchor { opacity: 1; }
       <div class="sw"><div class="chip" style="background:rgb(231,241,255)"></div><div class="meta"><div class="sw-name">Blue 25</div><div class="sw-val">rgb(231,241,255)</div><code class="sw-tok">--blue-25</code></div></div>
       <div class="sw"><div class="chip" style="background:rgb(229,239,255)"></div><div class="meta"><div class="sw-name">Blue 50</div><div class="sw-val">rgb(229,239,255)</div><code class="sw-tok">--blue-50</code></div></div>
       <div class="sw"><div class="chip" style="background:rgb(204,225,255)"></div><div class="meta"><div class="sw-name">Blue 100</div><div class="sw-val">rgb(204,225,255)</div><code class="sw-tok">--blue-100</code></div></div>
-      <div class="sw"><div class="chip" style="background:rgb(170,201,245)"></div><div class="meta"><div class="sw-name">Blue 200</div><div class="sw-val">rgb(170,201,245)</div><code class="sw-tok">--blue-200</code></div></div>
       <div class="sw"><div class="chip" style="background:rgb(16,111,243)"></div><div class="meta"><div class="sw-name">Blue 500</div><div class="sw-val">rgb(16,111,243)</div><code class="sw-tok">--blue-500</code></div></div>
       <div class="sw"><div class="chip" style="background:rgb(10,110,250)"></div><div class="meta"><div class="sw-name">Blue 600</div><div class="sw-val">rgb(10,110,250)</div><code class="sw-tok">--blue-600</code></div></div>
-      <div class="sw"><div class="chip" style="background:rgb(4,51,122)"></div><div class="meta"><div class="sw-name">Blue 700</div><div class="sw-val">rgb(4,51,122)</div><code class="sw-tok">--blue-700</code></div></div>
-      <div class="sw"><div class="chip" style="background:rgb(11,19,134)"></div><div class="meta"><div class="sw-name">Blue 800</div><div class="sw-val">rgb(11,19,134)</div><code class="sw-tok">--blue-800</code></div></div>
+      <div class="sw"><div class="chip" style="background:#082C88"></div><div class="meta"><div class="sw-name">Blue 700</div><div class="sw-val">#082C88</div><code class="sw-tok">--blue-700</code></div></div>
     </div>
 
     <h3 class="sec">Text &amp; Neutrals</h3>
@@ -263,7 +261,7 @@ h2:hover a.anchor { opacity: 1; }
         <tr><td><code>--text-400</code></td><td>rgb(118,118,118)</td><td>Labels, breadcrumbs, metadata</td></tr>
         <tr><td><code>--text-300</code></td><td>rgb(149,149,149)</td><td>Disabled states, placeholder text</td></tr>
         <tr><td><code>--blue-500</code></td><td>rgb(16,111,243)</td><td>Bar fills, donut articles segment, interactive elements</td></tr>
-        <tr><td><code>--blue-700</code></td><td>rgb(4,51,122)</td><td>Large metric numbers, active sidebar, tab underline</td></tr>
+        <tr><td><code>--blue-700</code></td><td>#082C88</td><td>Large metric numbers, active sidebar, tab underline</td></tr>
         <tr><td><code>--blue-50</code></td><td>rgb(229,239,255)</td><td>Tinted card backgrounds</td></tr>
         <tr><td><code>--border</code></td><td>rgb(221,221,221)</td><td>Table dividers, nav borders</td></tr>
         <tr><td><code>--border-soft</code></td><td>rgb(225,227,229)</td><td>Card borders (softer than table borders)</td></tr>
@@ -754,7 +752,7 @@ h2:hover a.anchor { opacity: 1; }
     <table class="spec">
       <thead><tr><th>State</th><th>Bar bg</th><th>Bar fill</th><th>Text</th><th>Condition</th></tr></thead>
       <tbody>
-        <tr><td>Default</td><td><code>#DCE6F2</code></td><td><code>#04337A</code></td><td><code>#545454</code></td><td>Normal score &gt; 0</td></tr>
+        <tr><td>Default</td><td><code>#DCE6F2</code></td><td><code>#082C88</code></td><td><code>#545454</code></td><td>Normal score &gt; 0</td></tr>
         <tr><td>Average (Newsela row)</td><td><code>#CFEFE2</code></td><td><code>#0D8A5F</code></td><td>Inherited</td><td>First data row — benchmark</td></tr>
         <tr><td>Zero</td><td><code>#FDEAED</code></td><td><code>#C8102E</code></td><td>Inherited</td><td>Score === 0, min-width 6px for visibility</td></tr>
         <tr><td>N/A</td><td><code>#EDEDED</code></td><td>None</td><td>Color <code>--red-500</code></td><td>Null value — student hasn't attempted</td></tr>
@@ -920,7 +918,7 @@ h2:hover a.anchor { opacity: 1; }
       <thead><tr><th>Property</th><th>Value</th><th>Notes</th></tr></thead>
       <tbody>
         <tr><td>Skill count</td><td>8 skills (ELA) / 8 skills (STEM)</td><td>ELA skills: "What the text says", "Main idea, key details &amp; summarization", etc.</td></tr>
-        <tr><td>Bar track</td><td>Full-width horizontal, height varies</td><td>Default: blue fill <code>#04337A</code>. Zero: red fill. N/A: gray track, no fill.</td></tr>
+        <tr><td>Bar track</td><td>Full-width horizontal, height varies</td><td>Default: blue fill <code>#082C88</code>. Zero: red fill. N/A: gray track, no fill.</td></tr>
         <tr><td>Zero state bar</td><td>Red fill, 4% min-width</td><td>Small red stub visible even at 0%</td></tr>
         <tr><td>N/A state</td><td>Gray track, "N/A" label, "Find articles…" helper link</td><td>No fill rendered</td></tr>
         <tr><td>Grade filter</td><td>Dropdown above skill list</td><td>"All grade levels" default. Filters displayed skill level for articles viewed at that grade.</td></tr>
@@ -1010,8 +1008,8 @@ h2:hover a.anchor { opacity: 1; }
         <tr><td>--text-900 rgb(29,29,29)</td><td>White #fff</td><td>~18.1:1</td><td>AAA</td></tr>
         <tr><td>--text-700 rgb(51,51,51)</td><td>White #fff</td><td>~13.0:1</td><td>AAA</td></tr>
         <tr><td>--text-500 rgb(84,84,84)</td><td>White #fff</td><td>~7.0:1</td><td>AA</td></tr>
-        <tr><td>--blue-700 rgb(4,51,122)</td><td>White #fff</td><td>~12.0:1</td><td>AAA</td></tr>
-        <tr><td>--blue-700 rgb(4,51,122)</td><td>--blue-50 rgb(229,239,255)</td><td>~9.5:1</td><td>AAA</td></tr>
+        <tr><td>--blue-700 #082C88</td><td>White #fff</td><td>~12.0:1</td><td>AAA</td></tr>
+        <tr><td>--blue-700 #082C88</td><td>--blue-50 rgb(229,239,255)</td><td>~9.5:1</td><td>AAA</td></tr>
         <tr><td>#1E2A78 (badge text)</td><td>#F9E16A (Design WIP)</td><td>~8.2:1</td><td>AAA</td></tr>
         <tr><td>#1E2A78 (badge text)</td><td>#FBBFC9 (Early exploration)</td><td>~7.4:1</td><td>AAA</td></tr>
         <tr><td>#1E2A78 (badge text)</td><td>#A8EFD6 (Design ready)</td><td>~7.9:1</td><td>AAA</td></tr>
@@ -1079,7 +1077,7 @@ h2:hover a.anchor { opacity: 1; }
   </section>
 
   <footer style="margin-top: 80px; padding-top: 24px; border-top: 1px solid #E1E3E5; font-size: 12px; color: #9395A0;">
-    v1.2 · April 28, 2026 · Classroom Data — STEM Reporting handoff spec. Classroom prototype: <a href="index.html" style="color:#0A6EFA;">index.html</a>. Student page: <a href="https://stem-reporting-8z9b.vercel.app/" target="_blank" rel="noopener" style="color:#0A6EFA;">stem-reporting-8z9b.vercel.app ↗</a>. When in doubt, read the source.
+    v1.3 · April 28, 2026 · Classroom Data — STEM Reporting handoff spec. Classroom prototype: <a href="index.html" style="color:#0A6EFA;">index.html</a>. Student page: <a href="https://stem-reporting-8z9b.vercel.app/" target="_blank" rel="noopener" style="color:#0A6EFA;">stem-reporting-8z9b.vercel.app ↗</a>. When in doubt, read the source.
   </footer>
 
 </main>
