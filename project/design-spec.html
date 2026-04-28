@@ -158,7 +158,7 @@ h2:hover a.anchor { opacity: 1; }
 
   <div class="hero">
     <!-- UPDATE version + date here on every spec revision -->
-    <div class="eyebrow">v1.3 · April 28, 2026</div>
+    <div class="eyebrow">v1.6 · April 28, 2026 · 5:07 PM</div>
     <h1>Classroom Data</h1>
     <p>A teacher-facing reporting dashboard that surfaces STEM and ELA learning activity across a class, plus a student-level drill-in page. Teachers see engagement metrics, reading levels, quiz performance, and content breakdowns — all filterable by school, activity type, and date range. Clicking a student name navigates to an individual student view.</p>
     <div class="hero-meta">
@@ -219,14 +219,12 @@ h2:hover a.anchor { opacity: 1; }
     <h2>Color <a class="anchor" href="#color">§</a></h2>
     <p class="sub">All color values are defined as CSS custom properties on <code style="font-family:monospace;background:#F0F1F2;padding:1px 5px;border-radius:3px;">:root</code>. Never use raw hex values in component code — always reference a token.</p>
 
-    <h3 class="sec">Brand Blue</h3>
+    <h3 class="sec">UI Core</h3>
     <div class="swatch-grid">
-      <div class="sw"><div class="chip" style="background:rgb(231,241,255)"></div><div class="meta"><div class="sw-name">Blue 25</div><div class="sw-val">rgb(231,241,255)</div><code class="sw-tok">--blue-25</code></div></div>
-      <div class="sw"><div class="chip" style="background:rgb(229,239,255)"></div><div class="meta"><div class="sw-name">Blue 50</div><div class="sw-val">rgb(229,239,255)</div><code class="sw-tok">--blue-50</code></div></div>
-      <div class="sw"><div class="chip" style="background:rgb(204,225,255)"></div><div class="meta"><div class="sw-name">Blue 100</div><div class="sw-val">rgb(204,225,255)</div><code class="sw-tok">--blue-100</code></div></div>
-      <div class="sw"><div class="chip" style="background:rgb(16,111,243)"></div><div class="meta"><div class="sw-name">Blue 500</div><div class="sw-val">rgb(16,111,243)</div><code class="sw-tok">--blue-500</code></div></div>
-      <div class="sw"><div class="chip" style="background:rgb(10,110,250)"></div><div class="meta"><div class="sw-name">Blue 600</div><div class="sw-val">rgb(10,110,250)</div><code class="sw-tok">--blue-600</code></div></div>
-      <div class="sw"><div class="chip" style="background:#082C88"></div><div class="meta"><div class="sw-name">Blue 700</div><div class="sw-val">#082C88</div><code class="sw-tok">--blue-700</code></div></div>
+      <div class="sw"><div class="chip" style="background:rgb(229,239,255)"></div><div class="meta"><div class="sw-name">UI Core 25</div><div class="sw-val">rgb(229,239,255)</div><code class="sw-tok">--blue-25</code></div></div>
+      <div class="sw"><div class="chip" style="background:rgb(204,225,255)"></div><div class="meta"><div class="sw-name">UI Core 50</div><div class="sw-val">rgb(204,225,255)</div><code class="sw-tok">--blue-50</code></div></div>
+      <div class="sw"><div class="chip" style="background:rgb(10,110,250)"></div><div class="meta"><div class="sw-name">UI Core 500</div><div class="sw-val">rgb(10,110,250)</div><code class="sw-tok">--blue-500</code></div></div>
+      <div class="sw"><div class="chip" style="background:#082C88"></div><div class="meta"><div class="sw-name">UI Core 700</div><div class="sw-val">#082C88</div><code class="sw-tok">--blue-700</code></div></div>
     </div>
 
     <h3 class="sec">Text &amp; Neutrals</h3>
@@ -260,9 +258,9 @@ h2:hover a.anchor { opacity: 1; }
         <tr><td><code>--text-500</code></td><td>rgb(84,84,84)</td><td>Tertiary text, nav items, inactive tabs</td></tr>
         <tr><td><code>--text-400</code></td><td>rgb(118,118,118)</td><td>Labels, breadcrumbs, metadata</td></tr>
         <tr><td><code>--text-300</code></td><td>rgb(149,149,149)</td><td>Disabled states, placeholder text</td></tr>
-        <tr><td><code>--blue-500</code></td><td>rgb(16,111,243)</td><td>Bar fills, donut articles segment, interactive elements</td></tr>
-        <tr><td><code>--blue-700</code></td><td>#082C88</td><td>Large metric numbers, active sidebar, tab underline</td></tr>
-        <tr><td><code>--blue-50</code></td><td>rgb(229,239,255)</td><td>Tinted card backgrounds</td></tr>
+        <tr><td><code>--blue-500</code></td><td>UI Core 500 · rgb(10,110,250)</td><td>Bar fills, donut articles segment, interactive elements</td></tr>
+        <tr><td><code>--blue-700</code></td><td>UI Core 700 · #082C88</td><td>Large metric numbers, active sidebar, tab underline</td></tr>
+        <tr><td><code>--blue-50</code></td><td>UI Core 50 · rgb(204,225,255)</td><td>Tinted card backgrounds</td></tr>
         <tr><td><code>--border</code></td><td>rgb(221,221,221)</td><td>Table dividers, nav borders</td></tr>
         <tr><td><code>--border-soft</code></td><td>rgb(225,227,229)</td><td>Card borders (softer than table borders)</td></tr>
       </tbody>
@@ -300,8 +298,8 @@ h2:hover a.anchor { opacity: 1; }
         <div class="type-meta">Circular · 14px · 400 · lh 1.5</div>
       </div>
       <div class="type-row">
-        <div class="type-sample" style="font-size:13px;font-weight:500;">Trend Link / Meta</div>
-        <div class="type-meta">Circular · 13px · 500</div>
+        <div class="type-sample" style="font-size:14px;font-weight:500;">Trend Link / Meta</div>
+        <div class="type-meta">Circular · 14px · 500</div>
       </div>
       <div class="type-row">
         <div class="type-sample" style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;">EYEBROW / CAPS</div>
@@ -324,6 +322,7 @@ h2:hover a.anchor { opacity: 1; }
         <tr><td>Tab label</td><td><code>16px</code></td><td>700</td><td>—</td><td>Active: <code>--text-900</code>. Inactive: <code>--text-500</code>.</td></tr>
         <tr><td>Table header</td><td><code>14px</code></td><td>700</td><td>—</td><td>Sub-header at 12px/400.</td></tr>
         <tr><td>Table body</td><td><code>14px</code></td><td>400</td><td>1.5</td><td>Color <code>--text-700</code>.</td></tr>
+        <tr><td>Trend link / meta</td><td><code>14px</code></td><td>500</td><td>—</td><td>Color <code>--blue-500</code>. Hover: underline. Used for "Trending higher this week" links.</td></tr>
         <tr><td>Tooltip</td><td><code>12px</code></td><td>400</td><td>1.4</td><td>Max-width 240px.</td></tr>
         <tr><td>Sidebar label</td><td><code>12px</code></td><td>700</td><td>1.33</td><td>Uppercase, +1px letter-spacing.</td></tr>
       </tbody>
@@ -372,17 +371,16 @@ h2:hover a.anchor { opacity: 1; }
   <!-- ── Radii ── -->
   <section class="section" id="radii">
     <h2>Radii <a class="anchor" href="#radii">§</a></h2>
-    <p class="sub">Standardized border radius system. Three primary tiers: 8px for small interactive elements (chips, buttons), 12px for cards and panels, 16px for large containers. 128px (or 999px) for fully pill-shaped elements.</p>
+    <p class="sub">Standardized border radius system. Three primary tiers: 8px for small interactive elements (chips, buttons, inner panels), 12px for cards and panels, 16px for large containers. 128px for pill-shaped bars and the tab active underline.</p>
 
     <div class="tok-grid">
       <div class="tok"><div class="tok-demo" style="height:40px;background:#E5EFFF;border-radius:2px;"></div><code>2px</code><div class="tok-val">2px</div><div class="tok-use">Logo mark</div></div>
-      <div class="tok"><div class="tok-demo" style="height:40px;background:#E5EFFF;border-radius:6px;"></div><code>6px</code><div class="tok-val">6px</div><div class="tok-use">Sidebar items, ghost buttons, pagination</div></div>
-      <div class="tok"><div class="tok-demo" style="height:40px;background:#E5EFFF;border-radius:8px;"></div><code>8px</code><div class="tok-val">8px</div><div class="tok-use">Chips, buttons, dropdowns, inner panels, tooltip, donut panel</div></div>
+      <div class="tok"><div class="tok-demo" style="height:40px;background:#E5EFFF;border-radius:8px;"></div><code>8px</code><div class="tok-val">8px</div><div class="tok-use">Chips, buttons, dropdowns, inner panels, sidebar items, tooltip</div></div>
       <div class="tok"><div class="tok-demo" style="height:40px;background:#E5EFFF;border-radius:12px;"></div><code>12px</code><div class="tok-val">12px</div><div class="tok-use">Cards / panels (standard surface), table wraps, breakdown panels</div></div>
       <div class="tok"><div class="tok-demo" style="height:40px;background:#E5EFFF;border-radius:16px;"></div><code>16px</code><div class="tok-val">16px</div><div class="tok-use">Main overview cards (outer shell), large dropdown menus</div></div>
       <div class="tok"><div class="tok-demo" style="height:40px;background:#E5EFFF;border-radius:50%;width:40px;margin:0 auto;"></div><code>50%</code><div class="tok-val">50%</div><div class="tok-use">Ring gauges, avatar, icon buttons</div></div>
-      <div class="tok"><div class="tok-demo" style="height:40px;background:#E5EFFF;border-radius:128px;"></div><code>128px</code><div class="tok-val">128px</div><div class="tok-use">Skill bars (pill shape) — use 128px not 50% to avoid oval distortion on short bars</div></div>
-      <div class="tok"><div class="tok-demo" style="height:40px;background:#E5EFFF;border-radius:999px;"></div><code>999px</code><div class="tok-val">999px</div><div class="tok-use">Status badge pill, filter chips, tab active underline</div></div>
+      <div class="tok"><div class="tok-demo" style="height:40px;background:#E5EFFF;border-radius:128px;"></div><code>128px</code><div class="tok-val">128px</div><div class="tok-use">Skill bars (pill shape), tab active underline — use 128px not 999px to avoid distortion on short bars</div></div>
+      <div class="tok"><div class="tok-demo" style="height:40px;background:#E5EFFF;border-radius:999px;"></div><code>999px</code><div class="tok-val">999px</div><div class="tok-use">Status badge pill, filter chips</div></div>
     </div>
 
     <h3 class="sec">Radius decision rules</h3>
@@ -482,7 +480,7 @@ h2:hover a.anchor { opacity: 1; }
       <thead><tr><th>State change</th><th>What animates</th><th>How</th></tr></thead>
       <tbody>
         <tr><td>Dropdown closed → open</td><td>Caret icon, menu appearance</td><td>Caret rotates 180° (150ms), menu renders at <code>top: 100% + 6px</code> instantly</td></tr>
-        <tr><td>Tab inactive → active</td><td>Underline, icon opacity, text color</td><td>3px underline appears, icon opacity 0.7→1 (150ms), text <code>--text-500</code>→<code>--text-900</code></td></tr>
+        <tr><td>Tab inactive → active</td><td>Underline, icon opacity, text color</td><td>2.5px underline appears (via <code>::after</code>, border-radius 128px), icon opacity 0.7→1 (150ms), text <code>--text-500</code>→<code>--text-900</code></td></tr>
         <tr><td>Chart data loading → visible</td><td>Bar widths, donut arcs</td><td>See entrance animations above</td></tr>
         <tr><td>Sidebar closed → open (mobile)</td><td>Sidebar position</td><td>Fixed overlay, no animation — instant</td></tr>
         <tr><td>Tooltip hidden → visible</td><td>Opacity, vertical transform</td><td>opacity 0→1, translateY 4px→0 over 160ms</td></tr>
@@ -541,7 +539,7 @@ h2:hover a.anchor { opacity: 1; }
       <thead><tr><th>Property</th><th>Value</th><th>Notes</th></tr></thead>
       <tbody>
         <tr><td>Gap</td><td><code>32px</code></td><td>Reduces to 20px at 768px, 16px at 375px</td></tr>
-        <tr><td>Active underline</td><td>3px solid <code>--blue-600</code></td><td>Border-radius: 128px. Positioned <code>bottom: -1px</code></td></tr>
+        <tr><td>Active underline</td><td>2.5px, <code>--blue-700</code>, rounded ends</td><td>Rendered as <code>::after</code> pseudo-element. Border-radius: 128px. Positioned <code>bottom: -1px</code></td></tr>
         <tr><td>Active text</td><td><code>--text-900</code></td><td>Inactive: <code>--text-500</code></td></tr>
         <tr><td>Icon opacity</td><td>Active: 1 / Inactive: 0.7</td><td>Transition: 150ms ease</td></tr>
         <tr><td>Icon size</td><td>22×22px (forced via <code>.tab-svg svg</code>)</td><td>SVG strings injected with inline dimensions for non-square viewBoxes</td></tr>
@@ -630,7 +628,7 @@ h2:hover a.anchor { opacity: 1; }
     <table class="spec">
       <thead><tr><th>Property</th><th>Value</th><th>Notes</th></tr></thead>
       <tbody>
-        <tr><td>Panel background</td><td><code>#fff</code></td><td>Border-radius: 12px</td></tr>
+        <tr><td>Panel background</td><td><code>#fff</code></td><td>Border-radius: 8px</td></tr>
         <tr><td>Panel padding</td><td><code>20px</code></td><td>Grid: <code>auto 1fr</code>, column-gap 20px, min-height 84px</td></tr>
         <tr><td>Metric number</td><td>24px / 700, <code>--blue-700</code></td><td>Letter-spacing: -0.5px</td></tr>
         <tr><td>Sub label</td><td>16px / 400, <code>--text-900</code></td><td>Wraps to next line if needed</td></tr>
@@ -638,7 +636,7 @@ h2:hover a.anchor { opacity: 1; }
       </tbody>
     </table>
 
-    <div class="callout">Ring gauges use a 72×72 SVG with r=30. The arc circumference is <code>2π×30 ≈ 188.5px</code>. Percentage is calculated as <code>(value/60)×100</code> for minutes, or passed directly. The center label shows the raw value, not the percentage.</div>
+    <div class="callout">Two ring gauge variants are in use. <b>ELA Overview rings</b> (student page Overview card): <code>viewBox 0 0 100 100</code>, r=42, strokeWidth=10, rendered at 84px — produces ~8.4px stroke. <b>STEM rings</b> (student page STEM overview): native 72×72 SVG, r=30, strokeWidth=8 — produces 8px stroke. Both variants visually match. Percentage is calculated as <code>(value/60)×100</code> for minutes, or passed directly. Center label shows raw value, not percentage.</div>
   </section>
 
   <section class="section" id="c-stem-overview">
@@ -1077,7 +1075,7 @@ h2:hover a.anchor { opacity: 1; }
   </section>
 
   <footer style="margin-top: 80px; padding-top: 24px; border-top: 1px solid #E1E3E5; font-size: 12px; color: #9395A0;">
-    v1.3 · April 28, 2026 · Classroom Data — STEM Reporting handoff spec. Classroom prototype: <a href="index.html" style="color:#0A6EFA;">index.html</a>. Student page: <a href="https://stem-reporting-8z9b.vercel.app/" target="_blank" rel="noopener" style="color:#0A6EFA;">stem-reporting-8z9b.vercel.app ↗</a>. When in doubt, read the source.
+    v1.6 · April 28, 2026 · 5:07 PM · Classroom Data — STEM Reporting handoff spec. Classroom prototype: <a href="index.html" style="color:#0A6EFA;">index.html</a>. Student page: <a href="https://stem-reporting-8z9b.vercel.app/" target="_blank" rel="noopener" style="color:#0A6EFA;">stem-reporting-8z9b.vercel.app ↗</a>. When in doubt, read the source.
   </footer>
 
 </main>
