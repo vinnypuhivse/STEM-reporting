@@ -251,7 +251,7 @@ a { color: inherit; }
 }
 .ela-tile {
   background: #fff;
-  border-radius: 12px;
+  border-radius: 8px;
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -270,7 +270,7 @@ a { color: inherit; }
 /* Average reading level — two stacked white panels */
 .ela-lvl-stack { display: flex; flex-direction: column; gap: 12px; margin-top: 8px; flex: 1; }
 .ela-lvl-panel {
-  background: #fff; border-radius: 12px;
+  background: #fff; border-radius: 8px;
   padding: 20px 20px;
   display: grid; grid-template-columns: auto 1fr; align-items: center;
   column-gap: 20px; min-height: 84px;
@@ -332,7 +332,7 @@ a { color: inherit; }
 
 /* =============== Content breakdown (bar rows) =============== */
 .breakdown {
-  background: #fff; border-radius: 12px; padding: 16px 20px;
+  background: #fff; border-radius: 8px; padding: 16px 20px;
 }
 .breakdown h3 {
   margin: 0 0 12px; font-size: 14px; font-weight: 700; color: var(--text-900);
