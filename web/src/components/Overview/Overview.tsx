@@ -158,7 +158,7 @@ export default function Overview() {
         <div className={`${styles.card} ${styles.gradeCard}`}>
           <div className={styles.cardHead}>
             <div className={styles.cardTitle}><TrendUpIcon />Grade level status</div>
-            <InfoTip text="Distribution of texts read at, above, or below grade level" />
+            <InfoTip text="Determined by the average Lexile of texts Sarah has viewed compared to her enrolled grade level" />
           </div>
           <div className={styles.gradeInner}>
             <div className={styles.gradeTop}>
