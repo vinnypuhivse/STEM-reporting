@@ -93,7 +93,6 @@
 
 /* Average reading level rows */
 .rows {
-  margin-top: 18px;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -127,7 +126,7 @@
 .totalsCard {
   background: #E5EFFF;
   border: 1px solid var(--ui-neutral-100);
-  padding: 18px;
+  padding: 20px;
 }
 
 .totalsGrid {
