@@ -1,22 +1,5 @@
 import styles from "./Overview.module.css";
-
-const InfoIcon = () => (
-  <svg
-    width="18"
-    height="18"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="1.75"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    aria-hidden="true"
-  >
-    <circle cx="12" cy="12" r="10" />
-    <path d="M12 16v-5" />
-    <circle cx="12" cy="8" r="0.6" fill="currentColor" stroke="none" />
-  </svg>
-);
+import InfoTip from "@/components/InfoTip/InfoTip";
 
 const DownloadIcon = () => (
   <svg
@@ -139,7 +122,7 @@ export default function Overview() {
         <div className={styles.card}>
           <div className={styles.cardHead}>
             <div className={styles.cardTitle}><ArticleIcon />Average reading level</div>
-            <button className={styles.infoBtn} aria-label="More info about average reading level"><InfoIcon /></button>
+            <InfoTip text="Average grade level and Lexile for texts viewed by Sarah" />
           </div>
           <div className={styles.rows}>
             <div className={styles.row}>
@@ -157,7 +140,7 @@ export default function Overview() {
         <div className={`${styles.card} ${styles.totalsCard}`}>
           <div className={styles.cardHead}>
             <div className={styles.cardTitle}><ElaIcon />Reading totals</div>
-            <button className={styles.infoBtn} aria-label="More info about reading totals"><InfoIcon /></button>
+            <InfoTip text="Total texts viewed and average time per article" />
           </div>
           <div className={styles.totalsGrid}>
             <div className={styles.tile}>
@@ -175,7 +158,7 @@ export default function Overview() {
         <div className={`${styles.card} ${styles.gradeCard}`}>
           <div className={styles.cardHead}>
             <div className={styles.cardTitle}><TrendUpIcon />Grade level status</div>
-            <button className={styles.infoBtn} aria-label="More info about grade level"><InfoIcon /></button>
+            <InfoTip text="Distribution of texts read at, above, or below grade level" />
           </div>
           <div className={styles.gradeInner}>
             <div className={styles.gradeTop}>

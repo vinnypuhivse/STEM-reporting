@@ -1,0 +1,62 @@
+.tip {
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+  color: var(--ui-neutral-400);
+  cursor: default;
+}
+.tip:hover { color: var(--ui-neutral-600); }
+
+.tipBody {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translate(-50%, 4px);
+  background: #1d1d1d;
+  color: #fff;
+  font-size: 12px;
+  line-height: 1.4;
+  padding: 8px 10px;
+  border-radius: 6px;
+  width: max-content;
+  max-width: 240px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 160ms cubic-bezier(0.2, 0, 0, 1), transform 160ms cubic-bezier(0.2, 0, 0, 1);
+  z-index: 100;
+  text-align: left;
+  font-weight: 400;
+  white-space: normal;
+}
+.tip:hover .tipBody,
+.tip:focus-within .tipBody {
+  opacity: 1;
+  transform: translate(-50%, 0);
+  pointer-events: auto;
+}
+.tipBody::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: #1d1d1d;
+}
+
+/* ── below variant ── */
+.tipBelow .tipBody {
+  bottom: auto;
+  top: calc(100% + 8px);
+  transform: translate(-50%, -4px);
+}
+.tipBelow:hover .tipBody,
+.tipBelow:focus-within .tipBody {
+  transform: translate(-50%, 0);
+}
+.tipBelow .tipBody::after {
+  top: auto;
+  bottom: 100%;
+  border-top-color: transparent;
+  border-bottom-color: #1d1d1d;
+}

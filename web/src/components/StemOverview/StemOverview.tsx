@@ -2,14 +2,7 @@
 
 import { useState, useEffect } from "react";
 import styles from "./StemOverview.module.css";
-
-const InfoIcon = () => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-    <circle cx="12" cy="12" r="10" />
-    <path d="M12 16v-5" />
-    <circle cx="12" cy="8" r="0.6" fill="currentColor" stroke="none" />
-  </svg>
-);
+import InfoTip from "@/components/InfoTip/InfoTip";
 
 const DownloadIcon = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -98,7 +91,7 @@ export default function StemOverview() {
         <div className={styles.card}>
           <div className={styles.cardHead}>
             <div className={styles.cardTitle}><DetailsIcon />Content breakdown</div>
-            <button className={styles.infoBtn} aria-label="More info"><InfoIcon /></button>
+            <InfoTip text="Proportion of articles vs videos consumed by Sarah" />
           </div>
           <div className={styles.inner}>
             <div className={styles.donutRow}>
@@ -132,7 +125,7 @@ export default function StemOverview() {
         <div className={styles.card}>
           <div className={styles.cardHead}>
             <div className={styles.cardTitle}><StemIcon />STEM Disciplines</div>
-            <button className={styles.infoBtn} aria-label="More info"><InfoIcon /></button>
+            <InfoTip text="Count of content pieces engaged with by STEM discipline" />
           </div>
           <div className={styles.inner}>
             <div className={styles.bars}>
@@ -157,7 +150,7 @@ export default function StemOverview() {
         <div className={styles.card}>
           <div className={styles.cardHead}>
             <div className={styles.cardTitle}><ClockIcon />Time spent</div>
-            <button className={styles.infoBtn} aria-label="More info"><InfoIcon /></button>
+            <InfoTip text="Average active minutes per article and per video" />
           </div>
           <div className={styles.timeGrid}>
             {[

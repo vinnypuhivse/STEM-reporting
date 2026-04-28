@@ -1,17 +1,10 @@
 import styles from "./StemReadingSkills.module.css";
 import Select from "@/components/Select/Select";
+import InfoTip from "@/components/InfoTip/InfoTip";
 
 const DownloadIcon = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
     <path d="M12 3v12" /><path d="M6 11l6 6 6-6" /><path d="M4 21h16" />
-  </svg>
-);
-
-const InfoIcon = () => (
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" aria-hidden="true">
-    <circle cx="12" cy="12" r="10" />
-    <path d="M12 16v-5" strokeLinecap="round" />
-    <circle cx="12" cy="8" r="0.6" fill="currentColor" stroke="none" />
   </svg>
 );
 
@@ -65,7 +58,7 @@ export default function StemReadingSkills() {
               </div>
               <div className={styles.meta}>
                 <span className={styles.questions}>{skill.questions} questions</span>
-                <span className={styles.skillName}>{skill.name}<span className={styles.infoIcon}><InfoIcon /></span></span>
+                <span className={styles.skillName}>{skill.name}<InfoTip text={`Quiz performance on "${skill.name}".`} below /></span>
               </div>
             </div>
           );
