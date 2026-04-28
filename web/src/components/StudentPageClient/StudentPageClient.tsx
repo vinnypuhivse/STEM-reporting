@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import TabBar, { type Tab } from "@/components/TabBar/TabBar";
 import PageFilters from "@/components/PageFilters/PageFilters";
 import Overview from "@/components/Overview/Overview";
@@ -14,6 +14,13 @@ const CLASSROOM_URL = "https://stem-reporting.vercel.app/";
 
 export default function StudentPageClient() {
   const [activeTab, setActiveTab] = useState<Tab>("ELA");
+
+  useEffect(() => {
+    const urlTab = new URLSearchParams(window.location.search).get("tab");
+    if (urlTab === "stem") setActiveTab("STEM");
+    else if (urlTab === "ela") setActiveTab("ELA");
+  }, []);
+
   const classroomHref = `${CLASSROOM_URL}?tab=${activeTab.toLowerCase()}`;
 
   return (

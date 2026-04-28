@@ -4,8 +4,9 @@ const { createElement: h, useState, useMemo } = React;
 const I = window.Icons;
 const Sort = window.SortGlyph;
 const STUDENT_URLS = { 'Camacho, Sarah': 'https://stem-reporting-8z9b.vercel.app/' };
-function NameCell({ name, className }) {
-  const url = STUDENT_URLS[name];
+function NameCell({ name, className, tab }) {
+  const base = STUDENT_URLS[name];
+  const url = base ? `${base}?tab=${tab || 'ela'}` : null;
   return h('td', { className },
     url ? h('a', { href: url, target: '_blank', rel: 'noopener noreferrer', style: { color: 'var(--blue-600)', textDecoration: 'none', fontWeight: 500 } }, name) : name
   );
@@ -90,7 +91,7 @@ window.StemStudentTable = function StemStudentTable({ students }) {
         ),
         h('tbody', null,
           rows.map(s => h('tr', { key: s.name },
-            h(NameCell, { name: s.name, className: 'name-col' }),
+            h(NameCell, { name: s.name, className: 'name-col', tab: 'stem' }),
             h('td', { className: 'grade-cell' }, `Grade ${s.grade} `, h('span', { className: 'lex' }, `— ${s.lexile}L`)),
             h('td', null, s.last),
             h('td', null, s.articleViews),
@@ -129,7 +130,7 @@ window.ElaStudentTable = function ElaStudentTable({ students }) {
         ),
         h('tbody', null,
           rows.map(s => h('tr', { key: s.name },
-            h(NameCell, { name: s.name, className: 'name-col' }),
+            h(NameCell, { name: s.name, className: 'name-col', tab: 'ela' }),
             h('td', { className: 'grade-cell' }, `Grade ${s.grade} `, h('span', { className: 'lex' }, `— ${s.lexile}L`)),
             h('td', null, s.last),
             h('td', null, s.articleViews),
@@ -202,7 +203,7 @@ window.ReadingSkillsTable = function ReadingSkillsTable({ students, skills }) {
             ))
           ),
           rows.map(s => h('tr', { key: s.name },
-            h(NameCell, { name: s.name, className: 'name-col name-link' }),
+            h(NameCell, { name: s.name, className: 'name-col name-link', tab: 'ela' }),
             s.skills.map((v, i) => h('td', { key: i },
               h(SkillCell, { v, questions: qCount(s.name, i, v) })
             ))
