@@ -119,7 +119,11 @@ function ElaPanel({ data, elaSvg }) {
 
 function App() {
   const data = window.REPORT_DATA;
-  const [tab, setTab] = useState(() => localStorage.getItem('classroomTab') || 'stem');
+  const [tab, setTab] = useState(() => {
+    const urlTab = new URLSearchParams(window.location.search).get('tab');
+    if (urlTab === 'ela' || urlTab === 'stem') return urlTab;
+    return localStorage.getItem('classroomTab') || 'stem';
+  });
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [elaSvg, setElaSvg] = useState('');
   const [stemSvg, setStemSvg] = useState('');
