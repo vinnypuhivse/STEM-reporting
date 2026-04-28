@@ -7,7 +7,20 @@ export default function PageFilters() {
   return (
     <div className={styles.filters}>
       <Select
-        options={["Sarah Camacho"]}
+        options={[
+          "Sarah Camacho",
+          "Amy Benson",
+          "Shirley Brewer",
+          "Christopher Burns",
+          "Kimberly Gonzalez",
+          "Jessica Johnson",
+          "Justin Lyons",
+          "Devin Maldonado",
+          "Teresa Montgomery",
+          "James Olson",
+          "Ava Petersen",
+          "Kevin Reyes",
+        ]}
         defaultValue="Sarah Camacho"
         aria-label="Student"
       />
