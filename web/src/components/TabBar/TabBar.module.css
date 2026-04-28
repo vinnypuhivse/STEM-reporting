@@ -18,11 +18,20 @@
   background: none;
   cursor: pointer;
   position: relative;
-  /* bottom indicator */
-  border-bottom: 2.5px solid transparent;
-  margin-bottom: -1px; /* sit on top of the bar border */
-  transition: color var(--dur-fast) var(--ease-standard),
-    border-color var(--dur-fast) var(--ease-standard);
+  margin-bottom: -1px;
+  transition: color var(--dur-fast) var(--ease-standard);
+}
+
+.tab::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 2.5px;
+  border-radius: 128px;
+  background: transparent;
+  transition: background var(--dur-fast) var(--ease-standard);
 }
 
 .tab:hover {
@@ -32,5 +41,8 @@
 .active {
   color: var(--ui-neutral-700);
   font-weight: 700;
-  border-bottom-color: var(--ui-core-500);
+}
+
+.active::after {
+  background: var(--ui-core-500);
 }
