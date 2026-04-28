@@ -1,7 +1,6 @@
 import Nav from "@/components/Nav/Nav";
 import Sidebar from "@/components/Sidebar/Sidebar";
 import TabView from "@/components/TabView/TabView";
-import PageFilters from "@/components/PageFilters/PageFilters";
 import styles from "./page.module.css";
 
 export default function StudentInsightsPage() {
