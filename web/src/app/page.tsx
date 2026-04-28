@@ -16,7 +16,7 @@ export default function StudentInsightsPage() {
           <nav className={styles.crumbs} aria-label="Breadcrumb">
             <a href="#">Reports</a>
             <span className={styles.sep}>/</span>
-            <a href="#">Classroom Social 3</a>
+            <a href="#">Classroom data</a>
             <span className={styles.sep}>/</span>
             <span className={styles.crumbCurrent}>Sarah Camacho</span>
           </nav>
