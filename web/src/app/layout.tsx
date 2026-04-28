@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import StatusBadge from "@/components/StatusBadge/StatusBadge";
 
 export const metadata: Metadata = {
   title: "Sarah Camacho — Student Insights",
@@ -13,7 +14,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <StatusBadge />
+        {children}
+      </body>
     </html>
   );
 }

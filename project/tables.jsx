@@ -10,7 +10,7 @@ function NameCell({ name, className, tab }) {
   const [hovered, setHovered] = useState(false);
   return h('td', { className },
     url ? h('a', {
-      href: url, target: '_blank', rel: 'noopener noreferrer',
+      href: url,
       onMouseEnter: () => setHovered(true),
       onMouseLeave: () => setHovered(false),
       style: { color: 'inherit', textDecoration: 'underline', fontWeight: hovered ? 700 : 'inherit' }
