@@ -7,8 +7,14 @@ const STUDENT_URLS = { 'Camacho, Sarah': 'https://stem-reporting-8z9b.vercel.app
 function NameCell({ name, className, tab }) {
   const base = STUDENT_URLS[name];
   const url = base ? `${base}?tab=${tab || 'ela'}` : null;
+  const [hovered, setHovered] = useState(false);
   return h('td', { className },
-    url ? h('a', { href: url, target: '_blank', rel: 'noopener noreferrer', style: { color: 'var(--blue-600)', textDecoration: 'none', fontWeight: 500 } }, name) : name
+    url ? h('a', {
+      href: url, target: '_blank', rel: 'noopener noreferrer',
+      onMouseEnter: () => setHovered(true),
+      onMouseLeave: () => setHovered(false),
+      style: { color: 'inherit', textDecoration: 'underline', fontWeight: hovered ? 700 : 'inherit' }
+    }, name) : name
   );
 }
 
