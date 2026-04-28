@@ -165,15 +165,8 @@ export default function StemReadingActivity() {
         </a>
       </div>
       <p className={styles.sub}>
-        See Sarah&rsquo;s overall reading activity across STEM texts.
+        See Sarah&rsquo;s overall reading activity across STEM content.
       </p>
-
-      <div className={styles.filters}>
-        <Select
-          options={["All reading levels", "12th grade", "11th grade", "10th grade", "9th grade", "8th grade", "7th grade", "6th grade", "5th grade", "4th grade", "3rd grade", "2nd grade and lower"]}
-          aria-label="Reading level"
-        />
-      </div>
 
       <div className={styles.tableCard}>
         <div className={styles.tableWrap}>
@@ -181,7 +174,7 @@ export default function StemReadingActivity() {
             <thead>
               <tr>
                 <th style={{ width: "18%" }}>
-                  <SortableHeader>Article</SortableHeader>
+                  <SortableHeader>Content</SortableHeader>
                 </th>
 <th style={{ width: "10%" }}>
                   <SortableHeader>Text level</SortableHeader>
