@@ -136,13 +136,17 @@ h2:hover a.anchor { opacity: 1; }
   <a href="#c-tabs">Tabs</a>
   <a href="#c-filters">Filters &amp; Dropdown</a>
   <a href="#c-cards">Overview Cards</a>
+  <a href="#c-ela-overview">ELA Overview Cards</a>
+  <a href="#c-stem-overview">STEM Overview Cards</a>
   <a href="#c-tables">Data Tables</a>
-  <a href="#c-tooltip">Tooltip</a>
+  <a href="#c-tooltip">Tooltip (InfoTip)</a>
   <a href="#c-status">Status Badge</a>
   <h4>Patterns</h4>
   <a href="#p-entrance">Entrance Animations</a>
   <a href="#p-tabswitch">Tab Switching</a>
   <a href="#p-table">Table Interactions</a>
+  <a href="#p-student-page">Student Page</a>
+  <a href="#p-breadcrumb">Breadcrumb &amp; Nav</a>
   <h4>Quality</h4>
   <a href="#iconography">Iconography</a>
   <a href="#a11y">Accessibility</a>
@@ -155,11 +159,12 @@ h2:hover a.anchor { opacity: 1; }
   <div class="hero">
     <div class="eyebrow">Angelou Design System 2.0 · Handoff</div>
     <h1>Classroom Data</h1>
-    <p>A teacher-facing reporting dashboard that surfaces STEM and ELA learning activity across a class. Teachers see engagement metrics, reading levels, quiz performance, and content breakdowns — all filterable by school, activity type, and date range.</p>
+    <p>A teacher-facing reporting dashboard that surfaces STEM and ELA learning activity across a class, plus a student-level drill-in page. Teachers see engagement metrics, reading levels, quiz performance, and content breakdowns — all filterable by school, activity type, and date range. Clicking a student name navigates to an individual student view.</p>
     <div class="hero-meta">
       <span><b>Status:</b> Design WIP</span>
-      <span><b>Version:</b> 1.0</span>
+      <span><b>Version:</b> 1.1</span>
       <span><b>Source:</b> <a href="index.html">index.html</a></span>
+      <span><b>Student page:</b> <a href="https://stem-reporting-8z9b.vercel.app/" target="_blank" rel="noopener">stem-reporting-8z9b.vercel.app ↗</a></span>
       <span><b>Design system:</b> Angelou Design System 2.0</span>
     </div>
   </div>
@@ -167,15 +172,23 @@ h2:hover a.anchor { opacity: 1; }
   <!-- ── Overview ── -->
   <section class="section" id="overview">
     <h2>Overview <a class="anchor" href="#overview">§</a></h2>
-    <p class="sub">A live preview of the prototype alongside the four core design principles guiding this feature.</p>
+    <p class="sub">A live preview of the classroom prototype alongside the four core design principles guiding this feature. The student-level page is a separate Next.js app deployed to Vercel.</p>
 
     <div class="live">
       <div class="live-head">
         <span class="live-dots"><span></span><span></span><span></span></span>
-        <span class="live-title">index.html</span>
+        <span class="live-title">index.html — classroom view</span>
         <a class="live-link" href="index.html" target="_blank">Open ↗</a>
       </div>
       <iframe src="index.html" height="560" style="width:100%;border:0;display:block;"></iframe>
+    </div>
+
+    <div class="live">
+      <div class="live-head">
+        <span class="live-dots"><span></span><span></span><span></span></span>
+        <span class="live-title">stem-reporting-8z9b.vercel.app — student view (Sarah Camacho)</span>
+        <a class="live-link" href="https://stem-reporting-8z9b.vercel.app/" target="_blank" rel="noopener">Open ↗</a>
+      </div>
     </div>
 
     <div class="card">
@@ -236,6 +249,8 @@ h2:hover a.anchor { opacity: 1; }
       <div class="sw"><div class="chip" style="background:rgb(217,70,70)"></div><div class="meta"><div class="sw-name">Red 500</div><div class="sw-val">rgb(217,70,70)</div><code class="sw-tok">--red-500</code></div></div>
       <div class="sw"><div class="chip" style="background:#0D8A5F"></div><div class="meta"><div class="sw-name">Skill Green</div><div class="sw-val">#0D8A5F</div><div style="font-size:11px;color:#5B5A61;margin-top:2px;">Avg skill bar fill</div></div></div>
       <div class="sw"><div class="chip" style="background:#C8102E"></div><div class="meta"><div class="sw-name">Skill Red</div><div class="sw-val">#C8102E</div><div style="font-size:11px;color:#5B5A61;margin-top:2px;">Zero score bar fill</div></div></div>
+      <div class="sw"><div class="chip" style="background:#F9E16A"></div><div class="meta"><div class="sw-name">Badge Yellow</div><div class="sw-val">#F9E16A</div><div style="font-size:11px;color:#5B5A61;margin-top:2px;">Design WIP status badge</div></div></div>
+      <div class="sw"><div class="chip" style="background:#1E2A78"></div><div class="meta"><div class="sw-name">Badge Navy</div><div class="sw-val">#1E2A78</div><div style="font-size:11px;color:#5B5A61;margin-top:2px;">Status badge text (all variants)</div></div></div>
     </div>
 
     <h3 class="sec">Semantic token usage</h3>
@@ -311,7 +326,7 @@ h2:hover a.anchor { opacity: 1; }
         <tr><td>Tab label</td><td><code>16px</code></td><td>700</td><td>—</td><td>Active: <code>--text-900</code>. Inactive: <code>--text-500</code>.</td></tr>
         <tr><td>Table header</td><td><code>14px</code></td><td>700</td><td>—</td><td>Sub-header at 12px/400.</td></tr>
         <tr><td>Table body</td><td><code>14px</code></td><td>400</td><td>1.5</td><td>Color <code>--text-700</code>.</td></tr>
-        <tr><td>Tooltip</td><td><code>12px</code></td><td>400</td><td>1.4</td><td>Max-width 220px.</td></tr>
+        <tr><td>Tooltip</td><td><code>12px</code></td><td>400</td><td>1.4</td><td>Max-width 240px.</td></tr>
         <tr><td>Sidebar label</td><td><code>12px</code></td><td>700</td><td>1.33</td><td>Uppercase, +1px letter-spacing.</td></tr>
       </tbody>
     </table>
@@ -345,27 +360,47 @@ h2:hover a.anchor { opacity: 1; }
       </tbody>
     </table>
 
-    <h3 class="sec">Four-Column Overview Grid</h3>
-    <div class="callout">The STEM and ELA overview cards use a <code>.ela-four-col</code> grid with <code>gap: 16px</code> and equal columns. This collapses to 2 columns at 900px and 1 column at 568px.</div>
+    <h3 class="sec">Overview Card Grids</h3>
+    <table class="spec">
+      <thead><tr><th>Class</th><th>Columns</th><th>Collapse at</th><th>Used by</th></tr></thead>
+      <tbody>
+        <tr><td><code>.ela-four-col</code></td><td>4 equal columns, <code>gap: 16px</code></td><td>2-col at 1520px, 1-col at 640px</td><td>STEM overview (4 cards), ELA overview (4 cards)</td></tr>
+        <tr><td><code>.ela-three-col</code></td><td>3 equal columns, <code>gap: 16px</code></td><td>2-col at 1100px, 1-col at 700px</td><td>Student page overview section</td></tr>
+        <tr><td><code>.stem-three-col</code></td><td>3 equal columns, <code>gap: 16px</code></td><td>2-col at 1100px, 1-col at 700px</td><td>Student STEM overview section</td></tr>
+      </tbody>
+    </table>
   </section>
 
   <!-- ── Radii ── -->
   <section class="section" id="radii">
     <h2>Radii <a class="anchor" href="#radii">§</a></h2>
-    <p class="sub">Border radius values used across the prototype, from tight button corners to full pill shapes.</p>
+    <p class="sub">Standardized border radius system. Three primary tiers: 8px for small interactive elements (chips, buttons), 12px for cards and panels, 16px for large containers. 128px (or 999px) for fully pill-shaped elements.</p>
 
     <div class="tok-grid">
       <div class="tok"><div class="tok-demo" style="height:40px;background:#E5EFFF;border-radius:2px;"></div><code>2px</code><div class="tok-val">2px</div><div class="tok-use">Logo mark</div></div>
       <div class="tok"><div class="tok-demo" style="height:40px;background:#E5EFFF;border-radius:6px;"></div><code>6px</code><div class="tok-val">6px</div><div class="tok-use">Sidebar items, ghost buttons, pagination</div></div>
-      <div class="tok"><div class="tok-demo" style="height:40px;background:#E5EFFF;border-radius:8px;"></div><code>8px</code><div class="tok-val">8px</div><div class="tok-use">Dropdowns, metric tiles, inner panels, donut panel</div></div>
-      <div class="tok"><div class="tok-demo" style="height:40px;background:#E5EFFF;border-radius:10px;"></div><code>10px</code><div class="tok-val">10px</div><div class="tok-use">Dropdown menus</div></div>
-      <div class="tok"><div class="tok-demo" style="height:40px;background:#E5EFFF;border-radius:12px;"></div><code>12px</code><div class="tok-val">12px</div><div class="tok-use">ELA tiles, table wraps, breakdown cards</div></div>
-      <div class="tok"><div class="tok-demo" style="height:40px;background:#E5EFFF;border-radius:16px;"></div><code>16px</code><div class="tok-val">16px</div><div class="tok-use">Cards (main surface), skill cell bars (pill)</div></div>
+      <div class="tok"><div class="tok-demo" style="height:40px;background:#E5EFFF;border-radius:8px;"></div><code>8px</code><div class="tok-val">8px</div><div class="tok-use">Chips, buttons, dropdowns, inner panels, tooltip, donut panel</div></div>
+      <div class="tok"><div class="tok-demo" style="height:40px;background:#E5EFFF;border-radius:12px;"></div><code>12px</code><div class="tok-val">12px</div><div class="tok-use">Cards / panels (standard surface), table wraps, breakdown panels</div></div>
+      <div class="tok"><div class="tok-demo" style="height:40px;background:#E5EFFF;border-radius:16px;"></div><code>16px</code><div class="tok-val">16px</div><div class="tok-use">Main overview cards (outer shell), large dropdown menus</div></div>
       <div class="tok"><div class="tok-demo" style="height:40px;background:#E5EFFF;border-radius:50%;width:40px;margin:0 auto;"></div><code>50%</code><div class="tok-val">50%</div><div class="tok-use">Ring gauges, avatar, icon buttons</div></div>
-      <div class="tok"><div class="tok-demo" style="height:40px;background:#E5EFFF;border-radius:999px;"></div><code>999px</code><div class="tok-val">999px</div><div class="tok-use">Status badge pill, filter chips</div></div>
+      <div class="tok"><div class="tok-demo" style="height:40px;background:#E5EFFF;border-radius:128px;"></div><code>128px</code><div class="tok-val">128px</div><div class="tok-use">Skill bars (pill shape) — use 128px not 50% to avoid oval distortion on short bars</div></div>
+      <div class="tok"><div class="tok-demo" style="height:40px;background:#E5EFFF;border-radius:999px;"></div><code>999px</code><div class="tok-val">999px</div><div class="tok-use">Status badge pill, filter chips, tab active underline</div></div>
     </div>
 
-    <div class="callout warn">Bar charts use <code>border-radius: 0 8px 0 0</code> (top-right corner only). This mimics a data-driven "growth from left" direction. Never use a symmetric radius on horizontal bars.</div>
+    <h3 class="sec">Radius decision rules</h3>
+    <table class="spec">
+      <thead><tr><th>Element type</th><th>Radius</th><th>Rationale</th></tr></thead>
+      <tbody>
+        <tr><td>Chip / button / small element</td><td><code>8px</code></td><td>Standard small interactive surface</td></tr>
+        <tr><td>Card / panel</td><td><code>12px</code></td><td>Standard container surface</td></tr>
+        <tr><td>Main overview card (outer)</td><td><code>16px</code></td><td>Larger card = larger radius to match visual weight</td></tr>
+        <tr><td>Large dropdown menu</td><td><code>16px</code></td><td>Matches card visual tier</td></tr>
+        <tr><td>Skill bar (pill)</td><td><code>128px</code> (or <code>border-radius: 16px</code> in tables)</td><td>Full pill for progress-style bars</td></tr>
+        <tr><td>Horizontal data bars</td><td><code>0 8px 0 0</code></td><td>Top-right only — communicates left-to-right data growth</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout warn">Bar charts use <code>border-radius: 0 8px 0 0</code> (top-right corner only). This mimics a data-driven "growth from left" direction. Never use a symmetric radius on horizontal data bars.</div>
   </section>
 
   <!-- ── Elevation ── -->
@@ -435,12 +470,14 @@ h2:hover a.anchor { opacity: 1; }
         <tr><td>Ghost button</td><td><code>background</code></td><td>transparent → <code>rgba(29,29,29,0.06)</code></td><td>—</td></tr>
         <tr><td>Icon button</td><td><code>background</code></td><td>transparent → <code>rgba(29,29,29,0.08)</code></td><td>—</td></tr>
         <tr><td>Trend / breakdown link</td><td><code>text-decoration</code></td><td>none → underline</td><td>—</td></tr>
-        <tr><td>Student name link</td><td><code>color</code></td><td><code>--text-700</code> → <code>--blue-600</code></td><td>—</td></tr>
+        <tr><td>Student name link</td><td><code>font-weight</code></td><td>inherit → 700 (bold)</td><td>—</td></tr>
         <tr><td>Tab</td><td><code>color</code></td><td><code>--text-500</code> → <code>--text-900</code></td><td>—</td></tr>
         <tr><td>Dropdown option</td><td><code>background</code></td><td>transparent → <code>#F4F4F6</code></td><td>—</td></tr>
         <tr><td>Dropdown button (focus)</td><td><code>outline</code></td><td>none → <code>2px solid --blue-700</code>, offset 1px</td><td>—</td></tr>
       </tbody>
     </table>
+
+    <div class="callout">Student name links: underline is visible by default (not only on hover). On hover, text becomes bold but does not change color. This differs from a typical link — it preserves text color for legibility in dense table rows.</div>
 
     <h3 class="sec">State Transitions</h3>
     <table class="spec">
@@ -491,7 +528,7 @@ h2:hover a.anchor { opacity: 1; }
         <tr><td>Width</td><td><code>232px</code></td><td>Fixed. 260px on mobile overlay.</td></tr>
         <tr><td>Background</td><td><code>--bg-app</code> rgb(248,248,248)</td><td>Active item: white background</td></tr>
         <tr><td>Section label</td><td>12px / 700 / uppercase / +1px tracking</td><td>Color <code>--text-400</code></td></tr>
-        <tr><td>Nav item</td><td>14px / 400, padding <code>6px 8px</code></td><td>Border-radius: 6px</td></tr>
+        <tr><td>Nav item</td><td>14px / 400, padding <code>6px 8px</code></td><td>Border-radius: 8px</td></tr>
         <tr><td>Active item</td><td>14px / 700, white bg</td><td>Left accent bar: 4px wide, <code>--blue-700</code>. Radius: <code>2px 8px 2px 2px</code></td></tr>
         <tr><td>Mobile breakpoint</td><td>≤ 768px</td><td>Fixed position, z-index 90, shadow <code>0 8px 24px rgba(0,0,0,0.08)</code></td></tr>
       </tbody>
@@ -500,17 +537,18 @@ h2:hover a.anchor { opacity: 1; }
 
   <section class="section" id="c-tabs">
     <h2>Tabs <a class="anchor" href="#c-tabs">§</a></h2>
-    <p class="sub">ELA and STEM tabs switch the entire panel content. Selection persists to localStorage.</p>
+    <p class="sub">ELA and STEM tabs switch the entire panel content. On the classroom page, selection persists to localStorage. On the student page, tab state is reflected in the URL as <code>?tab=ela</code> or <code>?tab=stem</code>.</p>
 
     <table class="spec">
       <thead><tr><th>Property</th><th>Value</th><th>Notes</th></tr></thead>
       <tbody>
         <tr><td>Gap</td><td><code>32px</code></td><td>Reduces to 20px at 768px, 16px at 375px</td></tr>
-        <tr><td>Active underline</td><td>3px solid <code>--blue-600</code></td><td>Rounded, positioned <code>bottom: -1px</code></td></tr>
+        <tr><td>Active underline</td><td>3px solid <code>--blue-600</code></td><td>Border-radius: 128px. Positioned <code>bottom: -1px</code></td></tr>
         <tr><td>Active text</td><td><code>--text-900</code></td><td>Inactive: <code>--text-500</code></td></tr>
         <tr><td>Icon opacity</td><td>Active: 1 / Inactive: 0.7</td><td>Transition: 150ms ease</td></tr>
         <tr><td>Icon size</td><td>22×22px (forced via <code>.tab-svg svg</code>)</td><td>SVG strings injected with inline dimensions for non-square viewBoxes</td></tr>
-        <tr><td>Persistence</td><td>localStorage key: <code>classroomTab</code></td><td>Survives page refresh. Default: 'stem'</td></tr>
+        <tr><td>Classroom persistence</td><td>localStorage key: <code>classroomTab</code></td><td>Survives page refresh. Default: 'stem'</td></tr>
+        <tr><td>Student page persistence</td><td>URL query param: <code>?tab=ela</code> / <code>?tab=stem</code></td><td>Read on mount; breadcrumb back-link preserves it</td></tr>
       </tbody>
     </table>
     <div class="callout warn">STEM and ELA share no card components. If a new metric applies to both subjects, build it once but configure it via props — never render one component conditionally in both tabs.</div>
@@ -518,14 +556,14 @@ h2:hover a.anchor { opacity: 1; }
 
   <section class="section" id="c-filters">
     <h2>Filters &amp; Dropdown <a class="anchor" href="#c-filters">§</a></h2>
-    <p class="sub">Three filter dropdowns (School, Activity, Date Range) control the data context for the entire page. The Dropdown component is fully custom — no native <code>&lt;select&gt;</code>.</p>
+    <p class="sub">Three filter dropdowns (School, Activity, Date Range) control the data context for the entire classroom page. The Dropdown component is fully custom — no native <code>&lt;select&gt;</code>.</p>
 
     <h3 class="sec">Dropdown props</h3>
     <table class="spec">
       <thead><tr><th>Property</th><th>Value</th><th>Notes</th></tr></thead>
       <tbody>
         <tr><td>Height (md)</td><td><code>48px</code></td><td>Font: 16px. Padding: <code>0 14px</code>. Radius: 8px.</td></tr>
-        <tr><td>Height (sm)</td><td><code>36px</code></td><td>Font: 14px. Padding: <code>0 10px</code>. Radius: 6px. Width: 80px.</td></tr>
+        <tr><td>Height (sm)</td><td><code>36px</code></td><td>Font: 14px. Padding: <code>0 10px</code>. Radius: 8px. Width: 80px.</td></tr>
         <tr><td>Border default</td><td><code>1px solid #77767A</code></td><td>Hover/open: <code>#5B5A61</code></td></tr>
         <tr><td>Focus ring</td><td><code>2px solid --blue-700</code></td><td>Outline-offset: 1px</td></tr>
         <tr><td>Menu shadow</td><td><code>0 12px 28px -8px rgba(15,23,42,0.18),<br>0 4px 10px -4px rgba(15,23,42,0.08)</code></td><td>z-index: 50. Max-height: 320px scrollable.</td></tr>
@@ -548,47 +586,106 @@ h2:hover a.anchor { opacity: 1; }
   </section>
 
   <section class="section" id="c-cards">
-    <h2>Overview Cards <a class="anchor" href="#c-cards">§</a></h2>
-    <p class="sub">Eight distinct card types populate the STEM and ELA overview rows. All share base card structure but differ in interior layout and data shape.</p>
+    <h2>Overview Cards — Base <a class="anchor" href="#c-cards">§</a></h2>
+    <p class="sub">All overview cards (STEM and ELA) share the same base card structure: a tinted outer shell, white inner panels, and a standard card header with InfoTip.</p>
 
     <h3 class="sec">Base card</h3>
     <table class="spec">
       <thead><tr><th>Property</th><th>Value</th><th>Notes</th></tr></thead>
       <tbody>
-        <tr><td>Background</td><td>White</td><td>Tinted variant: <code>--blue-50</code> with border <code>rgb(205,216,233)</code></td></tr>
-        <tr><td>Border</td><td><code>1px solid --border-soft</code></td><td>No shadow on cards — borders only</td></tr>
+        <tr><td>Background</td><td>Tinted: <code>--blue-50</code> with border <code>rgb(205,216,233)</code></td><td>All overview cards use the tinted variant (<code>.card--tinted</code>)</td></tr>
+        <tr><td>Border</td><td><code>1px solid --border-soft</code></td><td>Tinted variant: <code>rgb(205,216,233)</code></td></tr>
         <tr><td>Border radius</td><td><code>16px</code></td><td>Inner white panels: 8px</td></tr>
-        <tr><td>Padding</td><td><code>16px</code></td><td>Card head gap: 8px</td></tr>
-        <tr><td>Card title</td><td>16px / 700</td><td>Flex row with 8px gap to icon</td></tr>
-        <tr><td>Icon size</td><td>22px (standard), 29px (Books)</td><td>Books icon is 29px to compensate for 32×32 viewBox vs 24×24 standard</td></tr>
+        <tr><td>Padding</td><td><code>16px</code></td><td>Card head gap: 8px (between title and InfoTip)</td></tr>
+        <tr><td>Card title</td><td>16px / 700</td><td>Flex row with 8px gap to icon. Icon: 22px standard.</td></tr>
+        <tr><td>Inner white boxes</td><td>background: #fff, border-radius: 8px</td><td>Used inside all STEM and ELA cards to contain visualizations</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="section" id="c-ela-overview">
+    <h2>ELA Overview Cards <a class="anchor" href="#c-ela-overview">§</a></h2>
+    <p class="sub">Three cards in the ELA overview row (classroom page) and three cards in the student ELA overview. All use the tinted base card with white inner panels and InfoTip tooltips.</p>
+
+    <h3 class="sec">Card inventory — ELA (classroom)</h3>
+    <table class="spec">
+      <thead><tr><th>Card</th><th>Icon</th><th>Key visual</th><th>Data inputs</th></tr></thead>
+      <tbody>
+        <tr><td>Student activity</td><td>InsightsIcon</td><td>Animated horizontal bars</td><td>Array of <code>{name, count}</code> items (e.g. Active students, Article views, Video views)</td></tr>
+        <tr><td>Average reading level</td><td>ArticleIcon (stroke)</td><td>Two stacked white panels: grade level + Lexile</td><td><code>avgLevel</code>, <code>avgLevelSub</code>, <code>avgLexile</code>, <code>avgLexileSub</code></td></tr>
+        <tr><td>Reading totals</td><td>ELA SVG icon (fill)</td><td>2-column grid of Ring gauges (white inner box)</td><td><code>totalTexts</code>, <code>avgMinPerArticle</code></td></tr>
+        <tr><td>Texts by grade levels</td><td>TrendUpIcon (stroke)</td><td>Animated horizontal bars + trend link</td><td>Array of <code>{level, count}</code></td></tr>
       </tbody>
     </table>
 
-    <h3 class="sec">Card variants</h3>
+    <h3 class="sec">Card inventory — ELA (student page, Sarah Camacho)</h3>
     <table class="spec">
-      <thead><tr><th>Card</th><th>Tab</th><th>Key visual</th><th>Data inputs</th></tr></thead>
+      <thead><tr><th>Card</th><th>Icon</th><th>Key visual</th><th>Notes</th></tr></thead>
       <tbody>
-        <tr><td>Student Activity</td><td>Both</td><td>Labeled metric list</td><td>Array of <code>{name, count}</code> items</td></tr>
-        <tr><td>Content Breakdown (Donut)</td><td>STEM</td><td>SVG donut, 96×96</td><td><code>articlesPct</code>, <code>videosPct</code>, totals</td></tr>
-        <tr><td>STEM Disciplines</td><td>STEM</td><td>Animated horizontal bars</td><td>Array of <code>{name, count}</code></td></tr>
-        <tr><td>Time Spent</td><td>STEM</td><td>2×Ring gauge grid</td><td><code>articleAvgMin</code>, <code>videoAvgMin</code></td></tr>
-        <tr><td>Avg Reading Level</td><td>ELA</td><td>Grade + Lexile stacked panels</td><td><code>avgLevel</code>, <code>avgLexile</code> + subs</td></tr>
-        <tr><td>Reading Totals</td><td>ELA</td><td>2×Ring gauge grid</td><td><code>totalTexts</code>, <code>avgMinPerArticle</code></td></tr>
-        <tr><td>Texts by Level</td><td>ELA</td><td>Animated horizontal bars</td><td>Array of <code>{level, count}</code></td></tr>
+        <tr><td>Average reading level</td><td>ArticleIcon (stroke)</td><td>Two stacked white row panels: grade level + Lexile value</td><td>Grade: "8th" / Lexile: "1030L" for Sarah</td></tr>
+        <tr><td>Reading totals</td><td>ElaIcon (fill)</td><td>2-column ring gauge grid in white inner box</td><td>Total texts (17, ring at 0%) + avg min (15, ring at 25%)</td></tr>
+        <tr><td>Grade level status</td><td>TrendUpIcon (stroke)</td><td>White inner box: checkmark + "On grade level" + body copy</td><td>Based on average Lexile vs enrolled grade. Sarah: "On grade level"</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sec">Average reading level — inner panel spec</h3>
+    <table class="spec">
+      <thead><tr><th>Property</th><th>Value</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Panel background</td><td><code>#fff</code></td><td>Border-radius: 12px</td></tr>
+        <tr><td>Panel padding</td><td><code>20px</code></td><td>Grid: <code>auto 1fr</code>, column-gap 20px, min-height 84px</td></tr>
+        <tr><td>Metric number</td><td>24px / 700, <code>--blue-700</code></td><td>Letter-spacing: -0.5px</td></tr>
+        <tr><td>Sub label</td><td>16px / 400, <code>--text-900</code></td><td>Wraps to next line if needed</td></tr>
+        <tr><td>Two panels stacked</td><td>12px gap</td><td>Top: grade level. Bottom: Lexile.</td></tr>
       </tbody>
     </table>
 
     <div class="callout">Ring gauges use a 72×72 SVG with r=30. The arc circumference is <code>2π×30 ≈ 188.5px</code>. Percentage is calculated as <code>(value/60)×100</code> for minutes, or passed directly. The center label shows the raw value, not the percentage.</div>
+  </section>
 
-    <div class="dodont">
-      <div class="ddc do"><div class="ddc-badge">Do</div><p>Use inline styles (not CSS classes) for bar fill widths and border-radius so <code>tweaks.jsx</code> CSS overrides cannot interfere.</p></div>
-      <div class="ddc dont"><div class="ddc-badge">Don't</div><p>Don't apply <code>.ela-bar-fill</code> class to bars — <code>tweaks.jsx</code> injects <code>!important</code> overrides targeting that class, which will fight inline styles.</p></div>
-    </div>
+  <section class="section" id="c-stem-overview">
+    <h2>STEM Overview Cards <a class="anchor" href="#c-stem-overview">§</a></h2>
+    <p class="sub">Four cards on the classroom STEM tab; three on the student STEM tab. All use tinted outer shell, white inner boxes, and InfoTip tooltips on each card header.</p>
+
+    <h3 class="sec">Card inventory — STEM (classroom)</h3>
+    <table class="spec">
+      <thead><tr><th>Card</th><th>Icon</th><th>Key visual</th><th>Data inputs</th></tr></thead>
+      <tbody>
+        <tr><td>Student activity</td><td>InsightsIcon</td><td>Animated horizontal bars</td><td>Array of <code>{name, count}</code> items</td></tr>
+        <tr><td>Content breakdown</td><td>DetailsIcon</td><td>SVG donut 96×96, flanked by percentage labels</td><td><code>articlesPct</code>, <code>videosPct</code>, totals; blue (articles) + purple #a437c9 (videos)</td></tr>
+        <tr><td>STEM Disciplines</td><td>STEM SVG logo</td><td>Animated horizontal bars (blue fill)</td><td>Array of <code>{name, count}</code>; sample: Science 3, Ecology 17, Mathematics 6</td></tr>
+        <tr><td>Time spent</td><td>ClockIcon / TimeIcon</td><td>2-column ring gauge grid (white inner boxes)</td><td><code>articleAvgMin</code>, <code>videoAvgMin</code>; ring pct = (min/60)×100</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sec">Card inventory — STEM (student page, Sarah Camacho)</h3>
+    <table class="spec">
+      <thead><tr><th>Card</th><th>Icon</th><th>Key visual</th><th>Sample values</th></tr></thead>
+      <tbody>
+        <tr><td>Content breakdown</td><td>DetailsIcon (stroke)</td><td>96×96 donut with percentage labels left/right</td><td>75% Articles (17 total) / 25% Videos (9 total)</td></tr>
+        <tr><td>STEM Disciplines</td><td>StemIcon (fill)</td><td>Animated horizontal bars in white inner box</td><td>Science 3, Ecology 17, Mathematics 6; blue fill, staggered 80ms</td></tr>
+        <tr><td>Time spent</td><td>ClockIcon (stroke)</td><td>2-column ring gauges in white inner boxes</td><td>23 min/article, 16 min/video; rings proportional to 60-min max</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sec">Donut chart spec</h3>
+    <table class="spec">
+      <thead><tr><th>Property</th><th>Value</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>SVG size</td><td>96×96 viewBox 0 0 100 100</td><td>Centered on 50,50</td></tr>
+        <tr><td>Radius</td><td>r = 42</td><td>Circumference C = 2π×42 ≈ 263.9px</td></tr>
+        <tr><td>Stroke width</td><td>10</td><td>strokeLinecap: round</td></tr>
+        <tr><td>Gap between segments</td><td>8px</td><td>Applied as <code>strokeDashoffset</code> and subtracted from arc length</td></tr>
+        <tr><td>Videos color</td><td><code>#a437c9</code> (purple)</td><td>Rendered first, starts at top (rotate -90deg), clockwise</td></tr>
+        <tr><td>Articles color</td><td><code>rgb(16,111,243)</code> (blue)</td><td>Offset by videos arc + gap, 80ms delay</td></tr>
+        <tr><td>Animation</td><td><code>stroke-dasharray 700ms cubic-bezier(0.2,0,0,1)</code></td><td>Both arcs animate on mount + 80ms</td></tr>
+      </tbody>
+    </table>
   </section>
 
   <section class="section" id="c-tables">
     <h2>Data Tables <a class="anchor" href="#c-tables">§</a></h2>
-    <p class="sub">Three table types: STEM student activity, ELA student activity, and ELA reading skills. All share pagination, sorting, and responsive overflow patterns.</p>
+    <p class="sub">Three table types on the classroom page: STEM student activity, ELA student activity, and ELA reading skills. On the student page, a fourth STEM reading activity table lists individual articles. All share pagination and sorting patterns.</p>
 
     <h3 class="sec">Table base</h3>
     <table class="spec">
@@ -600,6 +697,56 @@ h2:hover a.anchor { opacity: 1; }
         <tr><td>Even rows</td><td>bg <code>rgba(248,248,248,0.5)</code></td><td>Subtle stripe, not a strong zebra</td></tr>
         <tr><td>Table wrap</td><td>border-radius 12px, border 1px <code>--border</code></td><td>Overflow hidden to clip corners</td></tr>
         <tr><td>Pagination sizes</td><td>25 / 35 / 50 rows</td><td>Dropdown uses sm variant</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sec">Sort icons</h3>
+    <p class="sub" style="margin-top:-16px;">All sortable column headers use a filled double-caret glyph (▲▼). Both triangles are filled solid; the active sort direction is highlighted.</p>
+    <table class="spec">
+      <thead><tr><th>Property</th><th>Value</th></tr></thead>
+      <tbody>
+        <tr><td>Glyph</td><td>Two stacked filled SVG triangles (▲ on top, ▼ below), each 8×5px, fill: currentColor</td></tr>
+        <tr><td>Gap between triangles</td><td>2px</td></tr>
+        <tr><td>Position</td><td>Inline after label text, vertical-align: middle, margin-left: 4–6px</td></tr>
+        <tr><td>Active direction</td><td>Active triangle full opacity; inactive triangle muted</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sec">STEM Student Activity table columns</h3>
+    <table class="spec">
+      <thead><tr><th>Column</th><th>Sub-label</th><th>InfoTip</th></tr></thead>
+      <tbody>
+        <tr><td>Student</td><td>—</td><td>—</td></tr>
+        <tr><td>Text level</td><td>Average Lexile of texts viewed</td><td>"Average Lexile score of articles this student has read."</td></tr>
+        <tr><td>Date of last activity</td><td>Latest data</td><td>"Most recent time this student used Newsela."</td></tr>
+        <tr><td>Article views</td><td>total views</td><td>"Count of articles opened in this range."</td></tr>
+        <tr><td>Active time (article)</td><td>Average time on article</td><td>"Average active minutes per article."</td></tr>
+        <tr><td>Video views</td><td>total views</td><td>"Count of videos watched."</td></tr>
+        <tr><td>Active time (video)</td><td>Average time on video</td><td>"Average active minutes per video."</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sec">STEM Reading Activity table (student page)</h3>
+    <p class="sub" style="margin-top:-16px;">Section title is "Student activity". Subtitle reads "See [name]'s overall reading activity across STEM content." No reading level filter dropdown. Column header is "Content" (not "Article").</p>
+    <table class="spec">
+      <thead><tr><th>Column</th><th>Sub-label</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Content</td><td>—</td><td>Shows thumbnail image + article title link; width 18%</td></tr>
+        <tr><td>Text level</td><td>Average Lexile of texts viewed</td><td>Bold Lexile value + muted grade label below</td></tr>
+        <tr><td>Date of last activity</td><td>Latest data ⓘ</td><td>Inline info indicator in sub-label</td></tr>
+        <tr><td>Active time</td><td>Time on content</td><td>Plain minutes string (e.g. "15 min")</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sec">Student name links</h3>
+    <table class="spec">
+      <thead><tr><th>Property</th><th>Value</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Default state</td><td>Underline visible, inherit color</td><td><code>text-decoration: underline; text-underline-offset: 2px</code></td></tr>
+        <tr><td>Hover state</td><td>Bold (font-weight: 700), color unchanged</td><td>Not blue — preserves color legibility in table context</td></tr>
+        <tr><td>Link target</td><td>Same tab (no <code>target="_blank"</code>)</td><td>Opens student page in same tab</td></tr>
+        <tr><td>URL format</td><td><code>https://stem-reporting-8z9b.vercel.app/?tab=ela</code></td><td><code>?tab=</code> param preserves active classroom tab for context</td></tr>
+        <tr><td>Supported students</td><td>Camacho, Sarah → stem-reporting-8z9b.vercel.app</td><td>Other students render as plain text (no link)</td></tr>
       </tbody>
     </table>
 
@@ -619,26 +766,30 @@ h2:hover a.anchor { opacity: 1; }
 
   <section class="section" id="c-tooltip">
     <h2>Tooltip (InfoTip) <a class="anchor" href="#c-tooltip">§</a></h2>
-    <p class="sub">Hover-triggered tooltip attached to the ⓘ info icon in card headers and table headers. Supports above (default) and below positioning.</p>
+    <p class="sub">CSS-only hover and focus-within tooltip. No JavaScript required. Used in card headers (above, default) and table column headers (below variant). Appears on both the classroom prototype and the Next.js student page.</p>
 
     <table class="spec">
       <thead><tr><th>Property</th><th>Value</th><th>Notes</th></tr></thead>
       <tbody>
-        <tr><td>Trigger</td><td>hover or focus-within</td><td>Accessible — keyboard reachable</td></tr>
-        <tr><td>Position (default)</td><td>Above: <code>bottom: 100% + 8px</code></td><td>Centered on trigger, x-clamped</td></tr>
-        <tr><td>Position (below)</td><td><code>top: 100% + 8px</code></td><td>Used in table header tooltips (<code>below</code> prop)</td></tr>
-        <tr><td>Font</td><td>12px / 400, lh 1.4</td><td>Max-width: 220px</td></tr>
-        <tr><td>Animation in</td><td>opacity 0→1, translateY 4px→0</td><td>Duration: 160ms, <code>cubic-bezier(0.2,0,0,1)</code></td></tr>
-        <tr><td>Arrow</td><td>CSS triangle via <code>::after</code></td><td>Points up (default) or down (below variant)</td></tr>
-        <tr><td>Background</td><td><code>--text-900</code> (dark)</td><td>White text, 6px radius</td></tr>
+        <tr><td>Trigger</td><td>hover or focus-within</td><td>Accessible — keyboard reachable via tabIndex=0 on the wrapper</td></tr>
+        <tr><td>Position (default)</td><td>Above: <code>bottom: calc(100% + 8px)</code></td><td>Centered on trigger with <code>left: 50%; transform: translate(-50%, 0)</code></td></tr>
+        <tr><td>Position (below)</td><td><code>top: calc(100% + 8px)</code></td><td>Used in table header tooltips (<code>below</code> prop / <code>.tip--below</code> class)</td></tr>
+        <tr><td>Font</td><td>12px / 400, lh 1.4</td><td>Max-width: 240px. white-space: normal.</td></tr>
+        <tr><td>Animation in</td><td>opacity 0→1, translateY 4px→0</td><td>Duration: 160ms, <code>cubic-bezier(0.2,0,0,1)</code>. Both opacity and transform transition simultaneously.</td></tr>
+        <tr><td>Arrow</td><td>CSS triangle via <code>::after</code></td><td>Points down (above variant) or up (below variant). 5px border trick.</td></tr>
+        <tr><td>Background</td><td><code>#1d1d1d</code></td><td>Dark. White text. Not <code>--text-900</code> variable — exact hex.</td></tr>
+        <tr><td>Border radius</td><td><code>8px</code></td><td>Updated from 6px — matches the standardized 8px chip/button tier</td></tr>
         <tr><td>Padding</td><td><code>8px 10px</code></td><td>—</td></tr>
+        <tr><td>z-index</td><td>50 (classroom) / 100 (student page)</td><td>Must be above table rows but below status badge (z-index 200)</td></tr>
       </tbody>
     </table>
+
+    <div class="callout warn">The tooltip border-radius is 8px (not 6px as in the old spec). This aligns with the standardized radius system where chips/buttons/small elements all use 8px. Update any design files that show 6px.</div>
   </section>
 
   <section class="section" id="c-status">
     <h2>Status Badge <a class="anchor" href="#c-status">§</a></h2>
-    <p class="sub">Fixed pill at the top-center of the page indicating project design stage. Configured via <code>window.__STATUS</code> in <code>index.html</code> — no code changes needed to update it.</p>
+    <p class="sub">Fixed pill at the top-center of every page indicating project design stage. On the classroom prototype, configured via <code>window.__STATUS</code> in <code>index.html</code>. On the Next.js student app, configured as a constant in <code>StatusBadge.tsx</code>. The badge has two stacked lines: the status label on top, and a secondary link to the design spec below.</p>
 
     <div class="card">
       <div class="ex-label">Status variants</div>
@@ -654,16 +805,29 @@ h2:hover a.anchor { opacity: 1; }
       <tbody>
         <tr><td>Position</td><td>fixed, top: 16px, centered</td><td><code>left: 50%</code>, <code>transform: translateX(-50%)</code></td></tr>
         <tr><td>z-index</td><td>200</td><td>Above nav (z-index 100) and dropdowns (z-index 50)</td></tr>
-        <tr><td>Font</td><td>15px / 700</td><td>Color: <code>#1E2A78</code> (all variants)</td></tr>
+        <tr><td>Layout</td><td>inline-flex, column, align-items: center, gap: 2px</td><td>Two lines: label on top, spec link below</td></tr>
+        <tr><td>Label font</td><td>15px / 700</td><td>Color: <code>#1E2A78</code> (all variants)</td></tr>
+        <tr><td>Spec link font</td><td>12px / 600</td><td>Color: same as label (<code>#1E2A78</code>). text-decoration: underline.</td></tr>
+        <tr><td>Spec link copy</td><td>"Design spec WIP" when WIP / "Design spec" when ready</td><td>Same link for both states — the copy changes, not the URL</td></tr>
         <tr><td>Padding</td><td><code>10px 40px</code></td><td>Border-radius: 50px (pill)</td></tr>
         <tr><td>Shadow</td><td><code>0 4px 20px rgba(0,0,0,0.18)</code></td><td>—</td></tr>
+        <tr><td>Pointer events</td><td>auto when handoffUrl set, none when absent</td><td>Entire pill is non-interactive if there is no URL to link to</td></tr>
         <tr><td>Early exploration</td><td>bg <code>#FBBFC9</code></td><td>Soft pink</td></tr>
         <tr><td>Design WIP</td><td>bg <code>#F9E16A</code></td><td>Soft yellow</td></tr>
-        <tr><td>Design ready</td><td>bg <code>#A8EFD6</code></td><td>Soft mint. Shows "View handoff documentation" link if <code>handoffUrl</code> is set.</td></tr>
+        <tr><td>Design ready</td><td>bg <code>#A8EFD6</code></td><td>Soft mint</td></tr>
       </tbody>
     </table>
 
-    <div class="callout">To update the badge: edit <code>window.__STATUS</code> in <code>index.html</code>. Set <code>"status"</code> to one of the three labels and <code>"handoffUrl"</code> to the spec path when ready. No component code changes needed.</div>
+    <h3 class="sec">Configuration</h3>
+    <table class="spec">
+      <thead><tr><th>Location</th><th>How to update</th></tr></thead>
+      <tbody>
+        <tr><td>Classroom prototype (<code>index.html</code>)</td><td>Edit <code>window.__STATUS = { "status": "Design WIP", "handoffUrl": "design-spec.html" }</code></td></tr>
+        <tr><td>Student page (<code>StatusBadge.tsx</code>)</td><td>Edit <code>const STATUS = "Design WIP"</code> and <code>const HANDOFF_URL = "..."</code> constants at the top of the file</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout">When the project reaches "Design ready", change the status string and the link copy will automatically switch from "Design spec WIP" to "Design spec".</div>
   </section>
 
   <!-- ── PATTERNS ── -->
@@ -689,15 +853,16 @@ h2:hover a.anchor { opacity: 1; }
 
   <section class="section" id="p-tabswitch">
     <h2>Pattern: Tab Switching <a class="anchor" href="#p-tabswitch">§</a></h2>
-    <p class="sub">STEM and ELA tabs are mutually exclusive views. The active tab is stored in localStorage so the user returns to the same context on next visit.</p>
+    <p class="sub">STEM and ELA tabs are mutually exclusive views. The classroom page persists tab to localStorage; the student page reflects tab in the URL query string.</p>
 
     <table class="spec">
-      <thead><tr><th>Aspect</th><th>Behaviour</th></tr></thead>
+      <thead><tr><th>Aspect</th><th>Classroom</th><th>Student page</th></tr></thead>
       <tbody>
-        <tr><td>Storage key</td><td><code>localStorage.classroomTab</code></td></tr>
-        <tr><td>Default</td><td><code>'stem'</code> if no saved preference</td></tr>
-        <tr><td>Content swap</td><td>Conditional render: <code>tab === 'stem' ? StemPanel : ElaPanel</code></td></tr>
-        <tr><td>Entrance animations</td><td>Re-trigger on every tab switch because components remount</td></tr>
+        <tr><td>Persistence</td><td><code>localStorage.classroomTab</code></td><td><code>?tab=ela</code> / <code>?tab=stem</code> URL param</td></tr>
+        <tr><td>Default</td><td><code>'stem'</code> if no saved preference</td><td>Read from URL on mount; no default specified</td></tr>
+        <tr><td>Content swap</td><td>Conditional render: <code>tab === 'stem' ? StemPanel : ElaPanel</code></td><td>Tab component shows/hides sections</td></tr>
+        <tr><td>Entrance animations</td><td>Re-trigger on every tab switch (components remount)</td><td>Same — components remount on tab switch</td></tr>
+        <tr><td>Back navigation</td><td>n/a</td><td>Breadcrumb "Classroom data" link appends <code>?tab=</code> to preserve context</td></tr>
       </tbody>
     </table>
 
@@ -706,7 +871,7 @@ h2:hover a.anchor { opacity: 1; }
 
   <section class="section" id="p-table">
     <h2>Pattern: Table Interactions <a class="anchor" href="#p-table">§</a></h2>
-    <p class="sub">All three tables share the same sort + paginate interaction model via the <code>useSort</code> hook and <code>Pagination</code> component.</p>
+    <p class="sub">All classroom tables share the same sort + paginate interaction model via the <code>useSort</code> hook and <code>Pagination</code> component.</p>
 
     <h3 class="sec">Sorting</h3>
     <table class="spec">
@@ -715,7 +880,7 @@ h2:hover a.anchor { opacity: 1; }
         <tr><td>Trigger</td><td>Click any sortable column header</td></tr>
         <tr><td>Direction toggle</td><td>First click: ascending. Second click: descending.</td></tr>
         <tr><td>Default</td><td>Sorted by student name, ascending</td></tr>
-        <tr><td>Indicator</td><td>SortGlyph SVG (two triangles) in header. Active direction highlighted.</td></tr>
+        <tr><td>Indicator</td><td>Filled ▲▼ double-caret in header. Active direction highlighted.</td></tr>
         <tr><td>String sort</td><td><code>localeCompare</code> for names</td></tr>
         <tr><td>Numeric sort</td><td>Numeric comparison. Null values sort last.</td></tr>
       </tbody>
@@ -729,6 +894,63 @@ h2:hover a.anchor { opacity: 1; }
         <tr><td>Controls</td><td>First ⏮ / Prev ← / Page X of Y / Next → / Last ⏭</td></tr>
         <tr><td>Disabled states</td><td>First + Prev disabled on page 1. Next + Last disabled on last page.</td></tr>
         <tr><td>Page reset</td><td>Changing page size resets to page 1.</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="section" id="p-student-page">
+    <h2>Pattern: Student Page <a class="anchor" href="#p-student-page">§</a></h2>
+    <p class="sub">A dedicated individual student view at <a href="https://stem-reporting-8z9b.vercel.app/" target="_blank" rel="noopener" style="color:#0A6EFA;">stem-reporting-8z9b.vercel.app</a>. Currently shows data for Sarah Camacho. Built as a Next.js app (separate from the classroom static prototype).</p>
+
+    <h3 class="sec">Page structure</h3>
+    <table class="spec">
+      <thead><tr><th>Element</th><th>Value</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Page title</td><td>"Sarah Camacho"</td><td>Noto Serif, 32px / 700</td></tr>
+        <tr><td>Breadcrumb</td><td>"Classroom data" / "Sarah Camacho"</td><td>"Classroom data" links to classroom page; URL preserves <code>?tab=</code></td></tr>
+        <tr><td>Tabs</td><td>ELA / STEM</td><td>Tab state in URL query param <code>?tab=ela</code> or <code>?tab=stem</code></td></tr>
+        <tr><td>ELA tab sections</td><td>Overview · Reading skills · Student activity</td><td>3-column overview grid; reading skills use row layout (not table columns)</td></tr>
+        <tr><td>STEM tab sections</td><td>STEM Overview · Reading skills · Student activity</td><td>3-column overview grid; STEM reading skills; STEM reading activity table</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sec">ELA tab — Reading skills layout (student page)</h3>
+    <p class="sub" style="margin-top:-16px;">Unlike the classroom page (columnar table), the student-page Reading Skills section uses a row-based layout. Each skill is a row with a horizontal bar on the left and skill name + question count on the right.</p>
+    <table class="spec">
+      <thead><tr><th>Property</th><th>Value</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Skill count</td><td>8 skills (ELA) / 8 skills (STEM)</td><td>ELA skills: "What the text says", "Main idea, key details &amp; summarization", etc.</td></tr>
+        <tr><td>Bar track</td><td>Full-width horizontal, height varies</td><td>Default: blue fill <code>#04337A</code>. Zero: red fill. N/A: gray track, no fill.</td></tr>
+        <tr><td>Zero state bar</td><td>Red fill, 4% min-width</td><td>Small red stub visible even at 0%</td></tr>
+        <tr><td>N/A state</td><td>Gray track, "N/A" label, "Find articles…" helper link</td><td>No fill rendered</td></tr>
+        <tr><td>Grade filter</td><td>Dropdown above skill list</td><td>"All grade levels" default. Filters displayed skill level for articles viewed at that grade.</td></tr>
+        <tr><td>InfoTip</td><td>Inline after skill name, below variant</td><td>Text: <code>Quiz performance on "[skill name]".</code></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="section" id="p-breadcrumb">
+    <h2>Pattern: Breadcrumb &amp; Navigation <a class="anchor" href="#p-breadcrumb">§</a></h2>
+    <p class="sub">Breadcrumbs appear on both the classroom page and the student page. They provide hierarchical context and preserve tab state when navigating back.</p>
+
+    <h3 class="sec">Classroom breadcrumb</h3>
+    <table class="spec">
+      <thead><tr><th>Property</th><th>Value</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Items</td><td>Reports / Classroom data</td><td>"Reports" is a link. "Classroom data" is the current page (not linked).</td></tr>
+        <tr><td>Font</td><td>12px / 400, color <code>--text-400</code></td><td>Separator: "/" in <code>--text-400</code></td></tr>
+        <tr><td>Link style</td><td>underline, color <code>--text-400</code></td><td>Does not use blue link color — stays neutral</td></tr>
+        <tr><td>Margin</td><td><code>4px 0 24px</code></td><td>Below nav, above page title</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sec">Student page breadcrumb</h3>
+    <table class="spec">
+      <thead><tr><th>Property</th><th>Value</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Items</td><td>Classroom data / Sarah Camacho</td><td>"Classroom data" links back; "Sarah Camacho" is current page.</td></tr>
+        <tr><td>Back link URL</td><td>Classroom page URL + <code>?tab=ela</code> or <code>?tab=stem</code></td><td>Preserves the active tab the teacher was on before clicking into the student</td></tr>
+        <tr><td>Tab param source</td><td>Current student page tab (ELA/STEM)</td><td>If student is on STEM tab, back link goes to classroom STEM tab</td></tr>
       </tbody>
     </table>
   </section>
@@ -750,6 +972,22 @@ h2:hover a.anchor { opacity: 1; }
         <tr><td>Books icon</td><td>—</td><td>29px (32×32 viewBox visual compensation)</td></tr>
         <tr><td>Alignment</td><td>Vertical center, not baseline</td><td>Same</td></tr>
         <tr><td>Gap to text</td><td>8px (card title), 6px (nav)</td><td>Same</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sec">Named icons in use</h3>
+    <table class="spec">
+      <thead><tr><th>Icon name</th><th>Used in</th><th>Type</th><th>Size</th></tr></thead>
+      <tbody>
+        <tr><td>ArticleIcon</td><td>ELA overview: "Average reading level" card header</td><td>Stroke</td><td>22px</td></tr>
+        <tr><td>ElaIcon / ELA SVG</td><td>ELA overview: "Reading totals" card header</td><td>Fill (SVG file)</td><td>22px</td></tr>
+        <tr><td>TrendUpIcon</td><td>ELA overview: "Grade level status" / "Texts by grade levels" card headers</td><td>Stroke</td><td>22px</td></tr>
+        <tr><td>DetailsIcon</td><td>STEM overview: "Content breakdown" card header</td><td>Stroke</td><td>22px</td></tr>
+        <tr><td>StemIcon / STEM SVG</td><td>STEM overview: "STEM Disciplines" card header</td><td>Fill (SVG file)</td><td>22px / 29px</td></tr>
+        <tr><td>ClockIcon</td><td>STEM overview: "Time spent" card header</td><td>Stroke</td><td>22px</td></tr>
+        <tr><td>InsightsIcon</td><td>Both: "Student activity" card header</td><td>Stroke</td><td>22px</td></tr>
+        <tr><td>InfoIcon</td><td>InfoTip trigger (card + table headers)</td><td>Stroke</td><td>16px</td></tr>
+        <tr><td>SortIcon (▲▼)</td><td>All sortable table column headers</td><td>Filled triangles</td><td>8×5px each</td></tr>
       </tbody>
     </table>
 
@@ -812,26 +1050,27 @@ h2:hover a.anchor { opacity: 1; }
       <li>Tooltips: <code>role="tooltip"</code> on tooltip body</li>
       <li>Tables: <code>aria-label</code> or <code>&lt;caption&gt;</code> for screen reader context</li>
       <li>Tabs: <code>role="tab"</code>, <code>aria-selected</code>, <code>role="tabpanel"</code></li>
+      <li>Decorative SVGs: <code>aria-hidden="true"</code></li>
     </ul>
   </section>
 
   <section class="section" id="extend">
     <h2>How to Extend <a class="anchor" href="#extend">§</a></h2>
-    <p class="sub">Five principles for designing adjacent screens or new metrics within this product area.</p>
+    <p class="sub">Six principles for designing adjacent screens or new metrics within this product area.</p>
 
     <ol style="font-size:14px;color:#424147;line-height:1.8;padding-left:20px;margin-bottom:24px;">
       <li style="margin-bottom:12px;"><b>Start from CSS variables, not raw values.</b> Every color, spacing, and radius in this spec has a CSS variable. New components should reference those variables — never hardcode a hex value in component code.</li>
       <li style="margin-bottom:12px;"><b>Respect the STEM / ELA boundary.</b> These are different pedagogical contexts. A "student activity" card can serve both with different <code>items</code> props — but skill-specific metrics (Lexile, reading level, writing) are ELA only. Disciplines are STEM only.</li>
       <li style="margin-bottom:12px;"><b>Data visualizations must animate.</b> Every new chart or metric that represents quantity should use the visibility-state pattern (80ms delay, staggered transitions). Static data presentation is the exception, not the rule.</li>
       <li style="margin-bottom:12px;"><b>Add new filter dimensions via <code>REPORT_DATA</code>, not new components.</b> The Filters component and Dropdown already support any option array. Adding a new filter is a data change, not a component change.</li>
-      <li style="margin-bottom:12px;"><b>Status badge is the only config-driven UI.</b> Design stage is communicated via <code>window.__STATUS</code> in <code>index.html</code> — change it there, not in component code. When the project hits "Design ready", add the <code>handoffUrl</code> pointing to this file.</li>
+      <li style="margin-bottom:12px;"><b>Status badge is config-driven.</b> Classroom prototype: edit <code>window.__STATUS</code> in <code>index.html</code>. Student page: edit constants at top of <code>StatusBadge.tsx</code>. No component code changes needed. When the project hits "Design ready", add the <code>handoffUrl</code> pointing to this file.</li>
       <li><b>Bump <code>?v=N</code> on every file change.</b> All scripts and styles are cache-busted via query params in <code>index.html</code>. Forgetting to increment the version is the #1 cause of changes not appearing in Vercel deploys.</li>
     </ol>
 
     <div class="card">
       <div class="ex-label">Possible extensions</div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-        <div style="padding:14px;background:#F7F8FA;border-radius:8px;font-size:13px;color:#424147;"><b style="display:block;margin-bottom:4px;">Student profile drill-in</b>Side panel with per-student detail — reading history, quiz breakdown, writing samples.</div>
+        <div style="padding:14px;background:#F7F8FA;border-radius:8px;font-size:13px;color:#424147;"><b style="display:block;margin-bottom:4px;">More students in drill-in</b>Currently only Sarah Camacho has a student page. Extend <code>STUDENT_URLS</code> in <code>tables.jsx</code> and create matching routes in the Next.js app.</div>
         <div style="padding:14px;background:#F7F8FA;border-radius:8px;font-size:13px;color:#424147;"><b style="display:block;margin-bottom:4px;">Assignment-level view</b>Filter by a single assignment, showing class-wide completion and score distribution.</div>
         <div style="padding:14px;background:#F7F8FA;border-radius:8px;font-size:13px;color:#424147;"><b style="display:block;margin-bottom:4px;">Trend over time</b>Swap the date range filter for a time-series chart showing activity trends week by week.</div>
         <div style="padding:14px;background:#F7F8FA;border-radius:8px;font-size:13px;color:#424147;"><b style="display:block;margin-bottom:4px;">Export enhancements</b>DownloadBtn currently has no handler — wire it to generate a CSV from the current filtered + sorted table state.</div>
@@ -840,7 +1079,7 @@ h2:hover a.anchor { opacity: 1; }
   </section>
 
   <footer style="margin-top: 80px; padding-top: 24px; border-top: 1px solid #E1E3E5; font-size: 12px; color: #9395A0;">
-    Version 1.0 · Classroom Data — STEM Reporting handoff spec. Pairs with <a href="index.html" style="color:#0A6EFA;">index.html</a>. When in doubt, read the source.
+    Version 1.1 · Classroom Data — STEM Reporting handoff spec. Classroom prototype: <a href="index.html" style="color:#0A6EFA;">index.html</a>. Student page: <a href="https://stem-reporting-8z9b.vercel.app/" target="_blank" rel="noopener" style="color:#0A6EFA;">stem-reporting-8z9b.vercel.app ↗</a>. When in doubt, read the source.
   </footer>
 
 </main>
