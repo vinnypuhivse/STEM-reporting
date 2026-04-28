@@ -20,19 +20,10 @@ const DownloadIcon = () => (
 );
 
 const SortIcon = () => (
-  <svg
-    width="12"
-    height="12"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    aria-hidden="true"
-  >
-    <polyline points="8 9 12 5 16 9" />
-    <polyline points="8 15 12 19 16 15" />
-  </svg>
+  <span style={{ display: "inline-flex", flexDirection: "column", gap: 2, verticalAlign: "middle", marginLeft: 4 }} aria-hidden="true">
+    <svg width="8" height="5" viewBox="0 0 10 6" fill="currentColor"><path d="M5 0 l5 6 H0 z" /></svg>
+    <svg width="8" height="5" viewBox="0 0 10 6" fill="currentColor"><path d="M5 6 l5 -6 H0 z" /></svg>
+  </span>
 );
 
 const FirstPageIcon = () => (
