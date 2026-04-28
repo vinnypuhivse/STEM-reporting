@@ -186,7 +186,7 @@ export default function StemReadingActivity() {
                 </th>
                 <th style={{ width: "10%" }}>
                   <SortableHeader>Active time</SortableHeader>
-                  <div className={styles.subLabel}>Time on article</div>
+                  <div className={styles.subLabel}>Time on content</div>
                 </th>
               </tr>
             </thead>
