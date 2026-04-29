@@ -194,7 +194,7 @@ window.Filters = function Filters({ filters, setFilters }) {
       })
     );
   return h('div', { className: 'filters' },
-    makeFilter('Select School', 'school', D.schools, true),
+    makeFilter('Select classroom', 'school', D.schools, true),
     makeFilter('Select activity', 'activity', D.activities),
     makeFilter('Date Range', 'dateRange', D.dateRanges),
   );

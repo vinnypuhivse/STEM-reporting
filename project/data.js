@@ -2,7 +2,7 @@
 // Student activity + reading skills derived from the Figma designs.
 
 window.REPORT_DATA = {
-  schools: ['Brooksville K-12 School', 'ELA Class 8th Grade P.2', 'ELA Class 8th Grade P.3', 'ELA Class 8th Grade P.7', 'ELA Class 8th Grade P.8'],
+  schools: ['ELA Class 8th Grade P.2', 'ELA Class 8th Grade P.3', 'ELA Class 8th Grade P.7', 'ELA Class 8th Grade P.8'],
   activities: ['All activity', 'Assigned activity', 'Independent activity'],
   dateRanges: ['July to date', 'Last 90 days', 'Last 45 days'],
 
