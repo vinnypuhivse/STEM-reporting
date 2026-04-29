@@ -280,7 +280,7 @@ a { color: inherit; }
   letter-spacing: -0.5px;
   min-width: 100px;
 }
-.ela-lvl-panel .ela-lvl-sub { font-size: 16px; color: var(--text-900); line-height: 1.35; }
+.ela-lvl-panel .ela-lvl-sub { font-size: 14px; color: var(--text-900); line-height: 1.35; }
 .ela-bars { display: flex; flex-direction: column; gap: 8px; }
 .ela-bars { --ela-label-w: 140px; }
 .ela-bar-row { display: grid; grid-template-columns: var(--ela-label-w) 1fr auto; align-items: center; gap: 12px; }
