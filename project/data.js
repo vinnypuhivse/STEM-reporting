@@ -43,8 +43,8 @@ window.REPORT_DATA = {
     // Student activity bars
     studentActivity: [
       { name: 'Unique active students', count: 1192 },
-      { name: 'Viewed content', count: 765 },
-      { name: 'Viewed STEM', count: 191 },
+      { name: 'Content viewed', count: 765 },
+      { name: 'STEM content viewed', count: 191 },
       { name: 'Submitted activities', count: 35 },
     ],
     // STEM Disciplines horizontal bars
@@ -61,8 +61,8 @@ window.REPORT_DATA = {
   elaOverview: {
     studentActivity: [
       { name: 'Unique active students', count: 1192 },
-      { name: 'Viewed content', count: 765 },
-      { name: 'Viewed ELA', count: 574 },
+      { name: 'Content viewed', count: 765 },
+      { name: 'ELA content viewed', count: 574 },
       { name: 'Submitted activities', count: 210 },
     ],
     avgLevel: '8th',
