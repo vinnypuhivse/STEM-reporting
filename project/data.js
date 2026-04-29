@@ -42,7 +42,6 @@ window.REPORT_DATA = {
     videosTotal: 9,
     // Student activity bars
     studentActivity: [
-      { name: 'Unique active students', count: 1192 },
       { name: 'Content viewed', count: 765 },
       { name: 'STEM content viewed', count: 191 },
       { name: 'Submitted activities', count: 35 },
@@ -60,7 +59,6 @@ window.REPORT_DATA = {
 
   elaOverview: {
     studentActivity: [
-      { name: 'Unique active students', count: 1192 },
       { name: 'Content viewed', count: 765 },
       { name: 'ELA content viewed', count: 574 },
       { name: 'Submitted activities', count: 210 },
