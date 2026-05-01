@@ -250,11 +250,12 @@ a { color: inherit; }
 .ela-tile {
   background: #fff;
   border-radius: 8px;
-  padding: 16px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  gap: 12px;
+  gap: 14px;
+  min-height: 160px;
 }
 .ela-tile--center { align-items: center; justify-content: center; gap: 12px; text-align: center; }
 .ela-tile-heading { font-size: 14px; font-weight: 700; color: var(--text-900); }
@@ -265,12 +266,12 @@ a { color: inherit; }
 .ela-lvl-sub { font-size: 13px; color: var(--text-900); line-height: 1.35; }
 
 /* Average reading level — two stacked white panels */
-.ela-lvl-stack { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; flex: 1; }
+.ela-lvl-stack { display: flex; flex-direction: column; gap: 12px; margin-top: 8px; flex: 1; }
 .ela-lvl-panel {
   background: #fff; border-radius: 8px;
-  padding: 16px 20px;
+  padding: 20px 20px;
   display: grid; grid-template-columns: auto 1fr; align-items: center;
-  column-gap: 32px;
+  column-gap: 32px; min-height: 84px;
 }
 .ela-lvl-panel .ela-lvl-num {
   font-family: 'Circular', -apple-system, sans-serif;
