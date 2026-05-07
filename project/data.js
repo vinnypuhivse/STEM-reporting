@@ -44,7 +44,6 @@ window.REPORT_DATA = {
     studentActivity: [
       { name: 'Content viewed', count: 765 },
       { name: 'STEM content viewed', count: 191 },
-      { name: 'Submitted activities', count: 35 },
     ],
     // STEM Disciplines horizontal bars
     disciplines: [
