@@ -158,7 +158,7 @@ export default function ReadingActivity() {
         </a>
       </div>
       <p className={styles.sub}>
-        See Sarah&rsquo;s ELA activity across texts.
+        See Sarah&rsquo;s ELA activity across Newsela texts.
       </p>
 
       <div className={styles.filters}>
