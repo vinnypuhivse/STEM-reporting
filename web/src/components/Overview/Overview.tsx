@@ -107,7 +107,7 @@ export default function Overview() {
   return (
     <section className={styles.section} data-screen-label="Overview">
       <div className={styles.head}>
-        <h2 className={styles.title}>Overview of student reading</h2>
+        <h2 className={styles.title}>ELA overview</h2>
         <a className={styles.downloadLink} href="#">
           <DownloadIcon />
           <span className={styles.underline}>Download as .csv</span>
