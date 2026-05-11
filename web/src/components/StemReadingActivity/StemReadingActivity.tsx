@@ -158,14 +158,14 @@ export default function StemReadingActivity() {
   return (
     <section className={styles.section}>
       <div className={styles.head}>
-        <h2 className={styles.title}>Student activity</h2>
+        <h2 className={styles.title}>Student&rsquo;s STEM activity</h2>
         <a className={styles.downloadLink} href="#">
           <DownloadIcon />
           <span className={styles.underline}>Download as .csv</span>
         </a>
       </div>
       <p className={styles.sub}>
-        See Sarah&rsquo;s overall reading activity across STEM content.
+        See Sarah&rsquo;s activity across STEM content on Newsela.
       </p>
 
       <div className={styles.tableCard}>
