@@ -140,16 +140,14 @@ window.TextsByLevelCard = function TextsByLevelCard({ tipText, textsByLevel }) {
       h(window.InfoTip, { text: tipText }),
     ),
     h('div', { className: 'ela-tile ela-tile--right', style: { marginTop: 8, flex: 1, justifyContent: 'center' } },
-      h('div', { className: 'ela-bars' },
-        textsByLevel.map((row, i) =>
-          h('div', { key: row.level, className: 'ela-bar-row' },
-            h('span', { className: 'ela-bar-label' }, row.level),
-            h('div', { style: { width: '100%', height: 24, background: 'transparent', overflow: 'visible' } },
-              h('div', { style: { height: '100%', background: 'rgb(16,111,243)', borderRadius: '0 8px 0 0', width: visible ? ((row.count / max) * 100) + '%' : '0%', transition: 'width 600ms cubic-bezier(0.2,0,0,1)', transitionDelay: (i * 80) + 'ms' } }),
-            ),
-            h('span', { className: 'ela-bar-count' }, row.count),
-          )
-        ),
+      h('div', { style: { display: 'grid', gridTemplateColumns: 'auto 1fr auto', alignItems: 'center', columnGap: 16, rowGap: 12 } },
+        textsByLevel.flatMap((row, i) => [
+          h('span', { key: row.level + '-l', className: 'ela-bar-label' }, row.level),
+          h('div', { key: row.level + '-b', style: { width: '100%', height: 24, background: 'transparent', overflow: 'visible' } },
+            h('div', { style: { height: '100%', background: 'rgb(16,111,243)', borderRadius: '0 8px 0 0', width: visible ? ((row.count / max) * 100) + '%' : '0%', transition: 'width 600ms cubic-bezier(0.2,0,0,1)', transitionDelay: (i * 80) + 'ms' } }),
+          ),
+          h('span', { key: row.level + '-v', className: 'ela-bar-count' }, row.count),
+        ])
       ),
       h('a', { className: 'ela-trend', href: '#', style: { marginTop: 12 } },
         h(I.TrendUp, { size: 14 }),
@@ -356,16 +354,14 @@ window.DisciplinesCard = function DisciplinesCard({ title, icon, tipText, discip
       h('div', { className: 'card-title' }, icon, title),
       h(window.InfoTip, { text: tipText }),
     ),
-    h('div', { style: { background: '#fff', borderRadius: 8, padding: '24px 20px', display: 'flex', flexDirection: 'column', gap: 12, marginTop: 8, flex: 1, justifyContent: 'center' } },
-      rows.map((d, i) =>
-        h('div', { key: d.name, style: { display: 'grid', gridTemplateColumns: labelCol + 'px 1fr auto', alignItems: 'center', gap: 12 } },
-          h('span', { style: { fontSize: 14, color: 'var(--text-900)' } }, d.name),
-          h('div', { style: { height: barHeight, background: 'transparent', borderRadius: 0, overflow: 'visible' } },
-            h('div', { style: { height: '100%', background: 'rgb(16,111,243)', borderRadius: '0 8px 0 0', width: visible ? ((d.count / max) * 100) + '%' : '0%', transition: 'width 600ms cubic-bezier(0.2,0,0,1)', transitionDelay: (i * 80) + 'ms' } })
-          ),
-          h('span', { style: { fontWeight: 700, fontSize: 14, color: 'var(--text-900)' } }, typeof d.count === 'number' ? d.count.toLocaleString() : d.count),
-        )
-      )
+    h('div', { style: { background: '#fff', borderRadius: 8, padding: '24px 20px', display: 'grid', gridTemplateColumns: (labelCol === 'auto' ? 'auto' : labelCol + 'px') + ' 1fr auto', alignItems: 'center', columnGap: 16, rowGap: 12, marginTop: 8, flex: 1, alignContent: 'center' } },
+      rows.flatMap((d, i) => [
+        h('span', { key: d.name + '-l', style: { fontSize: 14, color: 'var(--text-900)' } }, d.name),
+        h('div', { key: d.name + '-b', style: { height: barHeight, background: 'transparent', borderRadius: 0, overflow: 'visible' } },
+          h('div', { style: { height: '100%', background: 'rgb(16,111,243)', borderRadius: '0 8px 0 0', width: visible ? ((d.count / max) * 100) + '%' : '0%', transition: 'width 600ms cubic-bezier(0.2,0,0,1)', transitionDelay: (i * 80) + 'ms' } })
+        ),
+        h('span', { key: d.name + '-v', style: { fontWeight: 700, fontSize: 14, color: 'var(--text-900)' } }, typeof d.count === 'number' ? d.count.toLocaleString() : d.count),
+      ])
     )
   );
 };

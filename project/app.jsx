@@ -24,7 +24,7 @@ function StemPanel({ data, stemSvg }) {
           title: 'Student activity',
           tipText: 'Summary counts of students and content engagement.',
           items: stem.studentActivity,
-          labelCol: 170,
+          labelCol: 'auto',
           barHeight: 48,
         }),
         h(window.DonutCard, {
@@ -42,6 +42,7 @@ function StemPanel({ data, stemSvg }) {
           title: 'STEM Disciplines',
           tipText: 'Count of content pieces engaged with by STEM discipline.',
           disciplines: stem.disciplines,
+          labelCol: 'auto',
         }),
         h(window.TimeSpentCard, {
           icon: h(I.Time, { size: 22 }),
@@ -54,7 +55,7 @@ function StemPanel({ data, stemSvg }) {
     ),
     h('section', { className: 'section' },
       h('div', { className: 'section-head' },
-        h('h2', null, 'Student activity'),
+        h('h2', null, 'Student STEM activity'),
         h(window.DownloadBtn)
       ),
       h('p', { className: 'section-sub' }, "View students' STEM activity across Newsela."),
@@ -77,7 +78,7 @@ function ElaPanel({ data, elaSvg }) {
           title: 'Student activity',
           tipText: 'Summary counts of students and content engagement.',
           items: ela.studentActivity,
-          labelCol: 170,
+          labelCol: 'auto',
         }),
         h(window.AvgReadingLevelCard, {
           tipText: 'Average grade level and Lexile for texts viewed by your class.',
@@ -109,7 +110,7 @@ function ElaPanel({ data, elaSvg }) {
     ),
     h('section', { className: 'section' },
       h('div', { className: 'section-head' },
-        h('h2', null, 'Reading activity'),
+        h('h2', null, 'Student ELA activity'),
         h(window.DownloadBtn)
       ),
       h('p', { className: 'section-sub' }, "View students' ELA activity across Newsela."),
