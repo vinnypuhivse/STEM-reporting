@@ -151,14 +151,14 @@ export default function ReadingActivity() {
   return (
     <section className={styles.section} data-screen-label="Reading activity">
       <div className={styles.head}>
-        <h2 className={styles.title}>Reading activity</h2>
+        <h2 className={styles.title}>Student&rsquo;s ELA activity</h2>
         <a className={styles.downloadLink} href="#">
           <DownloadIcon />
           <span className={styles.underline}>Download as .csv</span>
         </a>
       </div>
       <p className={styles.sub}>
-        See Sarah&rsquo;s overall reading activity across texts.
+        See Sarah&rsquo;s ELA activity across texts.
       </p>
 
       <div className={styles.filters}>
