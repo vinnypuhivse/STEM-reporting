@@ -25,6 +25,7 @@ function StemPanel({ data, stemSvg }) {
           tipText: 'Summary counts of students and content engagement.',
           items: stem.studentActivity,
           labelCol: 170,
+          barHeight: 48,
         }),
         h(window.DonutCard, {
           icon: h(I.Details, { size: 22 }),
@@ -56,7 +57,7 @@ function StemPanel({ data, stemSvg }) {
         h('h2', null, 'Student activity'),
         h(window.DownloadBtn)
       ),
-      h('p', { className: 'section-sub' }, "See students' overall activity across Newsela."),
+      h('p', { className: 'section-sub' }, "View students' STEM activity across Newsela."),
       h(window.StemStudentTable, { students: data.students })
     ),
   );
@@ -111,7 +112,7 @@ function ElaPanel({ data, elaSvg }) {
         h('h2', null, 'Reading activity'),
         h(window.DownloadBtn)
       ),
-      h('p', { className: 'section-sub' }, "See students' overall reading activity across Newsela."),
+      h('p', { className: 'section-sub' }, "View students' ELA activity across Newsela."),
       h(window.ElaStudentTable, { students: data.students })
     ),
   );

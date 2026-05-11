@@ -314,8 +314,7 @@ window.DonutCard = function DonutCard({ title, icon, tipText, articlesPct, video
       h('div', { style: { display: 'flex', alignItems: 'center', gap: 16 } },
         h('div', { style: { textAlign: 'right' } },
           h('div', { style: { fontWeight: 700, fontSize: 22, color: 'var(--blue-700)' } }, articlesPct + '%'),
-          h('div', { style: { fontSize: 12, color: 'var(--blue-700)', fontWeight: 500 } }, 'Articles'),
-          articlesTotal != null && h('div', { style: { fontSize: 14, color: 'var(--text-900)', fontWeight: 400, marginTop: 2 } }, articlesTotal + ' total'),
+          articlesTotal != null && h('div', { style: { fontSize: 14, color: 'var(--text-900)', fontWeight: 400, marginTop: 2 } }, articlesTotal + ' Articles viewed'),
         ),
         h('svg', { width: 96, height: 96, viewBox: '0 0 100 100', style: { transform: 'rotate(-90deg)' } },
           // Purple (Videos) — right side, grows clockwise from top
@@ -339,8 +338,7 @@ window.DonutCard = function DonutCard({ title, icon, tipText, articlesPct, video
         ),
         h('div', { style: { textAlign: 'left' } },
           h('div', { style: { fontWeight: 700, fontSize: 22, color: '#a437c9' } }, videosPct + '%'),
-          h('div', { style: { fontSize: 12, color: '#a437c9', fontWeight: 500 } }, 'Videos'),
-          videosTotal != null && h('div', { style: { fontSize: 14, color: 'var(--text-900)', fontWeight: 400, marginTop: 2 } }, videosTotal + ' total'),
+          videosTotal != null && h('div', { style: { fontSize: 14, color: 'var(--text-900)', fontWeight: 400, marginTop: 2 } }, videosTotal + ' Videos viewed'),
         ),
       ),
     )
@@ -348,7 +346,7 @@ window.DonutCard = function DonutCard({ title, icon, tipText, articlesPct, video
 };
 
 // ────────────────────────── Disciplines card (horizontal bars) ──────────────────────────
-window.DisciplinesCard = function DisciplinesCard({ title, icon, tipText, disciplines, items, labelCol = 100 }) {
+window.DisciplinesCard = function DisciplinesCard({ title, icon, tipText, disciplines, items, labelCol = 100, barHeight = 24 }) {
   const rows = items || disciplines || [];
   const max = Math.max(...rows.map(d => d.count), 1);
   const [visible, setVisible] = useState(false);
@@ -362,7 +360,7 @@ window.DisciplinesCard = function DisciplinesCard({ title, icon, tipText, discip
       rows.map((d, i) =>
         h('div', { key: d.name, style: { display: 'grid', gridTemplateColumns: labelCol + 'px 1fr auto', alignItems: 'center', gap: 12 } },
           h('span', { style: { fontSize: 14, color: 'var(--text-900)' } }, d.name),
-          h('div', { style: { height: 24, background: 'transparent', borderRadius: 0, overflow: 'visible' } },
+          h('div', { style: { height: barHeight, background: 'transparent', borderRadius: 0, overflow: 'visible' } },
             h('div', { style: { height: '100%', background: 'rgb(16,111,243)', borderRadius: '0 8px 0 0', width: visible ? ((d.count / max) * 100) + '%' : '0%', transition: 'width 600ms cubic-bezier(0.2,0,0,1)', transitionDelay: (i * 80) + 'ms' } })
           ),
           h('span', { style: { fontWeight: 700, fontSize: 14, color: 'var(--text-900)' } }, typeof d.count === 'number' ? d.count.toLocaleString() : d.count),
