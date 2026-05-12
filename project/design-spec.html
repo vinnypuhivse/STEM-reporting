@@ -158,11 +158,11 @@ h2:hover a.anchor { opacity: 1; }
 
   <div class="hero">
     <!-- UPDATE version + date here on every spec revision -->
-    <div class="eyebrow">v1.7 · April 29, 2026 · 10:42 AM</div>
+    <div class="eyebrow">v2.0 · May 12, 2026 · 9:00 AM</div>
     <h1>Classroom Data</h1>
     <p>A teacher-facing reporting dashboard that surfaces STEM and ELA learning activity across a class, plus a student-level drill-in page. Teachers see engagement metrics, reading levels, quiz performance, and content breakdowns — all filterable by school, activity type, and date range. Clicking a student name navigates to an individual student view.</p>
     <div class="hero-meta">
-      <span><b>Status:</b> Design WIP</span>
+      <span><b>Status:</b> Design ready</span>
       <span><b>Source:</b> <a href="index.html">index.html</a></span>
       <span><b>Student page:</b> <a href="https://stem-reporting-8z9b.vercel.app/" target="_blank" rel="noopener">stem-reporting-8z9b.vercel.app ↗</a></span>
       <span><b>Design system:</b> Angelou Design System 2.0</span>
@@ -648,7 +648,7 @@ h2:hover a.anchor { opacity: 1; }
       <thead><tr><th>Card</th><th>Icon</th><th>Key visual</th><th>Data inputs</th></tr></thead>
       <tbody>
         <tr><td>Student activity</td><td>InsightsIcon</td><td>Animated horizontal bars</td><td>Array of <code>{name, count}</code> items</td></tr>
-        <tr><td>Content breakdown</td><td>DetailsIcon</td><td>SVG donut 96×96, flanked by percentage labels</td><td><code>articlesPct</code>, <code>videosPct</code>, totals; blue (articles) + purple #a437c9 (videos)</td></tr>
+        <tr><td>Content breakdown</td><td>DetailsIcon</td><td>SVG donut 96×96, flanked by percentage labels</td><td><code>articlesPct</code>, <code>videosPct</code>, totals; labels: "N Articles viewed" (blue) + "N Videos viewed" (purple #a437c9)</td></tr>
         <tr><td>STEM Disciplines</td><td>STEM SVG logo</td><td>Animated horizontal bars (blue fill)</td><td>Array of <code>{name, count}</code>; sample: Science 3, Ecology 17, Mathematics 6</td></tr>
         <tr><td>Time spent</td><td>ClockIcon / TimeIcon</td><td>2-column ring gauge grid (white inner boxes)</td><td><code>articleAvgMin</code>, <code>videoAvgMin</code>; ring pct = (min/60)×100</td></tr>
       </tbody>
@@ -658,11 +658,26 @@ h2:hover a.anchor { opacity: 1; }
     <table class="spec">
       <thead><tr><th>Card</th><th>Icon</th><th>Key visual</th><th>Sample values</th></tr></thead>
       <tbody>
-        <tr><td>Content breakdown</td><td>DetailsIcon (stroke)</td><td>96×96 donut with percentage labels left/right</td><td>75% Articles (17 total) / 25% Videos (9 total)</td></tr>
+        <tr><td>Content breakdown</td><td>DetailsIcon (stroke)</td><td>96×96 donut with percentage labels left/right</td><td>75% Articles (17 Articles viewed) / 25% Videos (9 Videos viewed)</td></tr>
         <tr><td>STEM Disciplines</td><td>StemIcon (fill)</td><td>Animated horizontal bars in white inner box</td><td>Science 3, Ecology 17, Mathematics 6; blue fill, staggered 80ms</td></tr>
         <tr><td>Time spent</td><td>ClockIcon (stroke)</td><td>2-column ring gauges in white inner boxes</td><td>23 min/article, 16 min/video; rings proportional to 60-min max</td></tr>
       </tbody>
     </table>
+
+    <h3 class="sec">Horizontal bar chart (DisciplinesCard) layout spec</h3>
+    <table class="spec">
+      <thead><tr><th>Property</th><th>Value</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Container layout</td><td>CSS Grid, single grid spanning all rows</td><td><code>gridTemplateColumns: auto 1fr auto</code>. All rows share one grid — labels auto-size to the widest label so bars left-align across all rows.</td></tr>
+        <tr><td>Column gap</td><td><code>16px</code></td><td>Between label, bar track, and count columns</td></tr>
+        <tr><td>Row gap</td><td><code>12px</code></td><td>Between data rows</td></tr>
+        <tr><td>Label column</td><td><code>auto</code> (<code>labelCol</code> prop)</td><td>Auto-sizes to the widest label in the set. Do not use a fixed px value — it breaks cross-row alignment.</td></tr>
+        <tr><td>Bar height (<code>barHeight</code> prop)</td><td>Default <code>24px</code>; STEM Student activity: <code>48px</code></td><td>Only the STEM Student activity card passes <code>barHeight: 48</code>. All other bar charts use the default 24px.</td></tr>
+        <tr><td>Bar fill animation</td><td><code>width 700ms cubic-bezier(0.2,0,0,1)</code></td><td>Staggered: each row delayed by <code>i × 80ms</code></td></tr>
+        <tr><td>Flat cell array</td><td><code>rows.flatMap(r =&gt; [label, bar, count])</code></td><td>Three cells per row rendered as a single flat array — the single-grid approach requires flat children, not row wrappers.</td></tr>
+      </tbody>
+    </table>
+    <div class="callout warn">Never wrap each bar row in its own <code>display: grid</code> — per-row grids size <code>auto</code> columns independently, so labels mis-align across rows. The white panel container must be the single grid.</div>
 
     <h3 class="sec">Donut chart spec</h3>
     <table class="spec">
@@ -681,7 +696,7 @@ h2:hover a.anchor { opacity: 1; }
 
   <section class="section" id="c-tables">
     <h2>Data Tables <a class="anchor" href="#c-tables">§</a></h2>
-    <p class="sub">Three table types on the classroom page: STEM student activity, ELA student activity, and ELA reading skills. On the student page, a fourth STEM reading activity table lists individual articles. All share pagination and sorting patterns.</p>
+    <p class="sub">Three table types on the classroom page: Student STEM activity, Student ELA activity, and ELA reading skills. On the student page, a fourth STEM reading activity table ("Student's STEM activity") lists individual articles. The ELA reading activity table is titled "Student's ELA activity". All share pagination and sorting patterns.</p>
 
     <h3 class="sec">Table base</h3>
     <table class="spec">
@@ -714,7 +729,7 @@ h2:hover a.anchor { opacity: 1; }
       <tbody>
         <tr><td>Student</td><td>—</td><td>—</td></tr>
         <tr><td>Text level</td><td>Average Lexile of texts viewed</td><td>"Average Lexile score of articles this student has read."</td></tr>
-        <tr><td>Date of last activity</td><td>Latest data</td><td>"Most recent time this student used Newsela."</td></tr>
+        <tr><td>Date of last activity</td><td>Last viewed</td><td>"Most recent time this student used Newsela."</td></tr>
         <tr><td>Article views</td><td>total views</td><td>"Count of articles opened in this range."</td></tr>
         <tr><td>Active time (article)</td><td>Average time on article</td><td>"Average active minutes per article."</td></tr>
         <tr><td>Video views</td><td>total views</td><td>"Count of videos watched."</td></tr>
@@ -723,13 +738,13 @@ h2:hover a.anchor { opacity: 1; }
     </table>
 
     <h3 class="sec">STEM Reading Activity table (student page)</h3>
-    <p class="sub" style="margin-top:-16px;">Section title is "Student activity". Subtitle reads "See [name]'s overall reading activity across STEM content." No reading level filter dropdown. Column header is "Content" (not "Article").</p>
+    <p class="sub" style="margin-top:-16px;">Section title is "Student's STEM activity". Subtitle reads "See Sarah's activity across STEM content on Newsela." No reading level filter dropdown. Column header is "Content" (not "Article"). Date cells show date only — time portion is stripped (e.g. "04/15/2026", not "04/15/2026 at 5:02 pm"). "N/A" values render as-is.</p>
     <table class="spec">
       <thead><tr><th>Column</th><th>Sub-label</th><th>Notes</th></tr></thead>
       <tbody>
         <tr><td>Content</td><td>—</td><td>Shows thumbnail image + article title link; width 18%</td></tr>
         <tr><td>Text level</td><td>Average Lexile of texts viewed</td><td>Bold Lexile value + muted grade label below</td></tr>
-        <tr><td>Date of last activity</td><td>Latest data ⓘ</td><td>Inline info indicator in sub-label</td></tr>
+        <tr><td>Date of last activity</td><td>Last viewed ⓘ</td><td>Inline info indicator in sub-label. Displays date only — <code>s.last.split(' at ')[0]</code></td></tr>
         <tr><td>Active time</td><td>Time on content</td><td>Plain minutes string (e.g. "15 min")</td></tr>
       </tbody>
     </table>
@@ -818,8 +833,8 @@ h2:hover a.anchor { opacity: 1; }
     <table class="spec">
       <thead><tr><th>Location</th><th>How to update</th></tr></thead>
       <tbody>
-        <tr><td>Classroom prototype (<code>index.html</code>)</td><td>Edit <code>window.__STATUS = { "status": "Design WIP", "handoffUrl": "design-spec.html" }</code></td></tr>
-        <tr><td>Student page (<code>StatusBadge.tsx</code>)</td><td>Edit <code>const STATUS = "Design WIP"</code> and <code>const HANDOFF_URL = "..."</code> constants at the top of the file</td></tr>
+        <tr><td>Classroom prototype (<code>index.html</code>)</td><td>Edit <code>window.__STATUS = { "status": "Design ready", "handoffUrl": "design-spec.html" }</code></td></tr>
+        <tr><td>Student page (<code>StatusBadge.tsx</code>)</td><td>Edit <code>const STATUS = "Design ready"</code> and <code>const HANDOFF_URL = "..."</code> constants at the top of the file</td></tr>
       </tbody>
     </table>
 
@@ -905,8 +920,8 @@ h2:hover a.anchor { opacity: 1; }
         <tr><td>Page title</td><td>"Sarah Camacho"</td><td>Noto Serif, 32px / 700</td></tr>
         <tr><td>Breadcrumb</td><td>"Classroom data" / "Sarah Camacho"</td><td>"Classroom data" links to classroom page; URL preserves <code>?tab=</code></td></tr>
         <tr><td>Tabs</td><td>ELA / STEM</td><td>Tab state in URL query param <code>?tab=ela</code> or <code>?tab=stem</code></td></tr>
-        <tr><td>ELA tab sections</td><td>Overview · Reading skills · Student activity</td><td>3-column overview grid; reading skills use row layout (not table columns)</td></tr>
-        <tr><td>STEM tab sections</td><td>STEM Overview · Reading skills · Student activity</td><td>3-column overview grid; STEM reading skills; STEM reading activity table</td></tr>
+        <tr><td>ELA tab sections</td><td>ELA overview · Reading skills · Student's ELA activity</td><td>3-column overview grid; reading skills use row layout (not table columns)</td></tr>
+        <tr><td>STEM tab sections</td><td>STEM Overview · Reading skills · Student's STEM activity</td><td>3-column overview grid; STEM reading skills; STEM reading activity table</td></tr>
       </tbody>
     </table>
 
@@ -1075,7 +1090,7 @@ h2:hover a.anchor { opacity: 1; }
   </section>
 
   <footer style="margin-top: 80px; padding-top: 24px; border-top: 1px solid #E1E3E5; font-size: 12px; color: #9395A0;">
-    v1.7 · April 29, 2026 · 10:42 AM · Classroom Data — STEM Reporting handoff spec. Classroom prototype: <a href="index.html" style="color:#0A6EFA;">index.html</a>. Student page: <a href="https://stem-reporting-8z9b.vercel.app/" target="_blank" rel="noopener" style="color:#0A6EFA;">stem-reporting-8z9b.vercel.app ↗</a>. When in doubt, read the source.
+    v2.0 · May 12, 2026 · 9:00 AM · Classroom Data — STEM Reporting handoff spec. Classroom prototype: <a href="index.html" style="color:#0A6EFA;">index.html</a>. Student page: <a href="https://stem-reporting-8z9b.vercel.app/" target="_blank" rel="noopener" style="color:#0A6EFA;">stem-reporting-8z9b.vercel.app ↗</a>. When in doubt, read the source.
   </footer>
 
 </main>
