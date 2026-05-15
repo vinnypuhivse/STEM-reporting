@@ -22,7 +22,7 @@ function StemPanel({ data, stemSvg }) {
         h(window.DisciplinesCard, {
           icon: h(I.Insights, { size: 22 }),
           title: 'Student activity',
-          tipText: 'Summary counts of students and content engagement.',
+          tipText: 'Count of all content views vs STEM content.',
           items: stem.studentActivity,
           labelCol: 'auto',
           barHeight: 48,
