@@ -207,7 +207,7 @@ export default function StemReadingActivity() {
                     <br />
                     <span className={styles.muted}>{row.grade}</span>
                   </td>
-                  <td>{row.lastActivity}</td>
+                  <td>{row.lastActivity === "N/A" ? "N/A" : row.lastActivity.split(" at ")[0]}</td>
                   <td>{row.time}</td>
                 </tr>
               ))}
