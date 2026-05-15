@@ -182,7 +182,7 @@ export default function StemReadingActivity() {
                 </th>
                 <th style={{ width: "13%" }}>
                   <SortableHeader>Date of last activity</SortableHeader>
-                  <div className={styles.subLabel}>Latest data ⓘ</div>
+                  <div className={styles.subLabel}>Last viewed ⓘ</div>
                 </th>
                 <th style={{ width: "10%" }}>
                   <SortableHeader>Active time</SortableHeader>
